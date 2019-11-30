@@ -6,7 +6,9 @@ const Nav: FC = () => {
   return (
     <>
       <Navbar bg="dark">
-        <Navbar.Brand className="white-text">Pizza Shop</Navbar.Brand>
+        <div className="container">
+          <Navbar.Brand className="white-text">Pizza Shop</Navbar.Brand>
+        </div>
       </Navbar>
     </>
   );
