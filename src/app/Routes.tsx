@@ -1,8 +1,17 @@
 import React from "react";
-import { Switch } from "react-router";
+import { Route, Switch } from "react-router";
+import { Home } from "src/pages/Home";
 
 const Routes = () => {
-  return <Switch></Switch>;
+  return (
+    <>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </>
+  );
 };
 
 export { Routes };
