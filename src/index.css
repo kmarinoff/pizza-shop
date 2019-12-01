@@ -15,9 +15,14 @@ body {
   padding: 0;
 }
 
+#root {
+  background-color: #f3f8f5;
+  min-height: 100vh;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    monospace;
 }
 
 #root {
