@@ -41,22 +41,6 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
           </div>
         </Card.Body>
       </Card>
-
-      {/* <div
-        className="m-4"
-        style={{ width: "300px", display: "flex", flexDirection: "column" }}
-      >
-        <Link to={`/home/pizza/${pizza.id}`}>
-          <h2 style={{ textAlign: "center" }}></h2>
-        </Link>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center"
-          }}
-        ></div>
-      </div> */}
     </>
   );
 };
