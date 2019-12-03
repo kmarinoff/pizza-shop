@@ -2,6 +2,8 @@ import "firebase/analytics";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { createFirestoreInstance } from "redux-firestore";
+import { store } from "src/reduxStore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,9 +17,18 @@ const firebaseConfig = {
   measurementId: "G-PLS31PP2VZ"
 };
 
+const rrfProps = {
+  firebase,
+  config: {
+    userProfile: "users"
+  },
+  dispatch: store.dispatch,
+  createFirestoreInstance
+};
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const firebaseInstance = firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 firebase.firestore().settings({});
 
-export { firebaseConfig };
+export { firebaseConfig, rrfProps, firebaseInstance };

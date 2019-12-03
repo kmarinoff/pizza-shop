@@ -1,4 +1,6 @@
+import { firebaseReducer } from "react-redux-firebase";
 import { combineReducers } from "redux";
+import { firestoreReducer } from "redux-firestore";
 import { cart } from "./cart";
 import { errors } from "./errors";
 import { loading } from "./loading";
@@ -10,5 +12,7 @@ export const rootReducer = combineReducers({
   loading,
   pizzas,
   users: userRolesReducer,
-  cart
+  cart,
+  firebase: firebaseReducer,
+  firestore: firestoreReducer
 });

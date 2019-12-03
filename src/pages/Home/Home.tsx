@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
+import { useFirestore } from "react-redux-firebase";
 import { Nav } from "src/app/Nav";
 import { getPizzas } from "src/reduxStore";
 import { Pizza } from "src/types";
