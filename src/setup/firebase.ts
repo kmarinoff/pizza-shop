@@ -1,7 +1,8 @@
-import "firebase/analytics";
 import firebase from "firebase/app";
-import "firebase/auth";
 import "firebase/firestore";
+
+import "firebase/analytics";
+import "firebase/auth";
 import { createFirestoreInstance } from "redux-firestore";
 import { store } from "src/reduxStore";
 
@@ -17,18 +18,18 @@ const firebaseConfig = {
   measurementId: "G-PLS31PP2VZ"
 };
 
-const rrfProps = {
-  firebase,
-  config: {
-    userProfile: "users"
-  },
-  dispatch: store.dispatch,
-  createFirestoreInstance
-};
-
 // Initialize Firebase
-const firebaseInstance = firebase.initializeApp(firebaseConfig);
+const firebaseInstance: any = firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
-firebase.firestore().settings({});
+firebaseInstance.firestore().settings({});
 
-export { firebaseConfig, rrfProps, firebaseInstance };
+// const rrfProps = {
+//   firebaseInstance,
+//   config: {
+//     userProfile: "users"
+//   },
+//   dispatch: store.dispatch,
+//   createFirestoreInstance
+// };
+
+export { firebaseConfig, firebaseInstance };

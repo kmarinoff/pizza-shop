@@ -13,6 +13,6 @@ export const rootReducer = combineReducers({
   pizzas,
   users: userRolesReducer,
   cart,
-  firebase: firebaseReducer,
-  firestore: firestoreReducer
+  firestore: firestoreReducer,
+  firebase: firebaseReducer
 });
