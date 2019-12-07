@@ -52,6 +52,37 @@ const signInWithFacebook = () => {
     });
 };
 
+const createUserProfileDocument = async (
+  userAuth: firebase.User,
+  additionalData?: any
+) => {
+  if (!userAuth) {
+    return null;
+  } else {
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapShot = await userRef.get();
+
+    if (!snapShot.exists) {
+      const { displayName, email, photoURL } = userAuth;
+      const createdAt = new Date();
+
+      try {
+        await userRef.set({
+          displayName,
+          email,
+          photoURL,
+          createdAt,
+          ...additionalData
+        });
+      } catch (error) {
+        console.log("error creating user", error.message);
+      }
+    }
+
+    return userRef;
+  }
+};
+
 const signOut = () => auth.signOut();
 
 export {
@@ -61,5 +92,6 @@ export {
   firestore,
   signInWithGoogle,
   signOut,
-  signInWithFacebook
+  signInWithFacebook,
+  createUserProfileDocument
 };
