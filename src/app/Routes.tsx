@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router";
-import { LoginScreen, NoRoute, PrivateRoute } from "src/components";
+import {
+  AuthContext,
+  LoginScreen,
+  NoRoute,
+  PrivateRoute
+} from "src/components";
 import { Home, PizzaDetails } from "src/pages";
+import { Nav } from "./Nav";
 
 const Routes = () => {
-  const isLoggedIn: boolean = true;
+  const { currentUser }: { currentUser: firebase.User } = useContext(
+    AuthContext
+  );
   return (
     <>
+      <Nav isLoggedIn={!!currentUser} />
       <Switch>
-        {/* TODO login variable */}
-        {isLoggedIn ? (
+        {!!currentUser ? (
           <Route exact path="/login">
             <Redirect exact to="/home" />
           </Route>
@@ -18,8 +26,7 @@ const Routes = () => {
             <LoginScreen />
           </Route>
         )}
-        {/* TODO login variable */}
-        <PrivateRoute isLoggedIn={isLoggedIn}>
+        <PrivateRoute isLoggedIn={!!currentUser}>
           <Switch>
             <Route exact path="/">
               <Redirect exact to="/home" />

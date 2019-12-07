@@ -1,10 +1,7 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-
 import "firebase/analytics";
+import firebase from "firebase/app";
 import "firebase/auth";
-import { createFirestoreInstance } from "redux-firestore";
-import { store } from "src/reduxStore";
+import "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,17 +16,50 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseInstance: any = firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
-firebaseInstance.firestore().settings({});
+const firebaseInstance = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const firestore = firebaseInstance.firestore();
+// const firebaseAnalytics = firebase.analytics();
 
-// const rrfProps = {
-//   firebaseInstance,
-//   config: {
-//     userProfile: "users"
-//   },
-//   dispatch: store.dispatch,
-//   createFirestoreInstance
-// };
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+googleAuthProvider.setCustomParameters({ proppt: "select_account" });
+const signInWithGoogle = () => {
+  auth.signInWithPopup(googleAuthProvider);
+};
 
-export { firebaseConfig, firebaseInstance };
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+// facebookAuthProvider.addScope("user_birthday");
+facebookAuthProvider.setCustomParameters({ display: "popup" });
+const signInWithFacebook = () => {
+  auth
+    .signInWithPopup(facebookAuthProvider)
+    .then((result: any) => {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      const token = result.credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    })
+    .catch((error: any) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      const credential = error.credential;
+      // ...
+    });
+};
+
+const signOut = () => auth.signOut();
+
+export {
+  firebaseConfig,
+  firebaseInstance,
+  auth,
+  firestore,
+  signInWithGoogle,
+  signOut,
+  signInWithFacebook
+};
