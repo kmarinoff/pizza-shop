@@ -25,7 +25,7 @@ const App: FC = () => {
     <AuthContextProvider>
       <Provider store={store}>
         <ReactReduxFirebaseProvider {...rrfProps}>
-          <Router>
+          <Router basename="/">
             <Routes />
           </Router>
         </ReactReduxFirebaseProvider>
