@@ -18,8 +18,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseInstance = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const firestore = firebaseInstance.firestore();
 // const firebaseAnalytics = firebase.analytics();
+
+// Initialize other services on firebase instance
+const firestore = firebaseInstance.firestore(); // <- needed if using firestore
+// const firestoreFunctions = firebase.functions(); // <- needed if using httpsCallable
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 googleAuthProvider.setCustomParameters({ proppt: "select_account" });
@@ -35,19 +38,19 @@ const signInWithFacebook = () => {
     .signInWithPopup(facebookAuthProvider)
     .then((result: any) => {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      const token = result.credential.accessToken;
+      // const token = result.credential.accessToken;
       // The signed-in user info.
-      const user = result.user;
+      // const user = result.user;
       // ...
     })
     .catch((error: any) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
       // The email of the user's account used.
-      const email = error.email;
+      // const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
+      // const credential = error.credential;
       // ...
     });
 };

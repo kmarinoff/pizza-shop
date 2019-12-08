@@ -3,7 +3,7 @@ import { auth, createUserProfileDocument } from "src/setup";
 
 const AuthContext = createContext(
   {} as {
-    currentUser: firebase.User;
+    currentUser: any;
   }
 );
 
