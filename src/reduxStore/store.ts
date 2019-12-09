@@ -1,19 +1,16 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
 import thunk from "redux-thunk";
 import { rootReducer } from "src/reduxStore";
 
-const getStore =
-  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-    ? createStore(
-        rootReducer,
-        composeWithDevTools(
-          compose(applyMiddleware(thunk.withExtraArgument({})))
-        )
-      )
-    : createStore(
-        rootReducer,
-        compose(applyMiddleware(thunk.withExtraArgument({})))
-      );
+const composeEnhancers = composeWithDevTools({
+  // options like actionSanitizer, stateSanitizer
+});
 
-export const store = getStore;
+export const store = createStore(
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware(thunk.withExtraArgument({}))
+    // other store enhancers if any
+  )
+);
