@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 100hv;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
