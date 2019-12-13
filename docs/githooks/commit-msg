@@ -1,0 +1,38 @@
+JIRA_PROJECT_KEY="PIZZA"      # <--- Change this for your project.
+MAX_TITLE_CHARS=100           # you may override for your team.
+
+#---- No changes needed below this ----
+bad_commit()
+{
+   echo
+   echo "Bad commit message.  $1"
+   echo
+   exit 1
+}
+
+INPUT_FILE=$1
+
+# Check line 1 matches the expected format.
+LINE1=`head -n1 $INPUT_FILE`
+SIP_PATTERN="^(($JIRA_PROJECT_KEY)-[[:digit:]]+(,| &)? ?)+: [[:alnum:]]"
+MERGE_PATTERN="^Merge "
+if [[ ! "$LINE1" =~ $SIP_PATTERN ]] && [[ ! "$LINE1" =~ $MERGE_PATTERN ]]; then
+    bad_commit "See example: $JIRA_PROJECT_KEY-123: Added feature X."
+fi
+
+# Check that line 1 does not exceed the MAX_TITLE_CHARS characters.
+# Exclude the JIRA tickets, colon, and leading space.
+COMMIT_MSG_COUNT=`echo $LINE1 | sed 's/^.*: //' | awk '{ print length }'`
+if (( $COMMIT_MSG_COUNT > $MAX_TITLE_CHARS )); then
+    bad_commit "Title had $COMMIT_MSG_COUNT characters.  $MAX_TITLE_CHARS is the max."
+fi
+
+# Check that if there are more than one lines, the second line is empty.
+LINE_COUNT=`cat $INPUT_FILE | wc -l | awk '{$1=$1};1'`
+if (( $LINE_COUNT > 1 )); then
+    LINE2=`head -n2 $INPUT_FILE | tail -n1`
+    CHAR_COUNT=`echo $LINE2 | awk '{ print length }'`
+    if (( $CHAR_COUNT > 0 )); then
+        bad_commit "The second line must be blank for large commit messages."
+    fi
+fi
