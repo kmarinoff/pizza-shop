@@ -1,27 +1,17 @@
-import { SET_LOADING } from "../actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { setLoading } from "../actions";
 
 const initState = { isLoading: true };
 
-const setLoading = (loadingValue: boolean) => {
+const setLoadingRequest = (loadingValue: boolean) => {
   return (dispatch: any, getState: any) => {
     // make async call to DB
-    dispatch({ type: SET_LOADING, loadingValue });
+    dispatch(setLoading(loadingValue));
   };
 };
 
-const loading = (state: { isLoading: boolean } = initState, action: any) => {
-  switch (action.type) {
-    case SET_LOADING: {
-      return {
-        ...state,
-        isLoading: action.loadingValue
-      };
-    }
+const loading = createReducer(initState, {
+  [setLoading.type]: (state, action) => action.payload
+});
 
-    default: {
-      return state;
-    }
-  }
-};
-
-export { loading, setLoading };
+export { loading, setLoadingRequest };

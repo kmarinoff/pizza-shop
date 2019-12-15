@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { getPizzas } from "src/reduxStore";
+import { getPizzasRequest } from "src/reduxStore";
 import { Pizza } from "src/types";
 import { Cart } from "./components";
 import { PizzaList } from "./components/PizzaList";
@@ -14,7 +14,7 @@ const Home: FC = () => {
   );
 
   useEffect(() => {
-    dispatch(getPizzas());
+    dispatch(getPizzasRequest());
   }, [dispatch]);
 
   return (

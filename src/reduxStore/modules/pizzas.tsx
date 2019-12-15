@@ -1,19 +1,21 @@
+import { createReducer } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 import {
-  GET_PIZZA,
-  GET_PIZZA_ERROR,
-  GET_PIZZAS,
-  GET_PIZZAS_ERROR,
-  SET_LOADING,
-  UNKNOWN_ERROR
+  getPizza,
+  getPizzaError,
+  getPizzas,
+  getPizzasError,
+  setLoading,
+  unknownError
 } from "../actions";
 
 const initState: any[] = [];
 
-const getPizzas = (pizzaId?: string) => {
+const getPizzasRequest = (pizzaId?: string) => {
   // make async call to DB
   return (dispatch: any, getState: any) => {
-    dispatch({ type: SET_LOADING, loadingValue: true });
+    dispatch(setLoading(true));
 
     if (pizzaId) {
       axios({
@@ -21,12 +23,9 @@ const getPizzas = (pizzaId?: string) => {
         url: `/pizzas/${pizzaId}`
       })
         .then(res => {
-          dispatch({
-            type: GET_PIZZA,
-            pizza: res.data
-          });
-
-          dispatch({ type: SET_LOADING, loadingValue: false });
+          dispatch(getPizza(res.data));
+          dispatch(setLoading(false));
+          toast.success(`Get pizza success: ${res.data.name}`);
         })
         .catch(err => {
           const error = {
@@ -34,21 +33,14 @@ const getPizzas = (pizzaId?: string) => {
             status: 404
           };
           if (error) {
-            dispatch({
-              type: GET_PIZZA_ERROR,
-              error
-            });
+            dispatch(getPizzaError(error));
+            toast.error(`${error.status}: ${error.message}`);
           } else {
-            dispatch({
-              type: UNKNOWN_ERROR,
-              error: {
-                message: "Unknown error",
-                status: 404
-              }
-            });
+            dispatch(unknownError());
+            toast.error(`404: Unknown error}`);
           }
 
-          dispatch({ type: "SET_LOADING", loadingValue: false });
+          dispatch(setLoading(false));
         });
     } else {
       axios({
@@ -56,12 +48,9 @@ const getPizzas = (pizzaId?: string) => {
         url: `/pizzas`
       })
         .then(res => {
-          dispatch({
-            type: GET_PIZZAS,
-            pizzas: res.data
-          });
-
-          dispatch({ type: SET_LOADING, loadingValue: false });
+          dispatch(getPizzas(res.data));
+          dispatch(setLoading(false));
+          toast.success("Get pizzas success");
         })
         .catch(err => {
           const error = {
@@ -69,40 +58,22 @@ const getPizzas = (pizzaId?: string) => {
             status: 404
           };
           if (error) {
-            dispatch({
-              type: GET_PIZZAS_ERROR,
-              error
-            });
+            dispatch(getPizzasError(error));
+            toast.error(`${error.status}: ${error.message}`);
           } else {
-            dispatch({
-              type: UNKNOWN_ERROR,
-              error: {
-                message: "Unknown error",
-                status: 404
-              }
-            });
+            dispatch(unknownError());
+            toast.error(`404: Unknown error}`);
           }
 
-          dispatch({ type: "SET_LOADING", loadingValue: false });
+          dispatch(setLoading(false));
         });
     }
   };
 };
 
-const pizzas = (state = initState, action: any = {}) => {
-  switch (action.type) {
-    case GET_PIZZAS: {
-      return [...action.pizzas];
-    }
+const pizzas = createReducer(initState, {
+  [getPizza.type]: (state, action) => [action.payload],
+  [getPizzas.type]: (state, action) => action.payload
+});
 
-    case GET_PIZZA: {
-      return [action.pizza];
-    }
-
-    default: {
-      return state;
-    }
-  }
-};
-
-export { pizzas, getPizzas };
+export { pizzas, getPizzasRequest, getPizzasError };

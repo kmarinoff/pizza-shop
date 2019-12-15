@@ -33,7 +33,7 @@ const AuthContextProvider: FC = ({ children }) => {
     });
   }, []);
 
-  console.log("currentUser:", currentUser);
+  // console.log("currentUser:", currentUser);
 
   return (
     <AuthContext.Provider value={{ currentUser }}>

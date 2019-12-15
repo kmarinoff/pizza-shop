@@ -1,5 +1,7 @@
 import axios from "axios";
 import get from "lodash/get";
+import { toast } from "react-toastify";
+import { setLoading, unknownError } from "../actions";
 
 const GET_USERS = "GET_USERS";
 const GET_USERS_ERROR = "GET_USERS_ERROR";
@@ -11,7 +13,7 @@ const getUsersUrl = `/users`;
 const getUsers = () => {
   // make async call to DB
   return (dispatch: any, getState: any) => {
-    dispatch({ type: "SET_LOADING", loading: true });
+    dispatch(setLoading(true));
 
     axios({
       method: "get",
@@ -23,7 +25,7 @@ const getUsers = () => {
           users: res.data
         });
 
-        dispatch({ type: "SET_LOADING", loading: false });
+        dispatch(setLoading(false));
       })
       .catch(err => {
         const error = get(err, ["response", "data"]);
@@ -33,17 +35,11 @@ const getUsers = () => {
             error
           });
         } else {
-          dispatch({
-            type: "UNKNOWN_ERROR",
-            error: {
-              error: "Unexpected",
-              message: "Unknown error",
-              status: 404
-            }
-          });
+          dispatch(unknownError());
+          toast.error(`404: Unknown error}`);
         }
 
-        dispatch({ type: "SET_LOADING", loading: false });
+        dispatch(setLoading(false));
       });
   };
 };

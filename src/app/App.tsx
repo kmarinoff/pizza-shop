@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { Provider } from "react-redux";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { BrowserRouter as Router } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import { createFirestoreInstance } from "redux-firestore"; // <- needed if using firestore
 import { AuthContextProvider } from "src/components";
 import { store } from "src/reduxStore";
@@ -19,6 +21,8 @@ const rrfProps = {
   dispatch: store.dispatch,
   createFirestoreInstance // <- needed if using firestore
 };
+
+toast.configure();
 
 const App: FC = () => {
   return (

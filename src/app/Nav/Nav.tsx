@@ -7,6 +7,8 @@ import { signInWithFacebook, signInWithGoogle, signOut } from "src/setup";
 import "./Nav.scss";
 import { FontAwesome } from "./StyledNav";
 
+import { toast } from "react-toastify";
+
 interface NavProps {
   isLoggedIn: boolean;
 }
@@ -30,6 +32,12 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item
+                  href="#/action-4"
+                  onClick={() => toast("Wow so easy !")}
+                >
+                  Toastify Test
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={signOut}>Logout</Dropdown.Item>
               </Dropdown.Menu>

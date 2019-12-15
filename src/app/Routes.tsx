@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
 import {
   AuthContext,
@@ -13,9 +13,11 @@ import { Nav } from "./Nav";
 
 const Routes = () => {
   const { currentUser }: { currentUser: User } = useContext(AuthContext);
-  const { auth }: { auth: any } = useSelector((state: any) => state.firebase);
+  // console.log("currentUser:", currentUser);
 
-  console.log("auth:", auth);
+  // const { auth }: { auth: any } = useSelector((state: any) => state.firebase);
+  // console.log("auth:", auth);
+
   return (
     <>
       <Nav isLoggedIn={!!currentUser} />

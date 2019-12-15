@@ -1,16 +1,69 @@
-// Pizzas
-export const GET_PIZZA: string = "GET_PIZZA";
-export const GET_PIZZAS: string = "GET_PIZZAS";
+import { createAction } from "@reduxjs/toolkit";
+import { Pizza } from "src/types";
 
 // Cart
 export const ADD_TO_CART: string = "ADD_TO_CART";
 export const REMOVE_FROM_CART: string = "REMOVE_FROM_CART";
 
+// Pizzas
+const getPizza = createAction("GET_PIZZA", (pizza: Pizza) => {
+  return {
+    payload: pizza
+  };
+});
+
+const getPizzas = createAction("GET_PIZZAS", (pizzas: Pizza[]) => {
+  return {
+    payload: pizzas
+  };
+});
+
 // Loading
-export const SET_LOADING: string = "SET_LOADING";
+const setLoading = createAction("SET_LOADING", (isLoading: boolean) => {
+  return {
+    payload: {
+      isLoading
+    }
+  };
+});
 
 // Errors
-export const GET_PIZZA_ERROR: string = "GET_PIZZA_ERROR";
-export const GET_PIZZAS_ERROR: string = "GET_PIZZAS_ERROR";
-export const SET_ERROR: string = "SET_ERROR";
-export const UNKNOWN_ERROR: string = "UNKNOWN_ERROR";
+const getPizzaError = createAction(
+  "GET_PIZZA_ERROR",
+  (error: { message: string; status: number }) => {
+    return {
+      payload: {
+        ...error
+      }
+    };
+  }
+);
+
+const getPizzasError = createAction(
+  "GET_PIZZAS_ERROR",
+  (error: { message: string; status: number }) => {
+    return {
+      payload: {
+        ...error
+      }
+    };
+  }
+);
+
+const unknownError = createAction("UNKNOWN_ERROR", () => {
+  return {
+    payload: {
+      message: "Unnown Error!",
+      status: 404
+    }
+  };
+});
+
+export {
+  getPizzaError,
+  getPizzasError,
+  getPizza,
+  getPizzas,
+  unknownError,
+  setLoading
+};
