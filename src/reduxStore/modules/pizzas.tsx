@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import {
   getPizza,
   getPizzaError,
-  getPizzas,
   getPizzasError,
+  getPizzasSuccess,
   setLoading,
   unknownError
 } from "../actions";
@@ -15,7 +15,7 @@ const initState: any[] = [];
 const getPizzasRequest = (pizzaId?: string) => {
   // make async call to DB
   return (dispatch: any, getState: any) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
 
     if (pizzaId) {
       axios({
@@ -24,7 +24,7 @@ const getPizzasRequest = (pizzaId?: string) => {
       })
         .then(res => {
           dispatch(getPizza(res.data));
-          dispatch(setLoading(false));
+          // dispatch(setLoading(false));
           toast.success(`Get pizza success: ${res.data.name}`);
         })
         .catch(err => {
@@ -40,7 +40,7 @@ const getPizzasRequest = (pizzaId?: string) => {
             toast.error(`404: Unknown error}`);
           }
 
-          dispatch(setLoading(false));
+          // dispatch(setLoading(false));
         });
     } else {
       axios({
@@ -48,7 +48,7 @@ const getPizzasRequest = (pizzaId?: string) => {
         url: `/pizzas`
       })
         .then(res => {
-          dispatch(getPizzas(res.data));
+          dispatch(getPizzasSuccess(res.data));
           dispatch(setLoading(false));
           toast.success("Get pizzas success");
         })
@@ -73,7 +73,7 @@ const getPizzasRequest = (pizzaId?: string) => {
 
 const pizzas = createReducer(initState, {
   [getPizza.type]: (state, action) => [action.payload],
-  [getPizzas.type]: (state, action) => action.payload
+  [getPizzasSuccess.type]: (state, action) => action.payload
 });
 
 export { pizzas, getPizzasRequest, getPizzasError };

@@ -12,11 +12,14 @@ const getPizza = createAction("GET_PIZZA", (pizza: Pizza) => {
   };
 });
 
-const getPizzas = createAction("GET_PIZZAS", (pizzas: Pizza[]) => {
-  return {
-    payload: pizzas
-  };
-});
+const getPizzasSuccess = createAction(
+  "GET_PIZZAS_SUCCESS",
+  (pizzas: Pizza[]) => {
+    return {
+      payload: pizzas
+    };
+  }
+);
 
 // Loading
 const setLoading = createAction("SET_LOADING", (isLoading: boolean) => {
@@ -63,7 +66,7 @@ export {
   getPizzaError,
   getPizzasError,
   getPizza,
-  getPizzas,
+  getPizzasSuccess,
   unknownError,
   setLoading
 };
