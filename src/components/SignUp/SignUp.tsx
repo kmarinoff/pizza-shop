@@ -6,20 +6,20 @@ import { auth, createUserProfileDocument } from "src/setup";
 import * as yup from "yup";
 
 const schema = yup.object({
-  displayName: yup
+  signUpDisplayName: yup
     .string()
     .required("Display name is a required field")
     .max(50, "Display name must be at most 50 characters"),
-  email: yup
+  signUpEmail: yup
     .string()
     .required("Email is a required field")
     .max(50, "Email address must be at most 50 characters"),
-  password: yup
+  signUpPassword: yup
     .string()
     .required("Password is a required field")
     .max(255, "Password must be at most 255 characters")
     .min(6, "Password must be at least 6 characters long"),
-  confirmPassword: yup
+  signUpConfirmPassword: yup
     .string()
     .required("Confirm password is a required field")
     .max(255, "Password must be at most 255 characters")
@@ -31,39 +31,62 @@ const SignUp: FC = () => {
     <>
       <Formik
         validationSchema={schema}
-        onSubmit={console.log}
+        onSubmit={async (values, action) => {
+          if (values.signUpPassword !== values.signUpConfirmPassword) {
+            alert("passwords don't match");
+            return;
+          }
+
+          try {
+            const {
+              user
+            }: {
+              user: any;
+            } = await auth.createUserWithEmailAndPassword(
+              values.signUpEmail,
+              values.signUpPassword
+            );
+
+            await createUserProfileDocument(user, {
+              displayName: values.signUpDisplayName
+            });
+          } catch (error) {
+            console.log("error:", error);
+          }
+
+          action.resetForm({
+            values: {
+              signUpDisplayName: "",
+              signUpEmail: "",
+              signUpPassword: "",
+              signUpConfirmPassword: ""
+            }
+          });
+        }}
         initialValues={{
-          displayName: "",
-          email: "",
-          password: "",
-          confirmPassword: ""
+          signUpDisplayName: "",
+          signUpEmail: "",
+          signUpPassword: "",
+          signUpConfirmPassword: ""
         }}
       >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isValid,
-          errors
-        }) => (
+        {({ handleSubmit, handleChange, values, touched, isValid, errors }) => (
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Display name</Form.Label>
               <Form.Control
                 id="signup-name"
-                name="displayName"
-                value={values.displayName}
+                name="signUpDisplayName"
+                value={values.signUpDisplayName}
                 onChange={handleChange}
                 type="text"
                 placeholder="Enter your display name"
-                isValid={touched.displayName && !errors.displayName}
-                isInvalid={!!errors.displayName}
+                isValid={touched.signUpDisplayName && !errors.signUpDisplayName}
+                isInvalid={!!errors.signUpDisplayName}
               />
-              {!!errors.displayName ? (
+              {!!errors.signUpDisplayName ? (
                 <Form.Control.Feedback type="invalid">
-                  {errors.displayName}
+                  {errors.signUpDisplayName}
                 </Form.Control.Feedback>
               ) : (
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -74,17 +97,17 @@ const SignUp: FC = () => {
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 id="signup-email"
-                name="email"
-                value={values.email}
+                name="signUpEmail"
+                value={values.signUpEmail}
                 onChange={handleChange}
                 type="email"
                 placeholder="Enter your email address"
-                isValid={touched.email && !errors.email}
-                isInvalid={!!errors.email}
+                isValid={touched.signUpEmail && !errors.signUpEmail}
+                isInvalid={!!errors.signUpEmail}
               />
-              {!!errors.email ? (
+              {!!errors.signUpEmail ? (
                 <Form.Control.Feedback type="invalid">
-                  {errors.email}
+                  {errors.signUpEmail}
                 </Form.Control.Feedback>
               ) : (
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -98,30 +121,30 @@ const SignUp: FC = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 id="signup-password"
-                name="password"
-                value={values.password}
+                name="signUpPassword"
+                value={values.signUpPassword}
                 onChange={handleChange}
                 type="password"
                 placeholder="Enter your password"
                 isValid={
-                  touched.password &&
-                  !errors.password &&
-                  values.password === values.confirmPassword
+                  touched.signUpPassword &&
+                  !errors.signUpPassword &&
+                  values.signUpPassword === values.signUpConfirmPassword
                 }
                 isInvalid={
-                  !!errors.password ||
-                  values.password !== values.confirmPassword
+                  !!errors.signUpPassword ||
+                  values.signUpPassword !== values.signUpConfirmPassword
                 }
               />
-              {!!errors.password ||
-              values.password !== values.confirmPassword ? (
-                values.password !== values.confirmPassword ? (
+              {!!errors.signUpPassword ||
+              values.signUpPassword !== values.signUpConfirmPassword ? (
+                values.signUpPassword !== values.signUpConfirmPassword ? (
                   <Form.Control.Feedback type="invalid">
                     Password must match!
                   </Form.Control.Feedback>
                 ) : (
                   <Form.Control.Feedback type="invalid">
-                    {errors.password}
+                    {errors.signUpPassword}
                   </Form.Control.Feedback>
                 )
               ) : (
@@ -134,29 +157,29 @@ const SignUp: FC = () => {
               <Form.Control
                 id="signup-confirm-password"
                 name="confirmPassword"
-                value={values.confirmPassword}
+                value={values.signUpConfirmPassword}
                 onChange={handleChange}
                 type="password"
                 placeholder="Confirm your password"
                 isValid={
-                  touched.confirmPassword &&
-                  !errors.confirmPassword &&
-                  values.password === values.confirmPassword
+                  touched.signUpConfirmPassword &&
+                  !errors.signUpConfirmPassword &&
+                  values.signUpPassword === values.signUpConfirmPassword
                 }
                 isInvalid={
-                  !!errors.confirmPassword ||
-                  values.password !== values.confirmPassword
+                  !!errors.signUpConfirmPassword ||
+                  values.signUpPassword !== values.signUpConfirmPassword
                 }
               />
-              {!!errors.confirmPassword ||
-              values.password !== values.confirmPassword ? (
-                values.password !== values.confirmPassword ? (
+              {!!errors.signUpConfirmPassword ||
+              values.signUpPassword !== values.signUpConfirmPassword ? (
+                values.signUpPassword !== values.signUpConfirmPassword ? (
                   <Form.Control.Feedback type="invalid">
                     Password must match!
                   </Form.Control.Feedback>
                 ) : (
                   <Form.Control.Feedback type="invalid">
-                    {errors.confirmPassword}
+                    {errors.signUpConfirmPassword}
                   </Form.Control.Feedback>
                 )
               ) : (
@@ -172,7 +195,8 @@ const SignUp: FC = () => {
                     className="p-2 my-2"
                     style={{ width: "100%" }}
                     disabled={
-                      !isValid || values.password !== values.confirmPassword
+                      !isValid ||
+                      values.signUpPassword !== values.signUpConfirmPassword
                     }
                   >
                     Sign up
