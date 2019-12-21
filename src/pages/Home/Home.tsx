@@ -9,7 +9,7 @@ import { PizzaList } from "./components/PizzaList";
 
 const Home: FC = () => {
   const dispatch = useDispatch();
-  const loadingSelectors = createLoadingSelector(["GET_PIZZAS", "GET_PIZZAS"]);
+  const loadingSelectors = createLoadingSelector(["GET_PIZZAS"]);
   const pizzas: Pizza[] = useSelector((state: any) => state.pizzas);
   const isLoading = useSelector((state: any) => ({
     isFetching: loadingSelectors(state)
@@ -24,7 +24,7 @@ const Home: FC = () => {
   return (
     <>
       <div className="container">
-        {!isLoading ? (
+        {!isLoading.isFetching ? (
           <PizzaList pizzas={pizzas} />
         ) : (
           <div
