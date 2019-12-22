@@ -45,6 +45,13 @@ const LogIn: FC = () => {
           } catch (error) {
             console.log("error:", error);
             toast.error(`${error.message}`);
+            setIsSubmitting(false);
+            action.resetForm({
+              values: {
+                loginEmail: "",
+                loginPassword: ""
+              }
+            });
           }
         }}
         initialValues={{
