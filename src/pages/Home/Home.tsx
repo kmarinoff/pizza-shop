@@ -24,7 +24,8 @@ const Home: FC = () => {
   return (
     <>
       <div className="container">
-        {!isLoading.isFetching ? (
+        {/* TODO loading state for pizzas */}
+        {pizzas.length !== 0 ? (
           <PizzaList pizzas={pizzas} />
         ) : (
           <div

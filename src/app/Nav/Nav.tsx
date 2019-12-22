@@ -2,8 +2,8 @@ import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 import React, { FC } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
-import { signInWithFacebook, signInWithGoogle, signOut } from "src/setup";
+import { Link, useHistory } from "react-router-dom";
+import { signOut } from "src/setup";
 import "./Nav.scss";
 import { FontAwesome } from "./StyledNav";
 
@@ -14,6 +14,7 @@ interface NavProps {
 }
 
 const Nav: FC<NavProps> = ({ isLoggedIn }) => {
+  const { push } = useHistory();
   return (
     <>
       <Navbar bg="dark">
@@ -39,15 +40,35 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   Toastify Test
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={signOut}>Logout</Dropdown.Item>
+                <Dropdown.Item
+                  onClick={async () => {
+                    try {
+                      await signOut();
+                      toast.info("Log out success!");
+                    } catch (error) {
+                      console.log("error on log out:", error);
+                      toast.error("Error on log out!");
+                    }
+                  }}
+                >
+                  Logout
+                </Dropdown.Item>
               </Dropdown.Menu>
             ) : (
               <Dropdown.Menu>
-                <Dropdown.Item onClick={signInWithGoogle}>
-                  Google LogIn
+                <Dropdown.Item
+                  onClick={() => {
+                    push("/login");
+                  }}
+                >
+                  LogIn
                 </Dropdown.Item>
-                <Dropdown.Item onClick={signInWithFacebook}>
-                  Facebok LogIn
+                <Dropdown.Item
+                  onClick={() => {
+                    push("/signup");
+                  }}
+                >
+                  Sign Up
                 </Dropdown.Item>
               </Dropdown.Menu>
             )}

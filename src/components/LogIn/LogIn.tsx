@@ -1,7 +1,10 @@
 import { Formik } from "formik";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
+import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { signInWithFacebook, signInWithGoogle } from "src/setup";
 import { auth } from "src/setup";
 import * as yup from "yup";
@@ -19,26 +22,30 @@ const schema = yup.object({
 });
 
 const LogIn: FC = () => {
+  const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isSubmittingGoogle, setIsSubmittingGoogle] = useState<boolean>(false);
+  const [isSubmittingFacebok, setIsSubmittingFacebook] = useState<boolean>(
+    false
+  );
+
   return (
     <>
       <Formik
         validationSchema={schema}
         onSubmit={async (values, action) => {
+          setIsSubmitting(true);
           try {
             await auth.signInWithEmailAndPassword(
               values.loginEmail,
               values.loginPassword
             );
+            history.push("/");
+            toast.info("Login success!");
           } catch (error) {
             console.log("error:", error);
+            toast.error(`${error.message}`);
           }
-
-          action.resetForm({
-            values: {
-              loginEmail: "",
-              loginPassword: ""
-            }
-          });
         }}
         initialValues={{
           loginEmail: "",
@@ -97,11 +104,25 @@ const LogIn: FC = () => {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="p-2 my-2"
+                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
                     style={{ width: "100%" }}
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitting}
                   >
-                    Login with Email
+                    {isSubmitting ? (
+                      <>
+                        <Spinner
+                          className="mx-2"
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        Loading...
+                      </>
+                    ) : (
+                      "Login with Email"
+                    )}
                   </Button>
                 </div>
                 <div className="col-2 text-center my-2">Or:</div>
@@ -109,21 +130,78 @@ const LogIn: FC = () => {
                   <Button
                     variant="primary"
                     type="button"
-                    className="p-2 my-2"
+                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
                     style={{ width: "100%" }}
-                    onClick={signInWithGoogle}
+                    onClick={async () => {
+                      setIsSubmittingGoogle(true);
+                      try {
+                        await signInWithGoogle();
+                        history.push("/");
+                        toast.info("Login with Google success!");
+                      } catch (error) {
+                        setIsSubmittingGoogle(false);
+                        toast.info(error.message);
+                      }
+                    }}
+                    disabled={isSubmitting || isSubmittingGoogle}
                   >
-                    Login with Google
+                    {isSubmittingGoogle ? (
+                      <>
+                        <Spinner
+                          className="mx-2"
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        Logging in with Google...
+                      </>
+                    ) : (
+                      "Login with Google"
+                    )}
                   </Button>
                   <Button
                     variant="primary"
                     type="button"
-                    className="p-2 my-2"
+                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
                     style={{ width: "100%" }}
-                    onClick={signInWithFacebook}
+                    onClick={async () => {
+                      setIsSubmittingFacebook(true);
+                      try {
+                        await signInWithFacebook();
+                        history.push("/");
+                        // toast.info("Login with Facebook success!");
+                      } catch (error) {
+                        console.log(error);
+                        setIsSubmittingFacebook(false);
+                        toast.info(error.message);
+                      }
+                    }}
+                    disabled={isSubmitting || isSubmittingFacebok}
                   >
-                    Login with Facebook
+                    {isSubmittingFacebok ? (
+                      <>
+                        <Spinner
+                          className="mx-2"
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        Logging in with Facebook...
+                      </>
+                    ) : (
+                      "Login with Facebook"
+                    )}
                   </Button>
+                  <Link
+                    to="/signup"
+                    style={{ textAlign: "center", width: "100%" }}
+                  >
+                    Don't have an account yet?
+                  </Link>
                 </div>
               </div>
             </div>

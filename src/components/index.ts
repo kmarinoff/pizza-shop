@@ -4,3 +4,4 @@ export * from "./NoRoute";
 export * from "./contexts";
 export * from "./LogIn";
 export * from "./SignUp";
+export * from "./SignUpScreen";

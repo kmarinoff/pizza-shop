@@ -1,50 +1,50 @@
-import React, { useContext } from "react";
-// import { useSelector } from "react-redux";
-import { Redirect, Route, Switch } from "react-router";
+import React from "react";
+import Spinner from "react-bootstrap/Spinner";
+import { useSelector } from "react-redux";
+import { Route, Switch } from "react-router";
 import {
-  AuthContext,
   LoginScreen,
-  NoRoute,
-  PrivateRoute
+  // NoRoute,
+  PrivateRoute,
+  SignUpScreen
 } from "src/components";
 import { Home, PizzaDetails } from "src/pages";
-import { User } from "src/types";
 import { Nav } from "./Nav";
 
 const Routes = () => {
-  const { currentUser }: { currentUser: User } = useContext(AuthContext);
-  // console.log("currentUser:", currentUser);
-
-  // const { auth }: { auth: any } = useSelector((state: any) => state.firebase);
-  // console.log("auth:", auth);
+  const { auth, profile }: { auth: any; profile: any } = useSelector(
+    (state: any) => state.firebase
+  );
 
   return (
     <>
-      <Nav isLoggedIn={!!currentUser} />
-      <Switch>
-        {!!currentUser ? (
-          <Route exact path="/login">
-            <Redirect exact to="/home" />
-          </Route>
-        ) : (
-          <Route exact path="/login">
-            <LoginScreen />
-          </Route>
-        )}
-        <PrivateRoute isLoggedIn={!!currentUser}>
+      {auth.isLoaded && profile.isLoaded ? (
+        <>
+          <Nav isLoggedIn={!profile.isEmpty} />
           <Switch>
-            <Route exact path="/">
-              <Redirect exact to="/home" />
-            </Route>
-            <Route exact path="/home" component={Home} />
-            <Route path="/home/pizza/:id" component={PizzaDetails} />
-            {/* <GuardedRoute role="ADMIN">
-              <Route path="/admin" component={AdminPanel} />
-            </GuardedRoute> */}
-            <Route path="/" component={NoRoute} />
+            <Route exact path="/login" component={LoginScreen} />
+            <Route exact path="/signup" component={SignUpScreen} />
+            <PrivateRoute
+              profileIsEmpty={profile.isEmpty}
+              profileIsLoaded={profile.isLoaded}
+            >
+              <Route exact path="/" component={Home} />
+              <Route exact path="/pizza/:id" component={PizzaDetails} />
+            </PrivateRoute>
           </Switch>
-        </PrivateRoute>
-      </Switch>
+        </>
+      ) : (
+        <div
+          style={{
+            minHeight: "80vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center "
+          }}
+        >
+          <Spinner animation="grow" />
+        </div>
+      )}
     </>
   );
 };

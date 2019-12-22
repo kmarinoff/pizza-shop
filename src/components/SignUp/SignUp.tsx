@@ -2,6 +2,8 @@ import { Formik } from "formik";
 import React, { FC } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { auth, createUserProfileDocument } from "src/setup";
 import * as yup from "yup";
 
@@ -50,18 +52,15 @@ const SignUp: FC = () => {
             await createUserProfileDocument(user, {
               displayName: values.signUpDisplayName
             });
+
+            await auth.signInWithEmailAndPassword(
+              values.signUpEmail,
+              values.signUpPassword
+            );
           } catch (error) {
             console.log("error:", error);
+            toast.error(`${error.message}`);
           }
-
-          action.resetForm({
-            values: {
-              signUpDisplayName: "",
-              signUpEmail: "",
-              signUpPassword: "",
-              signUpConfirmPassword: ""
-            }
-          });
         }}
         initialValues={{
           signUpDisplayName: "",
@@ -156,7 +155,7 @@ const SignUp: FC = () => {
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
                 id="signup-confirm-password"
-                name="confirmPassword"
+                name="signUpConfirmPassword"
                 value={values.signUpConfirmPassword}
                 onChange={handleChange}
                 type="password"
@@ -201,6 +200,12 @@ const SignUp: FC = () => {
                   >
                     Sign up
                   </Button>
+                  <Link
+                    to="/login"
+                    style={{ textAlign: "center", width: "100%" }}
+                  >
+                    Login with an existing account
+                  </Link>
                 </div>
               </div>
             </div>

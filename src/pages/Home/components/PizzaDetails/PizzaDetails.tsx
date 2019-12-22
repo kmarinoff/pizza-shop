@@ -42,7 +42,7 @@ const PizzaDetails: FC = () => {
                 <Button
                   style={{ alignSelf: "flex-end" }}
                   onClick={() => {
-                    push("/home");
+                    push("/");
                   }}
                 >
                   Go Back To Home
