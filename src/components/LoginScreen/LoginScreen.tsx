@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { LogIn } from "src/components/LogIn";
+import { LogIn } from "src/components/LoginScreen/LogIn";
 
 const LoginScreen: FC = () => {
   return (

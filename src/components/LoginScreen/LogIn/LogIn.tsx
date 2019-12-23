@@ -107,11 +107,11 @@ const LogIn: FC = () => {
             </Form.Group>
             <div className="conteiner">
               <div className="row no-gutters d-flex justify-content-between align-items-top">
-                <div className="col-4">
+                <div className="col-sm-12 col-md-4">
                   <Button
                     variant="primary"
                     type="submit"
-                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
+                    className="p-2 my-2 d-flex justify-content-center align-items-center"
                     style={{ width: "100%" }}
                     disabled={!isValid || isSubmitting}
                   >
@@ -132,12 +132,12 @@ const LogIn: FC = () => {
                     )}
                   </Button>
                 </div>
-                <div className="col-2 text-center my-2">Or:</div>
-                <div className="col-4">
+                <div className="col-12 col-md-2 text-center my-2">Or:</div>
+                <div className="col-sm-12 col-md-4">
                   <Button
                     variant="primary"
                     type="button"
-                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
+                    className="p-2 my-2 d-flex justify-content-center align-items-center"
                     style={{ width: "100%" }}
                     onClick={async () => {
                       setIsSubmittingGoogle(true);
@@ -171,7 +171,7 @@ const LogIn: FC = () => {
                   <Button
                     variant="primary"
                     type="button"
-                    className="p-2 my-2 d-flex  justify-content-center align-items-center"
+                    className="p-2 my-2 d-flex justify-content-center align-items-center"
                     style={{ width: "100%" }}
                     onClick={async () => {
                       setIsSubmittingFacebook(true);
@@ -203,12 +203,14 @@ const LogIn: FC = () => {
                       "Login with Facebook"
                     )}
                   </Button>
-                  <Link
-                    to="/signup"
-                    style={{ textAlign: "center", width: "100%" }}
-                  >
-                    Don't have an account yet?
-                  </Link>
+                  <div className="text-center text-md-left">
+                    <Link
+                      to="/signup"
+                      style={{ textAlign: "center", width: "100%" }}
+                    >
+                      Don't have an account yet?
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

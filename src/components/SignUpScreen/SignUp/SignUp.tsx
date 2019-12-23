@@ -1,8 +1,9 @@
 import { Formik } from "formik";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
+import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth, createUserProfileDocument } from "src/setup";
 import * as yup from "yup";
@@ -29,17 +30,21 @@ const schema = yup.object({
 });
 
 const SignUp: FC = () => {
+  const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
   return (
     <>
       <Formik
         validationSchema={schema}
         onSubmit={async (values, action) => {
           if (values.signUpPassword !== values.signUpConfirmPassword) {
-            alert("passwords don't match");
+            toast.error("Passwords don't match!");
+            setIsSubmitting(false);
             return;
           }
-
           try {
+            setIsSubmitting(true);
             const {
               user
             }: {
@@ -57,9 +62,12 @@ const SignUp: FC = () => {
               values.signUpEmail,
               values.signUpPassword
             );
+            history.push("/");
+            toast.info("Sign up successful!");
           } catch (error) {
             console.log("error:", error);
             toast.error(`${error.message}`);
+            setIsSubmitting(false);
           }
         }}
         initialValues={{
@@ -187,19 +195,38 @@ const SignUp: FC = () => {
             </Form.Group>
             <div className="conteiner">
               <div className="row no-gutters d-flex justify-content-between align-items-top">
-                <div className="col-4">
+                <div className="col-md-4 col-12">
                   <Button
                     variant="primary"
                     type="submit"
-                    className="p-2 my-2"
+                    className="p-2 my-2 d-flex justify-content-center align-items-center"
                     style={{ width: "100%" }}
                     disabled={
                       !isValid ||
-                      values.signUpPassword !== values.signUpConfirmPassword
+                      values.signUpPassword !== values.signUpConfirmPassword ||
+                      isSubmitting
                     }
                   >
-                    Sign up
+                    {isSubmitting ? (
+                      <>
+                        <Spinner
+                          className="mx-2"
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        Signing you up...
+                      </>
+                    ) : (
+                      "Sign up"
+                    )}
                   </Button>
+                </div>
+              </div>
+              <div className="row no-gutters d-flex justify-content-between align-items-top">
+                <div className="col-md-4 col-12 text-center text-md-left">
                   <Link
                     to="/login"
                     style={{ textAlign: "center", width: "100%" }}
