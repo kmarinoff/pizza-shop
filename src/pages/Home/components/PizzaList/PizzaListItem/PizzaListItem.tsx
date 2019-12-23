@@ -20,7 +20,7 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
         <Card.Img variant="top" src="https://via.placeholder.com/286x180" />
         <Card.Body>
           <Card.Title>
-            <Link to={`/home/pizza/${pizza.id}`}>
+            <Link to={`/pizza/${pizza.id}`}>
               <h2 style={{ textAlign: "center" }}>{get(pizza, "name")}</h2>
             </Link>
           </Card.Title>

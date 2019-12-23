@@ -26,15 +26,15 @@ const firestore = firebaseInstance.firestore(); // <- needed if using firestore
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 googleAuthProvider.setCustomParameters({ proppt: "select_account" });
-const signInWithGoogle = () => {
-  auth.signInWithPopup(googleAuthProvider);
+const signInWithGoogle = async () => {
+  await auth.signInWithPopup(googleAuthProvider);
 };
 
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 // facebookAuthProvider.addScope("user_birthday");
 facebookAuthProvider.setCustomParameters({ display: "popup" });
-const signInWithFacebook = () => {
-  auth
+const signInWithFacebook = async () => {
+  await auth
     .signInWithPopup(facebookAuthProvider)
     .then((result: any) => {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -86,7 +86,7 @@ const createUserProfileDocument = async (
   }
 };
 
-const signOut = () => auth.signOut();
+const signOut = async () => await auth.signOut();
 
 export {
   firebaseConfig,
