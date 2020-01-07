@@ -42,7 +42,7 @@ const Routes = () => {
             minHeight: "80vh",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center "
+            alignItems: "center"
           }}
         >
           <Spinner animation="grow" />
