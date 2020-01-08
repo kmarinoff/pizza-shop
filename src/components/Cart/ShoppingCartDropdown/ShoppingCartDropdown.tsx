@@ -10,6 +10,16 @@ const ShoppingCartDropdown: FC = () => {
   const cart: any[] = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
 
+  const totalCartValue = cart.reduce(
+    (
+      accumulator: number,
+      currentItem: { id: number; name: string; price: number; count: number }
+    ) => {
+      return accumulator + currentItem.count * currentItem.price;
+    },
+    0
+  );
+
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -18,13 +28,25 @@ const ShoppingCartDropdown: FC = () => {
             {cart.map((item: any) => (
               <div
                 key={item.id}
-                className="d-flex flex-row justify-content-between my-1 mx-2"
+                className="d-flex flex-row justify-content-between my-1 mx-2 align-items-center"
               >
-                <div className="d-flex flex-column">
-                  <div>{item.name}</div>
-                  <div>Count: {item.count}</div>
+                <div
+                  style={{ width: "100%" }}
+                  className="d-flex justify-content-between align-items-center"
+                >
+                  <div className="d-flex flex-column">
+                    <div>{item.name}</div>
+                    <div>Count: {item.count}</div>
+                  </div>
+                  <div style={{ fontSize: "0.8em" }} className="mr-2">
+                    {item.count === 1
+                      ? item.price
+                      : (item.price * item.count).toFixed(2)}{" "}
+                    $
+                  </div>
                 </div>
                 <Button
+                  className="m-0"
                   onClick={() => {
                     dispatch(removeFromCart(item));
                   }}
@@ -54,7 +76,12 @@ const ShoppingCartDropdown: FC = () => {
           </div>
         )}
       </div>
-      <Button disabled={cart.length === 0}>GO TO CHECKOUT</Button>
+      {cart.length !== 0 && (
+        <Button disabled={cart.length === 0}>
+          <div>GO TO CHECKOUT</div>
+          <div>Total: {totalCartValue.toFixed(2)} $</div>
+        </Button>
+      )}
     </div>
   );
 };
