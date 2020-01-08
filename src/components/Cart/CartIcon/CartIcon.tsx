@@ -2,7 +2,6 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-// import { ReactComponent as ShopingBagIcon } from "src/assets/shopping-bag.svg";
 import "./CartIcon.scss";
 
 const CartIcon: FC = () => {
