@@ -28,13 +28,12 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
           </Navbar.Brand>
 
           <div className="d-flex flex-row">
-            <div
-              onClick={() => {
-                setShow(!show);
-              }}
-              style={{ position: "relative", userSelect: "none" }}
-            >
-              <CartIcon />
+            <div style={{ position: "relative", userSelect: "none" }}>
+              <CartIcon
+                handleClick={() => {
+                  setShow(!show);
+                }}
+              />
               {show ? <ShoppingCartDropdown /> : null}
             </div>
             <Dropdown>

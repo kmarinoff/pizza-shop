@@ -40,7 +40,6 @@ const Home: FC = () => {
           </div>
         )}
       </div>
-      <Cart />
     </>
   );
 };

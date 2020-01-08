@@ -4,7 +4,11 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import "./CartIcon.scss";
 
-const CartIcon: FC = () => {
+interface CartIconProps {
+  handleClick: () => void;
+}
+
+const CartIcon: FC<CartIconProps> = ({ handleClick }) => {
   const cart: any[] = useSelector((state: any) => state.cart);
 
   const totalCartItems = cart.reduce(
@@ -18,7 +22,7 @@ const CartIcon: FC = () => {
   );
 
   return (
-    <div className="cart-icon">
+    <div className="cart-icon" onClick={handleClick}>
       <FontAwesomeIcon
         className="shopping-cart"
         style={{
