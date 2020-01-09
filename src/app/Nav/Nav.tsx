@@ -29,12 +29,16 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
 
           <div className="d-flex flex-row">
             <div style={{ position: "relative", userSelect: "none" }}>
-              <CartIcon
-                handleClick={() => {
-                  setShow(!show);
-                }}
-              />
-              {show ? <ShoppingCartDropdown /> : null}
+              {isLoggedIn ? (
+                <>
+                  <CartIcon
+                    handleClick={() => {
+                      setShow(!show);
+                    }}
+                  />
+                  {show ? <ShoppingCartDropdown /> : null}
+                </>
+              ) : null}
             </div>
             <Dropdown>
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
