@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPizzasRequest } from "src/reduxStore";
 import { createLoadingSelector } from "src/reduxStore/actions/selectors";
 import { Pizza } from "src/types";
-import { Cart } from "./components";
 import { PizzaList } from "./components/PizzaList";
 
 const Home: FC = () => {

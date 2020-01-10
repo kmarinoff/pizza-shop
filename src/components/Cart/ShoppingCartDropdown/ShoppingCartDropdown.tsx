@@ -3,12 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { removeFromCart } from "src/reduxStore";
 import "./ShoppingCartDropdown.scss";
 
-const ShoppingCartDropdown: FC = () => {
+interface ShoppingCartDropdownProps {
+  handleClick: () => void;
+}
+
+const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
+  handleClick
+}) => {
   const cart: any[] = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const totalCartValue = cart.reduce(
     (
@@ -77,7 +85,13 @@ const ShoppingCartDropdown: FC = () => {
         )}
       </div>
       {cart.length !== 0 && (
-        <Button disabled={cart.length === 0}>
+        <Button
+          disabled={cart.length === 0}
+          onClick={() => {
+            history.push("/checkout");
+            handleClick();
+          }}
+        >
           <div>GO TO CHECKOUT</div>
           <div>Total: {totalCartValue.toFixed(2)} $</div>
         </Button>

@@ -8,7 +8,7 @@ import {
   PrivateRoute,
   SignUpScreen
 } from "src/components";
-import { Home, PizzaDetails } from "src/pages";
+import { Checkout, Home, PizzaDetails } from "src/pages";
 import { Nav } from "./Nav";
 
 const Routes = () => {
@@ -32,6 +32,7 @@ const Routes = () => {
               profileIsLoaded={profile.isLoaded}
             >
               <Route exact path="/" component={Home} />
+              <Route exact path="/checkout" component={Checkout} />
               <Route exact path="/pizza/:id" component={PizzaDetails} />
             </PrivateRoute>
           </Switch>

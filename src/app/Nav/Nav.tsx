@@ -36,7 +36,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                       setShow(!show);
                     }}
                   />
-                  {show ? <ShoppingCartDropdown /> : null}
+                  {show ? (
+                    <ShoppingCartDropdown
+                      handleClick={() => {
+                        setShow(false);
+                      }}
+                    />
+                  ) : null}
                 </>
               ) : null}
             </div>
