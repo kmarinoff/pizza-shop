@@ -59,7 +59,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
                     dispatch(removeFromCart(item));
                   }}
                 >
-                  X
+                  &#10005;
                 </Button>
               </div>
             ))}
