@@ -81,7 +81,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "pretty-quick --staged",
       "commit-msg": "sh docs/githooks/commit-msg .git/COMMIT_EDITMSG"
     }
   },
