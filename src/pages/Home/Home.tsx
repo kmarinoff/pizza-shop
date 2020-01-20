@@ -14,7 +14,7 @@ const Home: FC = () => {
     isFetching: loadingSelectors(state)
   }));
 
-  console.log("isLoading:", isLoading);
+  // console.log("isLoading:", isLoading);
 
   useEffect(() => {
     dispatch(getPizzasRequest());

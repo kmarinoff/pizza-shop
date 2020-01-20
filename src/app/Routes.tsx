@@ -16,8 +16,8 @@ const Routes = () => {
     (state: any) => state.firebase
   );
 
-  console.log("auth.isLoaded:", auth.isLoaded);
-  console.log("profile.isLoaded:", profile.isLoaded);
+  // console.log("auth.isLoaded:", auth.isLoaded);
+  // console.log("profile.isLoaded:", profile.isLoaded);
 
   return (
     <>

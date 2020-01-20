@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { removeFromCart } from "src/reduxStore";
+import { totalCartPrice } from "src/utils";
 import "./ShoppingCartDropdown.scss";
 
 interface ShoppingCartDropdownProps {
@@ -17,16 +18,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
   const cart: any[] = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const totalCartValue = cart.reduce(
-    (
-      accumulator: number,
-      currentItem: { id: number; name: string; price: number; count: number }
-    ) => {
-      return accumulator + currentItem.count * currentItem.price;
-    },
-    0
-  );
+  const totalCartValue = totalCartPrice(cart);
 
   return (
     <div className="cart-dropdown">

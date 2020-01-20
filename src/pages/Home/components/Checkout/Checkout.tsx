@@ -3,20 +3,12 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "src/reduxStore";
 import { CartItem } from "src/types";
+import { totalCartPrice } from "src/utils";
 
 const Checkout: FC = () => {
   const dispatch = useDispatch();
   const cart: CartItem[] = useSelector((state: any) => state.cart);
-
-  const totalCartValue = cart.reduce(
-    (
-      accumulator: number,
-      currentItem: { id: number; name: string; price: number; count: number }
-    ) => {
-      return accumulator + currentItem.count * currentItem.price;
-    },
-    0
-  );
+  const totalCartValue = totalCartPrice(cart);
 
   return (
     <>
@@ -45,7 +37,7 @@ const Checkout: FC = () => {
                       dispatch(removeFromCart(cartItem));
                     }}
                   >
-                    <span>{"<"}</span>
+                    <span>&#10094;</span>
                   </button>
                   <span style={{ margin: "0 5px" }}>{cartItem.count}</span>
                   <button
@@ -54,7 +46,7 @@ const Checkout: FC = () => {
                       dispatch(addToCart(cartItem));
                     }}
                   >
-                    <span>{">"}</span>
+                    <span>&#10095;</span>
                   </button>
                 </>
               </div>
