@@ -52,6 +52,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
               </Dropdown.Toggle>
               {isLoggedIn ? (
                 <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      push("/shop");
+                    }}
+                  >
+                    Shop
+                  </Dropdown.Item>
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">
                     Another action
@@ -82,6 +89,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                 </Dropdown.Menu>
               ) : (
                 <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      push("/shop");
+                    }}
+                  >
+                    Shop
+                  </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
                       push("/login");

@@ -8,7 +8,7 @@ import {
   PrivateRoute,
   SignUpScreen
 } from "src/components";
-import { Checkout, Home, PizzaDetails } from "src/pages";
+import { Checkout, Home, PizzaDetails, Shop } from "src/pages";
 import { Nav } from "./Nav";
 
 const Routes = () => {
@@ -25,6 +25,7 @@ const Routes = () => {
         <>
           <Nav isLoggedIn={!profile.isEmpty} />
           <Switch>
+            <Route exact path="/shop" component={Shop} />
             <Route exact path="/login" component={LoginScreen} />
             <Route exact path="/signup" component={SignUpScreen} />
             <PrivateRoute

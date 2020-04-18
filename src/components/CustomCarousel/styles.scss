@@ -1,0 +1,62 @@
+.carousel__back-button,
+.carousel__next-button {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border: none;
+  width: 100px;
+  background: rgba($color: #000000, $alpha: 0);
+}
+
+.carousel__back-button:hover,
+.carousel__next-button:hover {
+  background: rgba($color: #000000, $alpha: 0.4);
+}
+
+.carousel__back-button:focus,
+.carousel__next-button:focus {
+  outline: none;
+}
+
+.carousel__back-button {
+  left: 0;
+}
+
+.carousel__next-button {
+  right: 0;
+}
+
+.carousel__inner-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__dot-group {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__dot,
+.carousel__dot--selected {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba($color: #000000, $alpha: 0.6);
+
+  background: rgba($color: #4e4e4e, $alpha: 0.6);
+}
+
+.carousel__dot:focus,
+.carousel__dot--selected:focus {
+  outline: none;
+}
+
+.carousel__dot--selected {
+  padding: 10px;
+  background: rgba($color: #ffffff, $alpha: 0.9);
+}
