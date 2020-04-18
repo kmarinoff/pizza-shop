@@ -22,8 +22,27 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
       <Navbar bg="dark">
         <div className="container d-flex justify-content-between">
           <Navbar.Brand className="white-text">
-            <Link to="/">
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                textDecoration: "none"
+              }}
+            >
               <FontAwesome icon={faPizzaSlice} />
+              <div
+                style={{
+                  marginLeft: "10px",
+                  textDecoration: "none",
+                  color: "white",
+                  fontFamily: "Droid Serif"
+                }}
+              >
+                Pizza Shop
+              </div>
             </Link>
           </Navbar.Brand>
 
