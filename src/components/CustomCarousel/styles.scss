@@ -5,7 +5,9 @@
   height: 100%;
   border: none;
   width: 100px;
-  background: rgba($color: #000000, $alpha: 0);
+  background-color: rgba($color: #000000, $alpha: 0);
+
+  transition: background-color 150ms ease-in-out;
 }
 
 .carousel__back-button:hover,
@@ -48,7 +50,9 @@
   border-radius: 50%;
   border: 1px solid rgba($color: #000000, $alpha: 0.6);
 
-  background: rgba($color: #4e4e4e, $alpha: 0.6);
+  background-color: rgba($color: #4e4e4e, $alpha: 0.6);
+
+  transition: background-color 300ms ease-in-out;
 }
 
 .carousel__dot:focus,
@@ -58,5 +62,5 @@
 
 .carousel__dot--selected {
   padding: 10px;
-  background: rgba($color: #ffffff, $alpha: 0.9);
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
 }

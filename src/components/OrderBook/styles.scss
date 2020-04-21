@@ -1,0 +1,19 @@
+.menu-primary-enter {
+  opacity: 0;
+  position: absolute;
+}
+
+.menu-primary-enter-active {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 5000ms ease-in-out;
+}
+
+.menu-primary-exit {
+  opacity: 1;
+}
+
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: transform 5000ms ease-in-out;
+}
