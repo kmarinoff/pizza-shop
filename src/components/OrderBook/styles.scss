@@ -1,19 +1,116 @@
-.menu-primary-enter {
+/* PIZZA MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.pizza-menu-enter {
   opacity: 0;
-  position: absolute;
+  background-color: none;
+  position: static;
 }
 
-.menu-primary-enter-active {
-  position: absolute;
+.pizza-menu-enter-active {
   opacity: 1;
-  transition: opacity 5000ms ease-in-out;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
 }
 
-.menu-primary-exit {
+.pizza-menu-exit {
   opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.menu-primary-exit-active {
+.pizza-menu-exit-active {
+  opacity: 0;
   transform: translateX(-110%);
-  transition: transform 5000ms ease-in-out;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.pizza-menu-enter-done {
+  background-color: blue;
+}
+
+/* BURGER MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.burger-menu-enter {
+  opacity: 0;
+  background-color: none;
+  position: static;
+}
+
+.burger-menu-enter-active {
+  opacity: 1;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.burger-menu-exit {
+  opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.burger-menu-exit-active {
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.burger-menu-enter-done {
+  background-color: blue;
+}
+
+/* KEBAP MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.kebap-menu-enter {
+  opacity: 0;
+  background-color: none;
+  position: static;
+}
+
+.kebap-menu-enter-active {
+  opacity: 1;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.kebap-menu-exit {
+  opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.kebap-menu-exit-active {
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.kebap-menu-enter-done {
+  background-color: blue;
 }
