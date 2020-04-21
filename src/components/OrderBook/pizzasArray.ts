@@ -1,24 +1,24 @@
-import chickenGrill from "src/assets/order-book/chicken-grill.jpg";
+import chickenGrill from "src/assets/order-book/pizzas/chicken-grill.jpg";
 
-import mario from "src/assets/order-book/mario.jpg";
+import mario from "src/assets/order-book/pizzas/mario.jpg";
 
-import capricioasa from "src/assets/order-book/capricioasa.jpg";
+import capricioasa from "src/assets/order-book/pizzas/capricioasa.jpg";
 
-import tuna from "src/assets/order-book/tuna.jpg";
+import tuna from "src/assets/order-book/pizzas/tuna.jpg";
 
-import diablo from "src/assets/order-book/diablo.jpg";
+import diablo from "src/assets/order-book/pizzas/diablo.jpg";
 
-import pepperoni from "src/assets/order-book/pepperoni.jpg";
+import pepperoni from "src/assets/order-book/pizzas/pepperoni.jpg";
 
-import supreme from "src/assets/order-book/supreme.jpg";
+import supreme from "src/assets/order-book/pizzas/supreme.jpg";
 
-import rancho from "src/assets/order-book/rancho.jpg";
+import rancho from "src/assets/order-book/pizzas/rancho.jpg";
 
-import primavera from "src/assets/order-book/primavera.jpg";
+import primavera from "src/assets/order-book/pizzas/primavera.jpg";
 
-import neapolitana from "src/assets/order-book/neapolitana.jpg";
+import neapolitana from "src/assets/order-book/pizzas/neapolitana.jpg";
 
-export const pizzaArray: Array<{
+export const pizzasArray: Array<{
   id: number;
   name: string;
   imgSrc: string;

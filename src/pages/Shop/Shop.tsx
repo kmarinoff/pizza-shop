@@ -5,7 +5,6 @@ import React from "react";
 import { SpecialtyItem } from "src/components";
 import { CustomCarousel } from "src/components/CustomCarousel";
 import { specialtiesArray } from "./specialties";
-import "./styles.scss";
 
 import { OrderBook } from "src/components/OrderBook";
 

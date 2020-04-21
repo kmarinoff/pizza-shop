@@ -1,3 +1,43 @@
+.pizza-btn,
+.burger-btn,
+.kebab-btn {
+  border: none;
+  color: #878787;
+  background-color: none;
+  border-radius: 1px;
+  margin: 10px;
+  width: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.pizza-btn:hover,
+.burger-btn:hover,
+.kebab-btn:hover {
+  color: #ffffff;
+  background-color: #a0ce54 !important;
+}
+
+.pizza-btn > input,
+.burger-btn > input,
+.kebab-btn > input {
+  display: none;
+}
+
+.pizza-btn.active,
+.burger-btn.active,
+.kebab-btn.active {
+  border: none;
+  color: #ffffff;
+  background-color: #a0ce54 !important;
+  border-radius: 1px;
+}
+
 /* PIZZA MENU */
 
 // ------
@@ -76,27 +116,27 @@
   background-color: blue;
 }
 
-/* KEBAP MENU */
+/* KEBAB MENU */
 
 // ------
 // ------
 // ------
 // ------
 
-.kebap-menu-enter {
+.kebab-menu-enter {
   opacity: 0;
   background-color: none;
   position: static;
 }
 
-.kebap-menu-enter-active {
+.kebab-menu-enter-active {
   opacity: 1;
   background-color: red;
 
   transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
 }
 
-.kebap-menu-exit {
+.kebab-menu-exit {
   opacity: 1;
   transform: translateX(0);
   background-color: yellow;
@@ -105,12 +145,12 @@
   left: 0;
 }
 
-.kebap-menu-exit-active {
+.kebab-menu-exit-active {
   opacity: 0;
   transform: translateX(-110%);
   transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
 }
 
-.kebap-menu-enter-done {
+.kebab-menu-enter-done {
   background-color: blue;
 }
