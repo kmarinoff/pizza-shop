@@ -85,7 +85,7 @@ const OrderBook: React.FC = () => {
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "30px",
-                  height: "530px",
+                  height: "550px",
                   width: "475px"
                 }}
               >
@@ -227,7 +227,7 @@ const OrderBook: React.FC = () => {
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "30px",
-                  height: "530px",
+                  height: "550px",
                   width: "475px"
                 }}
               >
@@ -370,7 +370,7 @@ const OrderBook: React.FC = () => {
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "30px",
-                  height: "530px",
+                  height: "550px",
                   width: "475px"
                 }}
               >
