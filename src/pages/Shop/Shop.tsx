@@ -6,7 +6,8 @@ import {
   PaymentMethods,
   Products,
   Specialty,
-  Staff
+  Staff,
+  Footer
 } from "src/components";
 import { CustomCarousel } from "src/components/CustomCarousel";
 
@@ -41,6 +42,10 @@ const Shop: React.FC = () => {
 
       <section id="contacts">
         <Contacts />
+      </section>
+
+      <section id="footer">
+        <Footer />
       </section>
     </>
   );

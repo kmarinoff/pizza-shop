@@ -16,3 +16,4 @@ export * from "./PaymentMethods";
 export * from "./Specialty";
 export * from "./Products";
 export * from "./Contacts";
+export * from "./Footer";

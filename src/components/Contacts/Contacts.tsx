@@ -2,15 +2,10 @@ import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 import contactsBackground from "src/assets/contacts/findus-bg.jpg";
-
-import ingredientOne from "src/assets/ingredients/1-ingredient.jpg";
-import ingredientTwo from "src/assets/ingredients/2-ingredient.jpg";
-import ingredientThree from "src/assets/ingredients/3-ingredient.jpg";
-import ingredientFour from "src/assets/ingredients/4-ingredient.jpg";
-import { Container } from "react-bootstrap";
 
 const Contacts: React.FC = () => {
   return (
