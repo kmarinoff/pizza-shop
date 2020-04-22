@@ -2,7 +2,13 @@ import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { AboutUs, Ingredients, SpecialtyItem, Staff } from "src/components";
+import {
+  AboutUs,
+  Ingredients,
+  PaymentMethods,
+  SpecialtyItem,
+  Staff
+} from "src/components";
 import { CustomCarousel } from "src/components/CustomCarousel";
 import { specialtiesArray } from "./specialties";
 
@@ -185,6 +191,10 @@ const Shop: React.FC = () => {
 
       <section id="about-us">
         <AboutUs />
+      </section>
+
+      <section id="payment-methods">
+        <PaymentMethods />
       </section>
     </>
   );

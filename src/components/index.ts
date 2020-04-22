@@ -12,3 +12,4 @@ export * from "./Example";
 export * from "./Ingredients";
 export * from "./Staff";
 export * from "./AboutUs";
+export * from "./PaymentMethods";
