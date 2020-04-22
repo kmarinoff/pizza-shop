@@ -10,3 +10,4 @@ export * from "./SpecialtyItem";
 export * from "./OrderBook";
 export * from "./Example";
 export * from "./Ingredients";
+export * from "./Staff";

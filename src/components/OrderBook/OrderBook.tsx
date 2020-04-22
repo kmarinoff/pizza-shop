@@ -52,22 +52,17 @@ const OrderBook: React.FC = () => {
         }}
       />
       <div style={{ overflow: "hidden", position: "relative" }}>
-        <CSSTransition
-          in={value === 1}
-          timeout={300}
-          classNames="pizza-menu"
-          unmountOnExit
-        >
+        <CSSTransition in={value === 1} timeout={300} classNames="pizza-menu">
           <div
             style={{
-              display: "flex",
+              display: value === 1 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
               width: "940px"
             }}
           >
             <div>
-              <div
+              {/* <div
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "15px 30px",
@@ -79,7 +74,7 @@ const OrderBook: React.FC = () => {
               >
                 <div>Added products: 1</div>
                 <button>Pre-Order Now</button>
-              </div>
+              </div> */}
               <div
                 className="left-book-side"
                 style={{
@@ -135,7 +130,7 @@ const OrderBook: React.FC = () => {
                         <div style={{ color: "#A0CE54" }}>
                           {pizza.price.toFixed(2)} $
                         </div>
-                        <button style={{ marginLeft: "5px" }}>+</button>
+                        {/* <button style={{ marginLeft: "5px" }}>+</button> */}
                       </div>
                     </div>
                   ))}
@@ -194,22 +189,17 @@ const OrderBook: React.FC = () => {
           </div>
         </CSSTransition>
 
-        <CSSTransition
-          in={value === 2}
-          timeout={300}
-          classNames="burger-menu"
-          unmountOnExit
-        >
+        <CSSTransition in={value === 2} timeout={300} classNames="burger-menu">
           <div
             style={{
-              display: "flex",
+              display: value === 2 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
               width: "940px"
             }}
           >
             <div>
-              <div
+              {/* <div
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "15px 30px",
@@ -221,7 +211,7 @@ const OrderBook: React.FC = () => {
               >
                 <div>Added products: 1</div>
                 <button>Pre-Order Now</button>
-              </div>
+              </div> */}
               <div
                 className="left-book-side"
                 style={{
@@ -277,7 +267,7 @@ const OrderBook: React.FC = () => {
                         <div style={{ color: "#A0CE54" }}>
                           {burger.price.toFixed(2)} $
                         </div>
-                        <button style={{ marginLeft: "5px" }}>+</button>
+                        {/* <button style={{ marginLeft: "5px" }}>+</button> */}
                       </div>
                     </div>
                   ))}
@@ -337,22 +327,17 @@ const OrderBook: React.FC = () => {
           </div>
         </CSSTransition>
 
-        <CSSTransition
-          in={value === 3}
-          timeout={300}
-          classNames="kebab-menu"
-          unmountOnExit
-        >
+        <CSSTransition in={value === 3} timeout={300} classNames="kebab-menu">
           <div
             style={{
-              display: "flex",
+              display: value === 3 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
               width: "940px"
             }}
           >
             <div>
-              <div
+              {/* <div
                 style={{
                   backgroundColor: "#2E2E2E",
                   padding: "15px 30px",
@@ -364,7 +349,7 @@ const OrderBook: React.FC = () => {
               >
                 <div>Added products: 1</div>
                 <button>Pre-Order Now</button>
-              </div>
+              </div> */}
               <div
                 className="left-book-side"
                 style={{
@@ -420,7 +405,7 @@ const OrderBook: React.FC = () => {
                         <div style={{ color: "#A0CE54" }}>
                           {kebab.price.toFixed(2)} $
                         </div>
-                        <button style={{ marginLeft: "5px" }}>+</button>
+                        {/* <button style={{ marginLeft: "5px" }}>+</button> */}
                       </div>
                     </div>
                   ))}
