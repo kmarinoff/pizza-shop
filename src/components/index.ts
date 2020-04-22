@@ -13,3 +13,6 @@ export * from "./Ingredients";
 export * from "./Staff";
 export * from "./AboutUs";
 export * from "./PaymentMethods";
+export * from "./Specialty";
+export * from "./Products";
+export * from "./Contacts";
