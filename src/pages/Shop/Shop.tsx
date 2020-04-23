@@ -2,12 +2,13 @@ import React from "react";
 import {
   AboutUs,
   Contacts,
+  Footer,
   Ingredients,
+  OneBlock,
   PaymentMethods,
   Products,
   Specialty,
-  Staff,
-  Footer
+  Staff
 } from "src/components";
 import { CustomCarousel } from "src/components/CustomCarousel";
 
@@ -34,6 +35,10 @@ const Shop: React.FC = () => {
 
       <section id="about-us">
         <AboutUs />
+      </section>
+
+      <section id="one-block-section">
+        <OneBlock />
       </section>
 
       <section id="payment-methods">
