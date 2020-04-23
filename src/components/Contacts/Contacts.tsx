@@ -1,11 +1,42 @@
-import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faMapMarker,
+  faPhone,
+  faQuoteLeft,
+  faQuoteRight
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
+import { Formik } from "formik";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import contactsBackground from "src/assets/contacts/findus-bg.jpg";
+import * as yup from "yup";
+
+import "./styles.scss";
+
+const contactSchema = yup.object({
+  name: yup
+    .string()
+    .required()
+    .min(2)
+    .max(255),
+  email: yup
+    .string()
+    .required()
+    .email()
+    .min(2)
+    .max(255),
+  message: yup
+    .string()
+    .required()
+    .min(2)
+    .max(1024)
+});
 
 const Contacts: React.FC = () => {
   return (
@@ -14,7 +45,8 @@ const Contacts: React.FC = () => {
         padding: "73px 0",
         background: `url(${contactsBackground})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
+        fontFamily: "Fira Sans, sans-serif"
       }}
     >
       <div className="container">
@@ -107,13 +139,32 @@ const Contacts: React.FC = () => {
                         style={{
                           color: "#a0ce54",
                           fontSize: "1.1em",
-                          marginBottom: "10px"
+                          marginBottom: "10px",
+                          fontWeight: "bold",
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center"
                         }}
                       >
-                        Find Us
+                        <FontAwesomeIcon
+                          className="shopping-cart"
+                          style={{
+                            fontSize: "1em",
+                            color: "#A0CE54",
+                            marginRight: "5px",
+                            marginBottom: "2px"
+                          }}
+                          icon={faMapMarker}
+                        />
+                        <div>Find Us</div>
                       </div>
-                      <p style={{ marginBottom: "0px" }}>Bd de Magenta</p>
-                      <p style={{ marginBottom: "0px" }}>Paris, 1006, France</p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        Bd de Magenta
+                      </p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        Paris, 1006, France
+                      </p>
                     </div>
 
                     <div style={{ marginBottom: "20px" }}>
@@ -121,13 +172,32 @@ const Contacts: React.FC = () => {
                         style={{
                           color: "#a0ce54",
                           fontSize: "1.1em",
-                          marginBottom: "10px"
+                          marginBottom: "10px",
+                          fontWeight: "bold",
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center"
                         }}
                       >
-                        Email
+                        <FontAwesomeIcon
+                          className="shopping-cart"
+                          style={{
+                            fontSize: "1em",
+                            color: "#A0CE54",
+                            marginRight: "5px",
+                            marginBottom: "2px"
+                          }}
+                          icon={faEnvelope}
+                        />
+                        <div>Email</div>
                       </div>
-                      <p style={{ marginBottom: "0px" }}>office@mail.com</p>
-                      <p style={{ marginBottom: "0px" }}>sales@mail.com</p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        office@mail.com
+                      </p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        sales@mail.com
+                      </p>
                     </div>
 
                     <div style={{ marginBottom: "0px" }}>
@@ -135,17 +205,152 @@ const Contacts: React.FC = () => {
                         style={{
                           color: "#a0ce54",
                           fontSize: "1.1em",
-                          marginBottom: "10px"
+                          marginBottom: "10px",
+                          fontWeight: "bold",
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center"
                         }}
                       >
-                        Phones
+                        <FontAwesomeIcon
+                          className="shopping-cart"
+                          style={{
+                            fontSize: "1em",
+                            color: "#A0CE54",
+                            marginRight: "5px",
+                            marginBottom: "2px"
+                          }}
+                          icon={faPhone}
+                        />
+                        <div>Phones</div>
                       </div>
-                      <p style={{ marginBottom: "0px" }}>+339 89 89 55 739</p>
-                      <p style={{ marginBottom: "0px" }}>+339 89 89 55 739</p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        +339 89 89 55 739
+                      </p>
+                      <p style={{ marginBottom: "0px", color: "#8c8c8c" }}>
+                        +339 89 89 55 739
+                      </p>
                     </div>
                   </Col>
-                  {/* TODO FORM */}
-                  <Col></Col>
+
+                  <Col md="7">
+                    <div
+                      style={{
+                        color: "#a0ce54",
+                        fontSize: "1.1em",
+                        marginBottom: "10px",
+                        fontWeight: "bold"
+                      }}
+                    >
+                      Get in touch
+                    </div>
+
+                    <Formik
+                      initialValues={{ name: "", email: "", message: "" }}
+                      onSubmit={(values, actions) => {
+                        actions.resetForm();
+                        console.log(values);
+                      }}
+                      validationSchema={contactSchema}
+                    >
+                      {formik => (
+                        <Form onSubmit={formik.handleSubmit}>
+                          <Form.Row>
+                            <Form.Group as={Col}>
+                              {/* <Form.Label>Name</Form.Label> */}
+                              <Form.Control
+                                type="text"
+                                name="name"
+                                value={formik.values.name}
+                                onChange={formik.handleChange}
+                                isValid={
+                                  formik.touched.name && !formik.errors.name
+                                }
+                                isInvalid={!!formik.errors.name}
+                                placeholder="Name"
+                                bsPrefix="input-name"
+                              />
+                              {/* <Form.Control.Feedback>
+                                Looks good!
+                              </Form.Control.Feedback> */}
+
+                              {/* <Form.Control.Feedback type="invalid">
+                                {formik.errors.name}
+                              </Form.Control.Feedback> */}
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Row>
+                            <Form.Group as={Col}>
+                              {/* <Form.Label>Email</Form.Label> */}
+                              <Form.Control
+                                type="text"
+                                name="email"
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                // isValid={
+                                //   formik.touched.email && !formik.errors.email
+                                // }
+                                isInvalid={!!formik.errors.email}
+                                placeholder="Email"
+                                bsPrefix="input-email"
+                              />
+                              {/* <Form.Control.Feedback>
+                                Looks good!
+                              </Form.Control.Feedback> */}
+
+                              {/* <Form.Control.Feedback type="invalid">
+                                {formik.errors.email}
+                              </Form.Control.Feedback> */}
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Row>
+                            <Form.Group as={Col}>
+                              {/* <Form.Label>Message</Form.Label> */}
+                              <Form.Control
+                                type="text"
+                                as="textarea"
+                                style={{ minHeight: "150px", resize: "none" }}
+                                name="message"
+                                value={formik.values.message}
+                                onChange={formik.handleChange}
+                                // isValid={
+                                //   formik.touched.message &&
+                                //   !formik.errors.message
+                                // }
+                                isInvalid={!!formik.errors.message}
+                                placeholder="Your message"
+                                bsPrefix="input-message"
+                              />
+                              {/* <Form.Control.Feedback>
+                                Looks good!
+                              </Form.Control.Feedback> */}
+
+                              {/* <Form.Control.Feedback type="invalid">
+                                {formik.errors.message}
+                              </Form.Control.Feedback> */}
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Row>
+                            <Form.Group as={Col}>
+                              <div className="contact-btn-container">
+                                <Button
+                                  type="submit"
+                                  bsPrefix="contact-btn"
+                                  style={{ flexGrow: 1 }}
+                                >
+                                  Send
+                                </Button>
+                              </div>
+                            </Form.Group>
+                          </Form.Row>
+                        </Form>
+                      )}
+                    </Formik>
+                  </Col>
                 </Row>
               </Container>
             </div>

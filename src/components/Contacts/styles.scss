@@ -1,0 +1,53 @@
+.contact-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #a0ce54;
+  background-color: #a0ce54;
+  transition: background-color 150ms ease-in-out;
+}
+
+.contact-btn-container:hover {
+  background-color: white;
+  transition: background-color 150ms ease-in-out;
+}
+
+.contact-btn {
+  border: 0;
+  outline: none;
+  padding: 10px;
+  margin: 2px;
+  background-color: #a0ce54;
+  color: white;
+  transition: background-color 150ms ease-in-out;
+}
+
+.contact-btn:active {
+  background-color: #89b640;
+  transition: background-color 150ms ease-in-out;
+}
+
+.input-name,
+.input-email,
+.input-message {
+  width: 100%;
+  background-color: #f2f2f2;
+  border: none;
+  padding: 10px;
+}
+
+.input-name::placeholder,
+.input-email::placeholder,
+.input-message::placeholder {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #c3c3c3;
+}
+
+.input-name:focus,
+.input-email:focus,
+.input-message:focus,
+.contact-btn:focus {
+  outline: none;
+}
