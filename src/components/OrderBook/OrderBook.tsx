@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -8,9 +10,48 @@ import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
 import "./styles.scss";
 
+interface CenteredModalProps {
+  show: boolean;
+  onHide: () => void;
+  currImgSrc: string;
+  productName: string;
+}
+
+const CenteredModal: React.FC<CenteredModalProps> = ({
+  onHide,
+  show,
+  currImgSrc,
+  productName
+}) => {
+  return (
+    <Modal show={show} onHide={onHide} centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {productName}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <img style={{ width: "100%" }} src={currImgSrc} alt="currImgSrc" />
+      </Modal.Body>
+      <Modal.Footer>
+        <div className="close-btn-container">
+          <Button type="submit" bsPrefix="close-btn" onClick={onHide}>
+            Close
+          </Button>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
 const OrderBook: React.FC = () => {
   const [value, setValue] = React.useState(0);
   const handleChange = (val: number) => setValue(val);
+
+  // Modal
+  const [modalShow, setModalShow] = React.useState(false);
+  const [currImgSrc, setCurrImgSrc] = React.useState("");
+  const [productName, setProductName] = React.useState("");
 
   React.useEffect(() => {
     setValue(1);
@@ -106,18 +147,26 @@ const OrderBook: React.FC = () => {
                           color: "#ffffff"
                         }}
                       >
-                        <img
-                          width="78"
-                          height="78"
-                          src={pizza.imgSrc}
-                          alt={pizza.name}
-                          style={{
-                            border: "1px solid #a7a6a7",
-                            marginRight: "10px",
-                            borderRadius: "5px"
+                        <div
+                          className="product-wrapper"
+                          onClick={() => {
+                            setCurrImgSrc(pizza.imgSrc);
+                            setProductName(pizza.name);
+                            setModalShow(true);
                           }}
-                        />
-                        <div style={{ maxWidth: "230px" }}>{pizza.name}</div>
+                        >
+                          <img
+                            className="product-img"
+                            src={pizza.imgSrc}
+                            alt={pizza.name}
+                          />
+                          <div className="product-middle">
+                            <div className="product-text">i</div>
+                          </div>
+                        </div>
+                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                          {pizza.name}
+                        </div>
                       </div>
                       <div
                         style={{
@@ -243,18 +292,26 @@ const OrderBook: React.FC = () => {
                           color: "#ffffff"
                         }}
                       >
-                        <img
-                          width="78"
-                          height="78"
-                          src={burger.imgSrc}
-                          alt={burger.name}
-                          style={{
-                            border: "1px solid #a7a6a7",
-                            marginRight: "10px",
-                            borderRadius: "5px"
+                        <div
+                          className="product-wrapper"
+                          onClick={() => {
+                            setCurrImgSrc(burger.imgSrc);
+                            setProductName(burger.name);
+                            setModalShow(true);
                           }}
-                        />
-                        <div style={{ maxWidth: "230px" }}>{burger.name}</div>
+                        >
+                          <img
+                            className="product-img"
+                            src={burger.imgSrc}
+                            alt={burger.name}
+                          />
+                          <div className="product-middle">
+                            <div className="product-text">i</div>
+                          </div>
+                        </div>
+                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                          {burger.name}
+                        </div>
                       </div>
                       <div
                         style={{
@@ -381,18 +438,26 @@ const OrderBook: React.FC = () => {
                           color: "#ffffff"
                         }}
                       >
-                        <img
-                          width="78"
-                          height="78"
-                          src={kebab.imgSrc}
-                          alt={kebab.name}
-                          style={{
-                            border: "1px solid #a7a6a7",
-                            marginRight: "10px",
-                            borderRadius: "5px"
+                        <div
+                          className="product-wrapper"
+                          onClick={() => {
+                            setCurrImgSrc(kebab.imgSrc);
+                            setProductName(kebab.name);
+                            setModalShow(true);
                           }}
-                        />
-                        <div style={{ maxWidth: "230px" }}>{kebab.name}</div>
+                        >
+                          <img
+                            className="product-img"
+                            src={kebab.imgSrc}
+                            alt={kebab.name}
+                          />
+                          <div className="product-middle">
+                            <div className="product-text">i</div>
+                          </div>
+                        </div>
+                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                          {kebab.name}
+                        </div>
                       </div>
                       <div
                         style={{
@@ -475,6 +540,13 @@ const OrderBook: React.FC = () => {
           </div>
         </CSSTransition>
       </div>
+
+      <CenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        currImgSrc={currImgSrc}
+        productName={productName}
+      />
     </>
   );
 };
