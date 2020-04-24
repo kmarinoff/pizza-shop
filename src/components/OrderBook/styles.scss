@@ -1,0 +1,237 @@
+.pizza-btn,
+.burger-btn,
+.kebab-btn {
+  border: none;
+  color: #878787;
+  background-color: none;
+  border-radius: 1px;
+  margin: 10px;
+  width: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.pizza-btn:hover,
+.burger-btn:hover,
+.kebab-btn:hover {
+  color: #ffffff;
+  background-color: #a0ce54 !important;
+}
+
+.pizza-btn > input,
+.burger-btn > input,
+.kebab-btn > input {
+  display: none;
+}
+
+.pizza-btn.active,
+.burger-btn.active,
+.kebab-btn.active {
+  border: none;
+  color: #ffffff;
+  background-color: #a0ce54 !important;
+  border-radius: 1px;
+}
+
+/* PIZZA MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.pizza-menu-enter {
+  opacity: 0;
+  background-color: none;
+  position: static;
+}
+
+.pizza-menu-enter-active {
+  opacity: 1;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.pizza-menu-exit {
+  opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pizza-menu-exit-active {
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.pizza-menu-enter-done {
+  background-color: blue;
+}
+
+/* BURGER MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.burger-menu-enter {
+  opacity: 0;
+  background-color: none;
+  position: static;
+}
+
+.burger-menu-enter-active {
+  opacity: 1;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.burger-menu-exit {
+  opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.burger-menu-exit-active {
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.burger-menu-enter-done {
+  background-color: blue;
+}
+
+/* KEBAB MENU */
+
+// ------
+// ------
+// ------
+// ------
+
+.kebab-menu-enter {
+  opacity: 0;
+  background-color: none;
+  position: static;
+}
+
+.kebab-menu-enter-active {
+  opacity: 1;
+  background-color: red;
+
+  transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.kebab-menu-exit {
+  opacity: 1;
+  transform: translateX(0);
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.kebab-menu-exit-active {
+  opacity: 0;
+  transform: translateX(-110%);
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.kebab-menu-enter-done {
+  background-color: blue;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #a0ce54;
+  background-color: #a0ce54;
+  transition: background-color 150ms ease-in-out;
+}
+
+.close-btn-container:hover {
+  background-color: transparent;
+  transition: background-color 150ms ease-in-out;
+}
+
+.close-btn {
+  border: 0;
+  outline: none;
+  padding: 5px 10px;
+  margin: 2px;
+  background-color: #a0ce54;
+  color: white;
+  transition: background-color 150ms ease-in-out;
+}
+
+.close-btn:active {
+  background-color: #89b640;
+  transition: background-color 150ms ease-in-out;
+}
+
+.close-btn:focus {
+  outline: none;
+}
+
+.product-wrapper {
+  position: relative;
+}
+
+.product-wrapper:hover {
+  cursor: pointer;
+}
+
+.product-wrapper:hover .product-img {
+  opacity: 0.3;
+}
+
+.product-wrapper:hover .product-middle {
+  opacity: 1;
+}
+
+.product-img {
+  border: 1px solid #a7a6a7;
+  border-radius: 5px;
+
+  max-width: 78px;
+  max-height: 78px;
+  min-width: 78px;
+  min-height: 78px;
+
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.product-middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.product-text {
+  color: white;
+  background-color: #a0ce54;
+  border-radius: 50%;
+  padding: 4px 12px 0px 12px;
+}

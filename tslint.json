@@ -4,7 +4,7 @@
   "jsRules": {},
   "rules": {
     "interface-name": false,
-    "prettier": true,
+    "prettier": [true, null, { "editorconfig": false }],
     "no-empty": false,
     "object-literal-sort-keys": false,
     "no-console": false,

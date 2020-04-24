@@ -23,7 +23,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
             ) : (
               <Redirect
                 to={{
-                  pathname: "/login",
+                  pathname: "/shop",
                   state: { from: location }
                 }}
               />
