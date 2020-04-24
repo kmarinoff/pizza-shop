@@ -5,8 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { createFirestoreInstance } from "redux-firestore"; // <- needed if using firestore
+import { PersistGate } from "redux-persist/integration/react";
 import { AuthContextProvider } from "src/components";
-import { store } from "src/reduxStore";
+import { persistor, store } from "src/reduxStore";
 import { firebaseInstance } from "src/setup/firebase";
 import { Routes } from "./Routes";
 
@@ -28,11 +29,13 @@ const App: FC = () => {
   return (
     <AuthContextProvider>
       <Provider store={store}>
-        <ReactReduxFirebaseProvider {...rrfProps}>
-          <Router basename="/">
-            <Routes />
-          </Router>
-        </ReactReduxFirebaseProvider>
+        <PersistGate persistor={persistor}>
+          <ReactReduxFirebaseProvider {...rrfProps}>
+            <Router basename="/">
+              <Routes />
+            </Router>
+          </ReactReduxFirebaseProvider>
+        </PersistGate>
       </Provider>
     </AuthContextProvider>
   );

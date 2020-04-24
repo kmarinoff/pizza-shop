@@ -2,20 +2,19 @@ import React, { FC, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { getPizzasRequest } from "src/reduxStore";
-import { createLoadingSelector } from "src/reduxStore/actions/selectors";
+// import { createLoadingSelector } from "src/reduxStore/actions/selectors";
 import { Pizza } from "src/types";
-import { Cart } from "./components";
 import { PizzaList } from "./components/PizzaList";
 
 const Home: FC = () => {
   const dispatch = useDispatch();
-  const loadingSelectors = createLoadingSelector(["GET_PIZZAS"]);
+  // const loadingSelectors = createLoadingSelector(["GET_PIZZAS"]);
   const pizzas: Pizza[] = useSelector((state: any) => state.pizzas);
-  const isLoading = useSelector((state: any) => ({
-    isFetching: loadingSelectors(state)
-  }));
+  // const isLoading = useSelector((state: any) => ({
+  //   isFetching: loadingSelectors(state)
+  // }));
 
-  console.log("isLoading:", isLoading);
+  // console.log("isLoading:", isLoading);
 
   useEffect(() => {
     dispatch(getPizzasRequest());
@@ -40,7 +39,6 @@ const Home: FC = () => {
           </div>
         )}
       </div>
-      <Cart />
     </>
   );
 };

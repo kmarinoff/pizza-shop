@@ -1,0 +1,9 @@
+.payment-logo {
+  filter: grayscale(1);
+  transition: filter 500ms ease-in-out;
+}
+
+.payment-logo:hover {
+  filter: grayscale(0);
+  transition: filter 300ms ease-in-out;
+}

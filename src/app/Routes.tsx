@@ -8,7 +8,7 @@ import {
   PrivateRoute,
   SignUpScreen
 } from "src/components";
-import { Home, PizzaDetails } from "src/pages";
+import { Checkout, Home, PizzaDetails, Shop } from "src/pages";
 import { Nav } from "./Nav";
 
 const Routes = () => {
@@ -16,8 +16,8 @@ const Routes = () => {
     (state: any) => state.firebase
   );
 
-  console.log("auth.isLoaded:", auth.isLoaded);
-  console.log("profile.isLoaded:", profile.isLoaded);
+  // console.log("auth.isLoaded:", auth.isLoaded);
+  // console.log("profile.isLoaded:", profile.isLoaded);
 
   return (
     <>
@@ -25,6 +25,7 @@ const Routes = () => {
         <>
           <Nav isLoggedIn={!profile.isEmpty} />
           <Switch>
+            <Route exact path="/shop" component={Shop} />
             <Route exact path="/login" component={LoginScreen} />
             <Route exact path="/signup" component={SignUpScreen} />
             <PrivateRoute
@@ -32,6 +33,7 @@ const Routes = () => {
               profileIsLoaded={profile.isLoaded}
             >
               <Route exact path="/" component={Home} />
+              <Route exact path="/checkout" component={Checkout} />
               <Route exact path="/pizza/:id" component={PizzaDetails} />
             </PrivateRoute>
           </Switch>
@@ -42,7 +44,7 @@ const Routes = () => {
             minHeight: "80vh",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center "
+            alignItems: "center"
           }}
         >
           <Spinner animation="grow" />
