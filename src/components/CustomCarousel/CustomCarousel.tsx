@@ -10,6 +10,7 @@ import {
   Slider
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+
 import "./styles.scss";
 
 import item1 from "src/assets/pizzas/item1.jpg";
@@ -23,13 +24,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CustomCarousel: React.FC = () => {
   return (
     <CarouselProvider
-      naturalSlideHeight={400}
       naturalSlideWidth={1080}
+      naturalSlideHeight={400}
       visibleSlides={1}
-      step={1}
       totalSlides={3}
       hasMasterSpinner
-      dragEnabled={false}
+      infinite={true}
+      isPlaying={true}
+      interval={5000}
+      step={1}
+      dragEnabled={true}
+      touchEnabled={true}
     >
       <Slider>
         <Slide index={0}>
