@@ -33,8 +33,8 @@ const CustomCarousel: React.FC = () => {
       isPlaying={true}
       interval={5000}
       step={1}
-      // dragEnabled={true}
-      // touchEnabled={true}
+      dragEnabled={true}
+      touchEnabled={true}
     >
       <Slider>
         <Slide index={0}>
