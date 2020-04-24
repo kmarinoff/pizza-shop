@@ -13,7 +13,7 @@ const Footer = () => {
         fontSize: "0.9em"
       }}
     >
-      All rights reserved © Kaloyan Marinov: 51351168
+      All rights reserved © Kaloyan Marinov: 61762005
     </div>
   );
 };
