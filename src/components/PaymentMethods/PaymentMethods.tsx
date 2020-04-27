@@ -11,9 +11,13 @@ import paypal from "src/assets/payment-methods/paypal.png";
 import stripe from "src/assets/payment-methods/stripe-small.png";
 import visa from "src/assets/payment-methods/visa.png";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 import "./styles.scss";
 
 const PaymentMethods = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <>
       <div
@@ -24,7 +28,7 @@ const PaymentMethods = () => {
           alignItems: "center",
           // margin: "0 auto 50px auto",
           margin: "0 auto",
-          width: "50%",
+          width: windowWidth <= 550 ? "90%" : "50%",
           textAlign: "center",
           padding: "73px 0"
         }}

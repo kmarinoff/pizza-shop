@@ -107,7 +107,8 @@ const Contacts: React.FC = () => {
               fontFamily: "Fira Sans",
               fontSize: "1.1em",
               fontWeight: 400,
-              color: "#d1d1d1"
+              color: "#d1d1d1",
+              textAlign: "center"
             }}
           >
             Duis vitae velit mollis, congue nisi dignissim, pellentesque lorem

@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { OrderBook } from "src/components/OrderBook";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const Products = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
       className="container"
@@ -23,7 +27,7 @@ const Products = () => {
           flexDirection: "column",
           alignItems: "center",
           margin: "0 auto 50px auto",
-          width: "50%",
+          width: windowWidth <= 550 ? "auto" : "50%",
           textAlign: "center"
         }}
       >

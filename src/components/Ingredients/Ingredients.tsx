@@ -78,7 +78,8 @@ const Ingredients: React.FC = () => {
               fontFamily: "Fira Sans",
               fontSize: "1.1em",
               fontWeight: 400,
-              color: "#d1d1d1"
+              color: "#d1d1d1",
+              textAlign: "center"
             }}
           >
             Our products are made with love and fresh ingredients.

@@ -78,7 +78,9 @@ const Staff = () => {
               fontFamily: "Fira Sans",
               fontSize: "1.1em",
               fontWeight: 400,
-              color: "#d1d1d1"
+              color: "#d1d1d1",
+              textAlign: "center",
+              width: "90%"
             }}
           >
             Nulla non mattis risus. Praesent accumsan at diam ut molestie.

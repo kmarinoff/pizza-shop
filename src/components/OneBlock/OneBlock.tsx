@@ -41,7 +41,7 @@ const OneBlock = () => {
             <div style={{ fontWeight: "bold", marginBottom: "20px" }}>
               Praesent et ultricies velit.
             </div>
-            <div style={{ fontWeight: 200 }}>
+            <div style={{ fontWeight: 200, marginBottom: "20px" }}>
               Proin dapibus luctus quam, placerat volutpat tortor dapibus vel.
               <br />
               Duis interdum elit quis venenatis bibendum. Nulla malesuada purus

@@ -12,7 +12,11 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const AboutUs = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <>
       <div
@@ -23,7 +27,7 @@ const AboutUs = () => {
           alignItems: "center",
           // margin: "0 auto 50px auto",
           margin: "0 auto",
-          width: "50%",
+          width: windowWidth <= 550 ? "90%" : "50%",
           textAlign: "center",
           padding: "73px 0"
         }}
