@@ -10,6 +10,8 @@ import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
 import "./styles.scss";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 interface CenteredModalProps {
   show: boolean;
   onHide: () => void;
@@ -52,6 +54,12 @@ const OrderBook: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [currImgSrc, setCurrImgSrc] = React.useState("");
   const [productName, setProductName] = React.useState("");
+
+  const windowWidth = useWindowWidth();
+
+  React.useEffect(() => {
+    console.log(windowWidth);
+  });
 
   React.useEffect(() => {
     setValue(1);
@@ -99,7 +107,7 @@ const OrderBook: React.FC = () => {
               display: value === 1 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "100%" : "940px"
             }}
           >
             <div>
@@ -120,9 +128,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -134,7 +142,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -164,7 +172,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {pizza.name}
                         </div>
                       </div>
@@ -244,7 +257,7 @@ const OrderBook: React.FC = () => {
               display: value === 2 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "auto" : "940px"
             }}
           >
             <div>
@@ -265,9 +278,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -279,7 +292,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -309,7 +322,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {burger.name}
                         </div>
                       </div>
@@ -390,7 +408,7 @@ const OrderBook: React.FC = () => {
               display: value === 3 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "auto" : "940px"
             }}
           >
             <div>
@@ -411,9 +429,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -425,7 +443,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -455,7 +473,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {kebab.name}
                         </div>
                       </div>

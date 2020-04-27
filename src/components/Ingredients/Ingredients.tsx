@@ -10,7 +10,11 @@ import ingredientTwo from "src/assets/ingredients/2-ingredient.jpg";
 import ingredientThree from "src/assets/ingredients/3-ingredient.jpg";
 import ingredientFour from "src/assets/ingredients/4-ingredient.jpg";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const Ingredients: React.FC = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
       style={{
@@ -89,7 +93,13 @@ const Ingredients: React.FC = () => {
             alignItems: "center"
           }}
         >
-          <div style={{ backgroundColor: "#ffffff", padding: "10px" }}>
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              padding: "10px",
+              margin: windowWidth <= 991 ? "10px" : "0px"
+            }}
+          >
             <div
               className="box-text"
               style={{
@@ -142,7 +152,13 @@ const Ingredients: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ backgroundColor: "#ffffff", padding: "10px" }}>
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              padding: "10px",
+              margin: windowWidth <= 991 ? "10px" : "0px"
+            }}
+          >
             <div
               className="box-text"
               style={{
@@ -153,7 +169,7 @@ const Ingredients: React.FC = () => {
               }}
             >
               <Row>
-                <Col style={{ padding: "10px" }}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
                   <img
                     src={ingredientOne}
                     width="150"
@@ -162,7 +178,7 @@ const Ingredients: React.FC = () => {
                     style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 4px" }}
                   />
                 </Col>
-                <Col style={{ padding: "10px" }}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
                   <img
                     src={ingredientTwo}
                     width="150"
@@ -173,7 +189,7 @@ const Ingredients: React.FC = () => {
                 </Col>
               </Row>
               <Row>
-                <Col style={{ padding: "10px" }}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
                   <img
                     src={ingredientThree}
                     width="150"
@@ -182,7 +198,7 @@ const Ingredients: React.FC = () => {
                     style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 4px" }}
                   />
                 </Col>
-                <Col style={{ padding: "10px" }}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
                   <img
                     src={ingredientFour}
                     width="150"

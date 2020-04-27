@@ -86,7 +86,7 @@ const AboutUs = () => {
             paddingBottom: "73px"
           }}
         >
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="laptop"
               style={{
@@ -118,7 +118,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="car"
               style={{
@@ -150,7 +150,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="utensils"
               style={{
@@ -182,7 +182,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="coffee"
               style={{

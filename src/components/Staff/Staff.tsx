@@ -87,6 +87,10 @@ const Staff = () => {
         <Container fluid>
           <Row>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefOneInfoRef.current;
@@ -123,6 +127,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefTwoInfoRef.current;
@@ -159,6 +167,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefThreeInfoRef.current;
@@ -195,6 +207,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefFourInfoRef.current;

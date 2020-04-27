@@ -17,6 +17,8 @@ import Form from "react-bootstrap/Form";
 import contactsBackground from "src/assets/contacts/findus-bg.jpg";
 import * as yup from "yup";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 import "./styles.scss";
 
 const contactSchema = yup.object({
@@ -39,6 +41,8 @@ const contactSchema = yup.object({
 });
 
 const Contacts: React.FC = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
       style={{
@@ -121,14 +125,20 @@ const Contacts: React.FC = () => {
         >
           {/* FORM */}
 
-          <div style={{ backgroundColor: "#ffffff", padding: "10px" }}>
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              padding: "10px",
+              margin: windowWidth <= 991 ? "10px" : "0px"
+            }}
+          >
             <div
               className="box-text"
               style={{
                 backgroundColor: "#ffffff",
                 border: "1px dashed #8c8c8c",
-                padding: "30px",
-                minWidth: "550px"
+                padding: windowWidth >= 600 ? "30px" : "10px",
+                minWidth: windowWidth >= 600 ? "550px" : "auto"
               }}
             >
               <Container>
@@ -234,7 +244,7 @@ const Contacts: React.FC = () => {
                     </div>
                   </Col>
 
-                  <Col md="7">
+                  <Col md={12} lg={7}>
                     <div
                       style={{
                         color: "#a0ce54",
@@ -358,7 +368,13 @@ const Contacts: React.FC = () => {
 
           {/* WORK HOURS */}
 
-          <div style={{ backgroundColor: "#ffffff", padding: "10px" }}>
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              padding: "10px",
+              margin: windowWidth <= 991 ? "10px" : "0px"
+            }}
+          >
             <div
               className="box-text"
               style={{

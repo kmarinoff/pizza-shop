@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 interface SpecialtyItemProps {
   specialtyType: string;
   imageSrc: string;
@@ -13,21 +15,31 @@ const SpecialtyItem: React.FC<SpecialtyItemProps> = ({
   specialtyTitle,
   specialtyBody
 }) => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
       style={{
-        width: "300px",
+        width:
+          windowWidth < 992 - 17
+            ? "315px"
+            : windowWidth < 1200 - 17
+            ? "250px"
+            : "300px",
         backgroundColor: "white",
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
-        borderRadius: "10px"
+        borderRadius: "10px",
+        margin: windowWidth <= 991 ? "10px" : "0px"
       }}
     >
       <img
-        width="300"
-        height="200"
         src={imageSrc}
         alt={specialtyType}
-        style={{ borderTopLeftRadius: "10px", borderTopRightRadius: "10px" }}
+        style={{
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
+          width: "100%"
+        }}
       />
       <div className="content" style={{ padding: "10px 20px" }}>
         <div

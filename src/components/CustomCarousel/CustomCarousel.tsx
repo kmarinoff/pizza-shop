@@ -21,7 +21,11 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const CustomCarousel: React.FC = () => {
+  const windowWidth = useWindowWidth({ leading: true });
+
   return (
     <CarouselProvider
       naturalSlideWidth={1080}
@@ -43,7 +47,16 @@ const CustomCarousel: React.FC = () => {
               position: "absolute",
               border: "2px solid #a0ce54",
               padding: "3px",
-              width: "1000px"
+              width:
+                windowWidth <= 515
+                  ? "300px"
+                  : windowWidth <= 750
+                  ? "500px"
+                  : windowWidth <= 850
+                  ? "615px"
+                  : windowWidth <= 1070
+                  ? "800px"
+                  : "1000px"
             }}
           >
             <div
@@ -54,33 +67,41 @@ const CustomCarousel: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                padding: "10px 80px 5px 80px",
+                padding: windowWidth <= 750 ? "5px" : "10px 80px 5px 80px",
                 textAlign: "center"
               }}
             >
               <h1
                 style={{
                   fontFamily: "Droid Serif",
-                  fontSize: "3em",
+                  fontSize:
+                    windowWidth <= 415
+                      ? "1.3em"
+                      : windowWidth <= 750
+                      ? "2em"
+                      : "3em",
                   display: "inline-block",
-                  marginBottom: "1.5rem",
+                  marginBottom: windowWidth <= 750 ? "0px" : "1.5rem",
                   fontStyle: "italic"
                 }}
               >
                 The secret of quality of life? Quality products!
               </h1>
-              <h3
-                style={{
-                  margin: "0px",
-                  paddingBottom: "5px",
-                  fontFamily: "Droid Serif",
-                  fontSize: "1.2rem",
-                  fontStyle: "italic"
-                }}
-              >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered.
-              </h3>
+
+              {windowWidth >= 750 && (
+                <h3
+                  style={{
+                    margin: "0px",
+                    paddingBottom: "5px",
+                    fontFamily: "Droid Serif",
+                    fontSize: "1.2rem",
+                    fontStyle: "italic"
+                  }}
+                >
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered.
+                </h3>
+              )}
             </div>
           </div>
           <Image hasMasterSpinner={true} src={item1} />
@@ -91,7 +112,16 @@ const CustomCarousel: React.FC = () => {
               position: "absolute",
               border: "2px solid #a0ce54",
               padding: "3px",
-              width: "1000px"
+              width:
+                windowWidth <= 515
+                  ? "300px"
+                  : windowWidth <= 750
+                  ? "500px"
+                  : windowWidth <= 850
+                  ? "615px"
+                  : windowWidth <= 1070
+                  ? "800px"
+                  : "1000px"
             }}
           >
             <div
@@ -102,33 +132,41 @@ const CustomCarousel: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                padding: "10px 80px 5px 80px",
+                padding: windowWidth <= 750 ? "5px" : "10px 80px 5px 80px",
                 textAlign: "center"
               }}
             >
               <h1
                 style={{
                   fontFamily: "Droid Serif",
-                  fontSize: "3em",
+                  fontSize:
+                    windowWidth <= 415
+                      ? "1.3em"
+                      : windowWidth <= 750
+                      ? "2em"
+                      : "3em",
                   display: "inline-block",
-                  marginBottom: "1.5rem",
+                  marginBottom: windowWidth <= 750 ? "0px" : "1.5rem",
                   fontStyle: "italic"
                 }}
               >
                 The secret of quality of life? Quality products!
               </h1>
-              <h3
-                style={{
-                  margin: "0px",
-                  paddingBottom: "5px",
-                  fontFamily: "Droid Serif",
-                  fontSize: "1.2rem",
-                  fontStyle: "italic"
-                }}
-              >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered.
-              </h3>
+
+              {windowWidth >= 750 && (
+                <h3
+                  style={{
+                    margin: "0px",
+                    paddingBottom: "5px",
+                    fontFamily: "Droid Serif",
+                    fontSize: "1.2rem",
+                    fontStyle: "italic"
+                  }}
+                >
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered.
+                </h3>
+              )}
             </div>
           </div>
           <Image hasMasterSpinner={true} src={item2} />
@@ -139,7 +177,16 @@ const CustomCarousel: React.FC = () => {
               position: "absolute",
               border: "2px solid #a0ce54",
               padding: "3px",
-              width: "1000px"
+              width:
+                windowWidth <= 515
+                  ? "300px"
+                  : windowWidth <= 750
+                  ? "500px"
+                  : windowWidth <= 850
+                  ? "615px"
+                  : windowWidth <= 1070
+                  ? "800px"
+                  : "1000px"
             }}
           >
             <div
@@ -150,33 +197,41 @@ const CustomCarousel: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
-                padding: "10px 80px 5px 80px",
+                padding: windowWidth <= 750 ? "5px" : "10px 80px 5px 80px",
                 textAlign: "center"
               }}
             >
               <h1
                 style={{
                   fontFamily: "Droid Serif",
-                  fontSize: "3em",
+                  fontSize:
+                    windowWidth <= 415
+                      ? "1.3em"
+                      : windowWidth <= 750
+                      ? "2em"
+                      : "3em",
                   display: "inline-block",
-                  marginBottom: "1.5rem",
+                  marginBottom: windowWidth <= 750 ? "0px" : "1.5rem",
                   fontStyle: "italic"
                 }}
               >
                 The secret of quality of life? Quality products!
               </h1>
-              <h3
-                style={{
-                  margin: "0px",
-                  paddingBottom: "5px",
-                  fontFamily: "Droid Serif",
-                  fontSize: "1.2rem",
-                  fontStyle: "italic"
-                }}
-              >
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered.
-              </h3>
+
+              {windowWidth >= 750 && (
+                <h3
+                  style={{
+                    margin: "0px",
+                    paddingBottom: "5px",
+                    fontFamily: "Droid Serif",
+                    fontSize: "1.2rem",
+                    fontStyle: "italic"
+                  }}
+                >
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered.
+                </h3>
+              )}
             </div>
           </div>
           <Image hasMasterSpinner={true} src={item3} />
@@ -186,7 +241,8 @@ const CustomCarousel: React.FC = () => {
         <FontAwesomeIcon
           className="shopping-cart"
           style={{
-            fontSize: "2.63em",
+            width: windowWidth <= 515 ? "40px" : "100px",
+            fontSize: windowWidth <= 515 ? "1.63em" : "2.63em",
             fontStyle: "bold",
             color: "white"
           }}
@@ -197,14 +253,15 @@ const CustomCarousel: React.FC = () => {
         <FontAwesomeIcon
           className="shopping-cart"
           style={{
-            fontSize: "2.63em",
+            width: windowWidth <= 515 ? "40px" : "100px",
+            fontSize: windowWidth <= 515 ? "1.63em" : "2.63em",
             fontStyle: "bold",
             color: "white"
           }}
           icon={faArrowRight}
         />
       </ButtonNext>
-      <DotGroup />
+      {windowWidth >= 515 && <DotGroup />}
     </CarouselProvider>
   );
 };

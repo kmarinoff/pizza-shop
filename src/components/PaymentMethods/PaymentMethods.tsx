@@ -76,7 +76,7 @@ const PaymentMethods = () => {
           Donec vitae magna elementum, tempus ante in, aliquam nibh.
         </div>
       </div>
-      <Container fluid style={{ width: "70%", paddingBottom: "73px" }}>
+      <Container fluid style={{ width: "70%" }}>
         <Row
           style={{
             display: "flex",
@@ -85,19 +85,19 @@ const PaymentMethods = () => {
             textAlign: "center"
           }}
         >
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "80px" }}>
             <Image className="payment-logo" src={paypal} fluid />
           </Col>
 
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "80px" }}>
             <Image className="payment-logo" src={mastercarad} fluid />
           </Col>
 
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "80px" }}>
             <Image className="payment-logo" src={visa} fluid />
           </Col>
 
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "80px" }}>
             <Image className="payment-logo" src={stripe} fluid />
           </Col>
         </Row>
