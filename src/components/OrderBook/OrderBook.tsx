@@ -10,6 +10,8 @@ import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
 import "./styles.scss";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 interface CenteredModalProps {
   show: boolean;
   onHide: () => void;
@@ -52,6 +54,12 @@ const OrderBook: React.FC = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [currImgSrc, setCurrImgSrc] = React.useState("");
   const [productName, setProductName] = React.useState("");
+
+  const windowWidth = useWindowWidth();
+
+  React.useEffect(() => {
+    console.log(windowWidth);
+  });
 
   React.useEffect(() => {
     setValue(1);
@@ -99,7 +107,7 @@ const OrderBook: React.FC = () => {
               display: value === 1 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "100%" : "940px"
             }}
           >
             <div>
@@ -120,9 +128,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -134,7 +142,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -164,7 +172,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {pizza.name}
                         </div>
                       </div>
@@ -186,55 +199,57 @@ const OrderBook: React.FC = () => {
                 </Scrollbars>
               </div>
             </div>
-            <div
-              className="right-book-side"
-              style={{
-                backgroundColor: "#ffffff",
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-                paddingBottom: "20px"
-              }}
-            >
-              <img
-                src={require("src/assets/order-book/pizzas/pizza-bg.jpg")}
-                alt="pizzaBackground"
-                style={{ width: "100%" }}
-              />
-
+            {windowWidth >= 550 && (
               <div
+                className="right-book-side"
                 style={{
-                  marginTop: "3px",
-                  marginBottom: "27px",
-                  fontSize: "20px",
-                  color: "#222222",
-                  lineHeight: "30px",
-                  fontWeight: 500,
-                  textAlign: "center"
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  paddingBottom: "20px"
                 }}
               >
-                Pizza
-              </div>
-              <Scrollbars>
+                <img
+                  src={require("src/assets/order-book/pizzas/pizza-bg.jpg")}
+                  alt="pizzaBackground"
+                  style={{ width: "100%" }}
+                />
+
                 <div
                   style={{
-                    fontSize: "16px",
-                    color: "#787878",
-                    fontWeight: 300,
-                    lineHeight: "24px",
-                    margin: "0px 20px 0 20px"
+                    marginTop: "3px",
+                    marginBottom: "27px",
+                    fontSize: "20px",
+                    color: "#222222",
+                    lineHeight: "30px",
+                    fontWeight: 500,
+                    textAlign: "center"
                   }}
                 >
-                  The origin of the word pizza is uncertain and debated. One
-                  popular suggestion holds that it originates from the Greek
-                  pita (derived from ancient Greek pēktos, πηκτός, meaning
-                  "solid" or "clotted"). The ancient Greeks covered their bread
-                  with oils, herbs and cheese. The Romans developed placenta, a
-                  sheet of dough topped with cheese and honey and flavored with
-                  bay leaves.
+                  Pizza
                 </div>
-              </Scrollbars>
-            </div>
+                <Scrollbars>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      color: "#787878",
+                      fontWeight: 300,
+                      lineHeight: "24px",
+                      margin: "0px 20px 0 20px"
+                    }}
+                  >
+                    The origin of the word pizza is uncertain and debated. One
+                    popular suggestion holds that it originates from the Greek
+                    pita (derived from ancient Greek pēktos, πηκτός, meaning
+                    "solid" or "clotted"). The ancient Greeks covered their
+                    bread with oils, herbs and cheese. The Romans developed
+                    placenta, a sheet of dough topped with cheese and honey and
+                    flavored with bay leaves.
+                  </div>
+                </Scrollbars>
+              </div>
+            )}
           </div>
         </CSSTransition>
 
@@ -244,7 +259,7 @@ const OrderBook: React.FC = () => {
               display: value === 2 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "auto" : "940px"
             }}
           >
             <div>
@@ -265,9 +280,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -279,7 +294,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -309,7 +324,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {burger.name}
                         </div>
                       </div>
@@ -331,56 +351,58 @@ const OrderBook: React.FC = () => {
                 </Scrollbars>
               </div>
             </div>
-            <div
-              className="right-book-side"
-              style={{
-                backgroundColor: "#ffffff",
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-                paddingBottom: "20px"
-              }}
-            >
-              <img
-                src={require("src/assets/order-book/burgers/burger-bg.jpg")}
-                alt="burgerBackground"
-                style={{ width: "100%" }}
-              />
-
+            {windowWidth >= 550 && (
               <div
+                className="right-book-side"
                 style={{
-                  marginTop: "3px",
-                  marginBottom: "27px",
-                  fontSize: "20px",
-                  color: "#222222",
-                  lineHeight: "30px",
-                  fontWeight: 500,
-                  textAlign: "center"
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  paddingBottom: "20px"
                 }}
               >
-                Cheeseburger
-              </div>
-              <Scrollbars>
+                <img
+                  src={require("src/assets/order-book/burgers/burger-bg.jpg")}
+                  alt="burgerBackground"
+                  style={{ width: "100%" }}
+                />
+
                 <div
                   style={{
-                    fontSize: "16px",
-                    color: "#787878",
-                    fontWeight: 300,
-                    lineHeight: "24px",
-                    margin: "0px 20px 0 20px"
+                    marginTop: "3px",
+                    marginBottom: "27px",
+                    fontSize: "20px",
+                    color: "#222222",
+                    lineHeight: "30px",
+                    fontWeight: 500,
+                    textAlign: "center"
                   }}
                 >
-                  Adding cheese to hamburgers became popular in the late-1920s
-                  to mid-1930s, and there are several competing claims as to who
-                  created the first cheeseburger. Lionel Sternberger is reputed
-                  to have invented the cheeseburger in 1926 at the age of 16
-                  when he was working as a fry cook at his father's Pasadena,
-                  California sandwich shop, "The Rite Spot," and "experimentally
-                  dropped a slab of American cheese on a sizzling hamburger
-                  cheeseburger.
+                  Cheeseburger
                 </div>
-              </Scrollbars>
-            </div>
+                <Scrollbars>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      color: "#787878",
+                      fontWeight: 300,
+                      lineHeight: "24px",
+                      margin: "0px 20px 0 20px"
+                    }}
+                  >
+                    Adding cheese to hamburgers became popular in the late-1920s
+                    to mid-1930s, and there are several competing claims as to
+                    who created the first cheeseburger. Lionel Sternberger is
+                    reputed to have invented the cheeseburger in 1926 at the age
+                    of 16 when he was working as a fry cook at his father's
+                    Pasadena, California sandwich shop, "The Rite Spot," and
+                    "experimentally dropped a slab of American cheese on a
+                    sizzling hamburger cheeseburger.
+                  </div>
+                </Scrollbars>
+              </div>
+            )}
           </div>
         </CSSTransition>
 
@@ -390,7 +412,7 @@ const OrderBook: React.FC = () => {
               display: value === 3 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: "940px"
+              width: windowWidth <= 991 ? "auto" : "940px"
             }}
           >
             <div>
@@ -411,9 +433,9 @@ const OrderBook: React.FC = () => {
                 className="left-book-side"
                 style={{
                   backgroundColor: "#2E2E2E",
-                  padding: "30px",
+                  padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px"
                 }}
               >
                 <Scrollbars>
@@ -425,7 +447,7 @@ const OrderBook: React.FC = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        width: "400px",
+                        width: windowWidth <= 991 ? "auto" : "400px",
                         padding: "10px 0"
                       }}
                     >
@@ -455,7 +477,12 @@ const OrderBook: React.FC = () => {
                             <div className="product-text">i</div>
                           </div>
                         </div>
-                        <div style={{ maxWidth: "230px", marginLeft: "10px" }}>
+                        <div
+                          style={{
+                            maxWidth: windowWidth <= 991 ? "130px" : "230px",
+                            marginLeft: "10px"
+                          }}
+                        >
                           {kebab.name}
                         </div>
                       </div>
@@ -477,66 +504,69 @@ const OrderBook: React.FC = () => {
                 </Scrollbars>
               </div>
             </div>
-            <div
-              className="right-book-side"
-              style={{
-                backgroundColor: "#ffffff",
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-                paddingBottom: "20px"
-              }}
-            >
-              <img
-                src={require("src/assets/order-book/kebabs/kebab-bg.jpg")}
-                alt="kebabBackground"
-                style={{ width: "100%" }}
-              />
-
+            {windowWidth >= 550 && (
               <div
+                className="right-book-side"
                 style={{
-                  marginTop: "3px",
-                  marginBottom: "27px",
-                  fontSize: "20px",
-                  color: "#222222",
-                  lineHeight: "30px",
-                  fontWeight: 500,
-                  textAlign: "center"
+                  backgroundColor: "#ffffff",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  paddingBottom: "20px"
                 }}
               >
-                Kebab
-              </div>
-              <Scrollbars>
+                <img
+                  src={require("src/assets/order-book/kebabs/kebab-bg.jpg")}
+                  alt="kebabBackground"
+                  style={{ width: "100%" }}
+                />
+
                 <div
                   style={{
-                    fontSize: "16px",
-                    color: "#787878",
-                    fontWeight: 300,
-                    lineHeight: "24px",
-                    margin: "0px 20px 0 20px"
+                    marginTop: "3px",
+                    marginBottom: "27px",
+                    fontSize: "20px",
+                    color: "#222222",
+                    lineHeight: "30px",
+                    fontWeight: 500,
+                    textAlign: "center"
                   }}
                 >
-                  Kebab (also kebap or kabab) is a Middle Eastern dish of pieces
-                  of meat, fish, or vegetables roasted or grilled on a skewer or
-                  spit originating in the Middle East, and later adopted in
-                  Central Asia and by the regions of the former Mongol Empire
-                  and later Ottoman Empire, before spreading worldwide. In
-                  American English, kebab with no qualification refers to shish
-                  kebab (Turkish: şiş kebap) cooked on a skewer, whereas in
-                  Europe it refers to doner kebab, sliced meat served in a pita.
-                  In the Middle East, however, kebab refers to meat that is
-                  cooked over or next to flames; large or small cuts of meat, or
-                  even ground meat; it may be served on plates, in sandwiches,
-                  or in bowls. The traditional meat for kebab is lamb, but
-                  depending on local tastes and religious prohibitions, other
-                  meats may include beef, goat, chicken, pork or fish. Like
-                  other ethnic foods brought by travellers, the kebab has
-                  remained a part of everyday cuisine in most of the Eastern
-                  Mediterranean and South Asia. It is also popular among Western
-                  youth as a snack after a night-out.
+                  Kebab
                 </div>
-              </Scrollbars>
-            </div>
+                <Scrollbars>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      color: "#787878",
+                      fontWeight: 300,
+                      lineHeight: "24px",
+                      margin: "0px 20px 0 20px"
+                    }}
+                  >
+                    Kebab (also kebap or kabab) is a Middle Eastern dish of
+                    pieces of meat, fish, or vegetables roasted or grilled on a
+                    skewer or spit originating in the Middle East, and later
+                    adopted in Central Asia and by the regions of the former
+                    Mongol Empire and later Ottoman Empire, before spreading
+                    worldwide. In American English, kebab with no qualification
+                    refers to shish kebab (Turkish: şiş kebap) cooked on a
+                    skewer, whereas in Europe it refers to doner kebab, sliced
+                    meat served in a pita. In the Middle East, however, kebab
+                    refers to meat that is cooked over or next to flames; large
+                    or small cuts of meat, or even ground meat; it may be served
+                    on plates, in sandwiches, or in bowls. The traditional meat
+                    for kebab is lamb, but depending on local tastes and
+                    religious prohibitions, other meats may include beef, goat,
+                    chicken, pork or fish. Like other ethnic foods brought by
+                    travellers, the kebab has remained a part of everyday
+                    cuisine in most of the Eastern Mediterranean and South Asia.
+                    It is also popular among Western youth as a snack after a
+                    night-out.
+                  </div>
+                </Scrollbars>
+              </div>
+            )}
           </div>
         </CSSTransition>
       </div>
