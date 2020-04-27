@@ -1570,6 +1570,24 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-hook/debounce@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-2.0.2.tgz#98c9842f20dc56e2d3171508f095cb47ad2dbe01"
+  integrity sha512-8U3fQKdhHaG6bczKgzgJFX3nc/N11K/Zu8HXHfdweAtP4iMfUUBum0EhwkOmlQAy8P27eaG1pjFd5vGwHWfS7w==
+
+"@react-hook/throttle@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.0.tgz#33a187251a6a481ee7b26981459092752238464d"
+  integrity sha512-HJ0jgidcdkfW5YHXMDZzxdwB1SrUHJ1B6Ir/c6pQKnE9xvVimJaehglErZsCTGymEV4VX/U84hHBEo9XBxiWyw==
+
+"@react-hook/window-size@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-2.0.1.tgz#f4780bafef49b2c28c492d2ab591cfc11bab8312"
+  integrity sha512-DtD3mBFVVWARFoGJ1aKjABeudXtp3iYM162E2/19Ceh8hEufCMe+cVc3P9vTMo/jge6Risu2tfS9/lpc0KPUqg==
+  dependencies:
+    "@react-hook/debounce" "^2.0.2"
+    "@react-hook/throttle" "^2.1.0"
+
 "@reduxjs/toolkit@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.1.0.tgz#16ee944782e8f716a9a062f55bea3e2435f3d490"

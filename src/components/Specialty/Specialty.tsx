@@ -4,7 +4,11 @@ import React from "react";
 import { SpecialtyItem } from "../SpecialtyItem";
 import { specialtiesArray } from "./specialties";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const Specialty = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <div
       className="container"
@@ -17,7 +21,7 @@ const Specialty = () => {
           flexDirection: "column",
           alignItems: "center",
           margin: "0 auto 50px auto",
-          width: "50%",
+          width: windowWidth <= 768 ? "auto" : "50%",
           textAlign: "center"
         }}
       >
@@ -73,7 +77,8 @@ const Specialty = () => {
         style={{
           display: "flex",
           justifyContent: "space-around",
-          alignItems: "center"
+          alignItems: "center",
+          flexDirection: windowWidth <= 991 ? "column" : "row"
         }}
       >
         {specialtiesArray.map(specialty => {

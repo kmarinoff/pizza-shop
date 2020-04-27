@@ -65,7 +65,7 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                 </>
               ) : null}
             </div>
-            <Dropdown>
+            <Dropdown alignRight>
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 Menu
               </Dropdown.Toggle>

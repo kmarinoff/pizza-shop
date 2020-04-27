@@ -78,7 +78,9 @@ const Staff = () => {
               fontFamily: "Fira Sans",
               fontSize: "1.1em",
               fontWeight: 400,
-              color: "#d1d1d1"
+              color: "#d1d1d1",
+              textAlign: "center",
+              width: "90%"
             }}
           >
             Nulla non mattis risus. Praesent accumsan at diam ut molestie.
@@ -87,6 +89,10 @@ const Staff = () => {
         <Container fluid>
           <Row>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefOneInfoRef.current;
@@ -123,6 +129,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefTwoInfoRef.current;
@@ -159,6 +169,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefThreeInfoRef.current;
@@ -195,6 +209,10 @@ const Staff = () => {
               </div>
             </Col>
             <Col
+              lg={3}
+              md={6}
+              sm={6}
+              xs={12}
               style={{ padding: 0, position: "relative" }}
               onMouseEnter={() => {
                 const info: any = chefFourInfoRef.current;

@@ -12,7 +12,11 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
+import { useWindowWidth } from "@react-hook/window-size";
+
 const AboutUs = () => {
+  const windowWidth = useWindowWidth();
+
   return (
     <>
       <div
@@ -23,7 +27,7 @@ const AboutUs = () => {
           alignItems: "center",
           // margin: "0 auto 50px auto",
           margin: "0 auto",
-          width: "50%",
+          width: windowWidth <= 550 ? "90%" : "50%",
           textAlign: "center",
           padding: "73px 0"
         }}
@@ -86,7 +90,7 @@ const AboutUs = () => {
             paddingBottom: "73px"
           }}
         >
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="laptop"
               style={{
@@ -118,7 +122,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="car"
               style={{
@@ -150,7 +154,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="utensils"
               style={{
@@ -182,7 +186,7 @@ const AboutUs = () => {
               lobortis, non hendrerit magna convallis.
             </div>
           </Col>
-          <Col>
+          <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
             <FontAwesomeIcon
               className="coffee"
               style={{
