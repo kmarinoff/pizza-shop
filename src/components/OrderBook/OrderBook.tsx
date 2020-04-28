@@ -1,16 +1,18 @@
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { Scrollbars } from "react-custom-scrollbars";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import { CustomButton } from "src/components";
 import { burgersArray } from "./burgersArray";
 import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
 import "./styles.scss";
-
-import { useWindowWidth } from "@react-hook/window-size";
 
 interface CenteredModalProps {
   show: boolean;
@@ -64,6 +66,12 @@ const OrderBook: React.FC = () => {
   React.useEffect(() => {
     setValue(1);
   }, []);
+
+  const { profile }: { profile: any } = useSelector(
+    (state: any) => state.firebase
+  );
+
+  const history = useHistory();
 
   return (
     <>
@@ -570,6 +578,23 @@ const OrderBook: React.FC = () => {
           </div>
         </CSSTransition>
       </div>
+
+      {profile.isLoaded && (
+        <CustomButton
+          buttonText="Order Now"
+          bsPrefix="order-now-btn"
+          bgColor="#a0ce54"
+          bgActiveColor="#89b640"
+          containerStyles={{ marginTop: "40px" }}
+          onClick={() => {
+            if (profile.isEmpty) {
+              history.push("/login");
+            } else {
+              history.push("/");
+            }
+          }}
+        />
+      )}
 
       <CenteredModal
         show={modalShow}
