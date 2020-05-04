@@ -92,7 +92,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   >
                     Shop
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      push("/profile");
+                    }}
+                  >
+                    My Profile
+                  </Dropdown.Item>
                   <Dropdown.Item href="#/action-2">
                     Another action
                   </Dropdown.Item>

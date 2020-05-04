@@ -59,9 +59,9 @@ const OrderBook: React.FC = () => {
 
   const windowWidth = useWindowWidth();
 
-  React.useEffect(() => {
-    console.log(windowWidth);
-  });
+  // React.useEffect(() => {
+  //   console.log(windowWidth);
+  // });
 
   React.useEffect(() => {
     setValue(1);
