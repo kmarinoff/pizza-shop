@@ -1,5 +1,6 @@
 import { faCheck, faTimes, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -9,6 +10,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Footer } from "src/components";
 import { firestore, storage } from "src/setup/firebase";
 import "./styles.scss";
 
@@ -21,6 +23,7 @@ const Profile = () => {
     preview: string;
     raw?: File;
   }>();
+  const windowWidth = useWindowWidth();
 
   const fileUploadHandler = () => {
     if (file && file.raw) {
@@ -124,145 +127,159 @@ const Profile = () => {
   }, [profile.photoURL, auth.uid]);
 
   return (
-    <Container>
-      <div>
-        <Row>
-          <Col
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              margin: "20px"
-            }}
-          >
-            {avatarURI ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: "50%",
-                  backgroundColor: "white",
-                  padding: "5px",
-                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"
-                  // overflow: "hidden"
-                }}
-              >
-                {/* {avatarURI === "no-avatar" */}
-                <Form.File
-                  id="formcheck-api-regular"
-                  style={{ position: "relative" }}
+    <>
+      {/* 56px for navbar, 30px for card top margin, 100px for footer */}
+      <Container style={{ height: "calc(100vh - 56px - 30px - 100px)" }}>
+        <div
+          style={{
+            backgroundColor: "white",
+            borderRadius: "5px",
+            margin: "30px auto",
+            padding: "50px",
+            width:
+              windowWidth <= 550 ? "100%" : windowWidth <= 991 ? "70%" : "50%",
+            boxShadow: "0px 0px 15px 5px rgba(142, 142, 142, 0.3)"
+          }}
+        >
+          <Row xs={1}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "20px 0"
+              }}
+            >
+              {avatarURI ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "50%",
+                    backgroundColor: "white",
+                    padding: "5px",
+                    boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"
+                  }}
                 >
-                  <Form.File.Label style={{ margin: 0 }}>
-                    {avatarURI === "no-avatar" && !file?.preview ? (
-                      <FontAwesomeIcon
-                        style={{
-                          maxWidth: "100px",
-                          maxHeight: "100px",
-                          minWidth: "100px",
-                          minHeight: "100px",
-                          fontSize: "1.3em",
-                          fontStyle: "bold",
-                          color: "#A0CE54",
-                          padding: "15px"
-                        }}
-                        icon={faUser}
-                      />
-                    ) : (
-                      <Image
-                        style={{
-                          maxWidth: "100px",
-                          maxHeight: "100px",
-                          minWidth: "100px",
-                          minHeight: "100px",
-                          background: `url(${
-                            file?.preview ? file?.preview : avatarURI
-                          }) no-repeat center / cover`,
-                          borderRadius: "50%",
-                          boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)"
-                        }}
-                      />
+                  <Form.File
+                    id="formcheck-api-regular"
+                    style={{ position: "relative" }}
+                  >
+                    <Form.File.Label style={{ margin: 0 }}>
+                      {avatarURI === "no-avatar" && !file?.preview ? (
+                        <FontAwesomeIcon
+                          style={{
+                            maxWidth: "100px",
+                            maxHeight: "100px",
+                            minWidth: "100px",
+                            minHeight: "100px",
+                            fontSize: "1.3em",
+                            fontStyle: "bold",
+                            color: "#A0CE54",
+                            padding: "15px"
+                          }}
+                          icon={faUser}
+                        />
+                      ) : (
+                        <Image
+                          style={{
+                            maxWidth: "100px",
+                            maxHeight: "100px",
+                            minWidth: "100px",
+                            minHeight: "100px",
+                            background: `url(${
+                              file?.preview ? file?.preview : avatarURI
+                            }) no-repeat center / cover`,
+                            borderRadius: "50%",
+                            boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)"
+                          }}
+                        />
+                      )}
+                    </Form.File.Label>
+                    <Form.File.Input
+                      style={{ display: "none " }}
+                      onChange={handleChange}
+                    />
+                    {file?.preview && (
+                      <>
+                        <Button
+                          className="btn-success"
+                          type="submit"
+                          value="Upload Image"
+                          onClick={fileUploadHandler}
+                          style={{ position: "absolute", right: "90px" }}
+                        >
+                          <FontAwesomeIcon
+                            style={{ minWidth: "16px" }}
+                            icon={faCheck}
+                          />
+                        </Button>
+                        <Button
+                          className="btn-danger"
+                          type="submit"
+                          value="Cancel"
+                          onClick={() => {
+                            setFile({ preview: "" });
+                          }}
+                          style={{ position: "absolute", left: "90px" }}
+                        >
+                          <FontAwesomeIcon
+                            style={{ minWidth: "16px" }}
+                            icon={faTimes}
+                          />
+                        </Button>
+                      </>
                     )}
-                  </Form.File.Label>
-                  <Form.File.Input
-                    style={{ display: "none " }}
-                    onChange={handleChange}
-                  />
-                  {file?.preview && (
-                    <>
-                      <Button
-                        className="btn-success"
-                        type="submit"
-                        value="Upload Image"
-                        onClick={fileUploadHandler}
-                        style={{ position: "absolute", right: "90px" }}
-                      >
-                        <FontAwesomeIcon
-                          style={{ minWidth: "16px" }}
-                          icon={faCheck}
-                        />
-                      </Button>
-                      <Button
-                        className="btn-danger"
-                        type="submit"
-                        value="Cancel"
-                        onClick={() => {
-                          setFile({ preview: "" });
-                        }}
-                        style={{ position: "absolute", left: "90px" }}
-                      >
-                        <FontAwesomeIcon
-                          style={{ minWidth: "16px" }}
-                          icon={faTimes}
-                        />
-                      </Button>
-                    </>
-                  )}
-                </Form.File>
-              </div>
-            ) : (
-              <div
-                style={{
-                  minHeight: "100px",
-                  minWidth: "100px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: "5px"
-                }}
-                className="sweet-loading"
-              >
-                <ClipLoader color={"#A0CE54"} />
-              </div>
-            )}
-          </Col>
-        </Row>
+                  </Form.File>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    minHeight: "100px",
+                    minWidth: "100px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "5px"
+                  }}
+                  className="sweet-loading"
+                >
+                  <ClipLoader color={"#A0CE54"} />
+                </div>
+              )}
+            </Col>
+          </Row>
 
-        <Row>
-          <Col
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            Name: {profile.displayName}
-          </Col>
-        </Row>
+          <Row xs={1}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "20px 0"
+              }}
+            >
+              Name: {profile.displayName}
+            </Col>
+          </Row>
 
-        <Row>
-          <Col
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            Email: {profile.email}
-          </Col>
-        </Row>
-      </div>
-    </Container>
+          <Row xs={1}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "20px 0"
+              }}
+            >
+              Email: {profile.email}
+            </Col>
+          </Row>
+        </div>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

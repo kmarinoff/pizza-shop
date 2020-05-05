@@ -94,21 +94,19 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
+                      push("/");
+                    }}
+                  >
+                    Order
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
                       push("/profile");
                     }}
                   >
                     My Profile
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    href="#/action-4"
-                    onClick={() => toast("Wow so easy !")}
-                  >
+                  <Dropdown.Item onClick={() => toast("Wow so easy !")}>
                     Toastify Test
                   </Dropdown.Item>
                   <Dropdown.Divider />
