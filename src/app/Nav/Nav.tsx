@@ -2,13 +2,13 @@ import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 import React, { FC, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { CartIcon, ShoppingCartDropdown } from "src/components";
 import { signOut } from "src/setup";
 import "./Nav.scss";
 import { FontAwesome } from "./StyledNav";
-
-import { toast } from "react-toastify";
-import { CartIcon, ShoppingCartDropdown } from "src/components";
 
 interface NavProps {
   isLoggedIn: boolean;
@@ -17,33 +17,47 @@ interface NavProps {
 const Nav: FC<NavProps> = ({ isLoggedIn }) => {
   const { push } = useHistory();
   const [show, setShow] = useState(false);
+
+  const { profile }: { profile: any } = useSelector(
+    (state: any) => state.firebase
+  );
+
   return (
     <>
       <Navbar bg="dark">
         <div className="container d-flex justify-content-between">
           <Navbar.Brand className="white-text">
-            <Link
-              to="/"
+            <div
+              // to="/"
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                textDecoration: "none"
+                textDecoration: "none",
+                cursor: "pointer"
               }}
             >
-              <FontAwesome icon={faPizzaSlice} />
+              <FontAwesome icon={faPizzaSlice} onClick={() => push("/shop")} />
               <div
                 style={{
                   marginLeft: "10px",
                   textDecoration: "none",
                   color: "white",
-                  fontFamily: "Droid Serif"
+                  fontFamily: "Droid Serif",
+                  cursor: "pointer"
+                }}
+                onClick={() => {
+                  if (profile.isEmpty) {
+                    push("/login");
+                  } else {
+                    push("/");
+                  }
                 }}
               >
                 Pizza Shop
               </div>
-            </Link>
+            </div>
           </Navbar.Brand>
 
           <div className="d-flex flex-row">
@@ -78,17 +92,21 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   >
                     Shop
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
+                  <Dropdown.Item
+                    onClick={() => {
+                      push("/");
+                    }}
+                  >
+                    Order
                   </Dropdown.Item>
                   <Dropdown.Item
-                    href="#/action-4"
-                    onClick={() => toast("Wow so easy !")}
+                    onClick={() => {
+                      push("/profile");
+                    }}
                   >
+                    My Profile
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => toast("Wow so easy !")}>
                     Toastify Test
                   </Dropdown.Item>
                   <Dropdown.Divider />

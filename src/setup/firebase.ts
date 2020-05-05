@@ -2,6 +2,7 @@ import "firebase/analytics";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -88,6 +89,10 @@ const createUserProfileDocument = async (
 
 const signOut = async () => await auth.signOut();
 
+// Get a reference to the storage service,
+// which is used to create references in your storage bucket
+const storage = firebaseInstance.storage();
+
 export {
   firebaseConfig,
   firebaseInstance,
@@ -96,5 +101,6 @@ export {
   signInWithGoogle,
   signOut,
   signInWithFacebook,
-  createUserProfileDocument
+  createUserProfileDocument,
+  storage
 };

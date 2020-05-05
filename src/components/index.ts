@@ -18,3 +18,4 @@ export * from "./Products";
 export * from "./Contacts";
 export * from "./Footer";
 export * from "./OneBlock";
+export * from "./CustomButton";

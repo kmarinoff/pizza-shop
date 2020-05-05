@@ -8,7 +8,7 @@ import {
   PrivateRoute,
   SignUpScreen
 } from "src/components";
-import { Checkout, Home, PizzaDetails, Shop } from "src/pages";
+import { Checkout, Home, PizzaDetails, Profile, Shop } from "src/pages";
 import { Nav } from "./Nav";
 
 const Routes = () => {
@@ -35,6 +35,7 @@ const Routes = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/checkout" component={Checkout} />
               <Route exact path="/pizza/:id" component={PizzaDetails} />
+              <Route exact path="/profile" component={Profile} />
             </PrivateRoute>
           </Switch>
         </>
