@@ -1,9 +1,11 @@
 import React, { FC } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
+import { StripeButton } from "src/components";
 import { addToCart, removeFromCart } from "src/reduxStore";
 import { CartItem } from "src/types";
 import { totalCartPrice } from "src/utils";
+import "./styles.scss";
 
 const Checkout: FC = () => {
   const dispatch = useDispatch();
@@ -67,12 +69,18 @@ const Checkout: FC = () => {
           ))}
         </div>
         <div
-          className="row pt-2 justify-content-end"
+          className="row pt-2 justify-content-end align-items-center"
           style={{ borderTop: "1px solid black" }}
         >
           <div className="col-2 font-weight-bold">
             Total: {totalCartValue.toFixed(2)} $
           </div>
+          <StripeButton price={totalCartValue} />
+        </div>
+        <div className="test-warning">
+          *Please use the following test credit card for payments
+          <br />
+          4242 4242 4242 4242 - Exp 01/25 - CVC: 123
         </div>
       </div>
     </>
