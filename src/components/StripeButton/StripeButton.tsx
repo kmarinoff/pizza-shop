@@ -22,7 +22,7 @@ const StripeButton: React.FC<StripeButtonProps> = ({ price }) => {
       billingAddress
       shippingAddress
       image={specialtyOne}
-      description={`Your total is $${price}`}
+      description={`Your total is $${parseFloat(String(price)).toFixed(2)}`}
       amount={priceForStripe}
       panelLabel="Pay Now"
       token={token => {
