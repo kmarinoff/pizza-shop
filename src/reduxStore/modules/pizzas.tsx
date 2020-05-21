@@ -25,7 +25,9 @@ const getPizzasRequest = (pizzaId?: string) => {
         .then(res => {
           dispatch(getPizza(res.data));
           // dispatch(setLoading(false));
-          toast.success(`Get pizza success: ${res.data.name}`);
+
+          // display toast msg when we get the pizza
+          // toast.success(`Get pizza success: ${res.data.name}`);
         })
         .catch(err => {
           const error = {
@@ -50,7 +52,9 @@ const getPizzasRequest = (pizzaId?: string) => {
         .then(res => {
           dispatch(getPizzasSuccess(res.data));
           dispatch(setLoading(false));
-          toast.success("Get pizzas success");
+
+          // display toast msg when we get the pizza
+          // toast.success("Get pizzas success");
         })
         .catch(err => {
           const error = {

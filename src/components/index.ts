@@ -19,3 +19,4 @@ export * from "./Contacts";
 export * from "./Footer";
 export * from "./OneBlock";
 export * from "./CustomButton";
+export * from "./StripeButton";

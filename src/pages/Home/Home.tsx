@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
+import { Footer } from "src/components";
 import { getPizzasRequest } from "src/reduxStore";
 // import { createLoadingSelector } from "src/reduxStore/actions/selectors";
 import { Pizza } from "src/types";
@@ -22,10 +23,15 @@ const Home: FC = () => {
 
   return (
     <>
-      <div className="container">
+      <div>
         {/* TODO loading state for pizzas */}
         {pizzas.length !== 0 ? (
-          <PizzaList pizzas={pizzas} />
+          <>
+            <div className="container">
+              <PizzaList pizzas={pizzas} />
+            </div>
+            <Footer />
+          </>
         ) : (
           <div
             style={{

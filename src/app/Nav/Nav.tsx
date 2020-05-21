@@ -101,6 +101,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
+                      push("/checkout");
+                    }}
+                  >
+                    Checkout
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
                       push("/profile");
                     }}
                   >

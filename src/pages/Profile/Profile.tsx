@@ -95,11 +95,15 @@ const Profile = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0]
-      });
+    try {
+      if (e.target.files) {
+        setFile({
+          preview: URL.createObjectURL(e.target.files[0]),
+          raw: e.target.files[0]
+        });
+      }
+    } catch (error) {
+      // console.log(error);
     }
   };
 
