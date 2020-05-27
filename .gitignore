@@ -31,3 +31,6 @@ firestore.rules
 .firebase
 firebase-debug.log
 functions
+
+# vscode
+.vscode
