@@ -10,7 +10,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Footer } from "src/components";
+import { Footer } from "src/pages/components/Footer";
 import { firestore, storage } from "src/setup/firebase";
 import "./styles.scss";
 

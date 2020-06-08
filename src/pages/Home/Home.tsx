@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { Footer } from "src/components";
+import { Footer } from "src/pages/components";
 import { getPizzasRequest } from "src/reduxStore";
 // import { createLoadingSelector } from "src/reduxStore/actions/selectors";
 import { Pizza } from "src/types";

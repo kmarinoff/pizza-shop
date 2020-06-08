@@ -1,16 +1,16 @@
 import React from "react";
+import { CustomCarousel } from "src/components/CustomCarousel";
+import { Footer } from "src/pages/components";
 import {
   AboutUs,
   Contacts,
-  Footer,
   Ingredients,
   OneBlock,
   PaymentMethods,
   Products,
   Specialty,
   Staff
-} from "src/components";
-import { CustomCarousel } from "src/components/CustomCarousel";
+} from "src/pages/Shop/components";
 
 const Shop: React.FC = () => {
   return (
