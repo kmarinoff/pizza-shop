@@ -29,7 +29,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       className={`${bsPrefix || "btn"}-container`}
       style={{
-        // width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
