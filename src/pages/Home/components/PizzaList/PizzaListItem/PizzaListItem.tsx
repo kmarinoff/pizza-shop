@@ -1,9 +1,9 @@
 import get from "lodash/get";
 import React, { FC } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { BetterButton } from "src/components";
 import { addToCart } from "src/reduxStore";
 import { Pizza } from "src/types";
 
@@ -17,11 +17,13 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
   return (
     <>
       <Card style={{ width: "18rem", margin: "10px 10px" }}>
-        <Card.Img variant="top" src="https://via.placeholder.com/286x180" />
+        <Card.Img variant="top" src={get(pizza, "img")} />
         <Card.Body>
           <Card.Title>
-            <Link to={`/pizza/${pizza.id}`}>
-              <h2 style={{ textAlign: "center" }}>{get(pizza, "name")}</h2>
+            <Link to={`/pizza/${pizza.id}`} style={{ color: "#77b510" }}>
+              <h2 style={{ textAlign: "center", color: "#A0CE54" }}>
+                {get(pizza, "name")}
+              </h2>
             </Link>
           </Card.Title>
           <Card.Text>
@@ -30,14 +32,13 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
           </Card.Text>
           <div className="d-flex justify-content-between align-items-center">
             <p style={{ margin: 0 }}>Cost: ${get(pizza, "price")}</p>
-            <Button
-              style={{ alignSelf: "flex-end" }}
+            <BetterButton
+              buttonText="Add To Cart"
+              bsPrefix="add-to-cart-btn"
               onClick={() => {
                 dispatch(addToCart(pizza));
               }}
-            >
-              Add To Cart
-            </Button>
+            />
           </div>
         </Card.Body>
       </Card>

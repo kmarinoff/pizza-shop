@@ -1,12 +1,11 @@
 import React from "react";
 
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import oneBlockBackground from "src/assets/one-block/one-block-bg.jpg";
 
-import "./styles.scss";
+import { BetterButton } from "src/components";
 
 const OneBlock = () => {
   return (
@@ -49,15 +48,13 @@ const OneBlock = () => {
             </div>
           </Col>
           <Col md={2}>
-            <div className="one-block-btn-container">
-              <Button
-                type="submit"
-                bsPrefix="one-block-btn"
-                style={{ flexGrow: 1 }}
-              >
-                Our Products
-              </Button>
-            </div>
+            <BetterButton
+              buttonText="Our Products"
+              bsPrefix="our-products"
+              containerStyles={{
+                width: "100%"
+              }}
+            />
           </Col>
         </Row>
       </Container>

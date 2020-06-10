@@ -1,9 +1,9 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
-import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { BetterButton } from "src/components";
 import { removeFromCart } from "src/reduxStore";
 import { totalCartPrice } from "src/utils";
 import "./ShoppingCartDropdown.scss";
@@ -22,7 +22,10 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
 
   return (
     <div className="cart-dropdown">
-      <div className="cart-items">
+      <div
+        className="cart-items"
+        style={{ overflowY: cart.length !== 0 ? "scroll" : "visible" }}
+      >
         {cart.length !== 0 ? (
           <>
             {cart.map((item: any) => (
@@ -45,14 +48,14 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
                     $
                   </div>
                 </div>
-                <Button
-                  className="m-0"
+                <BetterButton
+                  buttonText="&#10005;"
+                  bsPrefix="remove-from-cart-btn"
+                  buttonStyles={{ padding: "5px 10px" }}
                   onClick={() => {
                     dispatch(removeFromCart(item));
                   }}
-                >
-                  &#10005;
-                </Button>
+                />
               </div>
             ))}
           </>
@@ -76,17 +79,23 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
           </div>
         )}
       </div>
+
       {cart.length !== 0 && (
-        <Button
-          disabled={cart.length === 0}
+        <div style={{ textAlign: "end", margin: "5px" }}>
+          Total: {totalCartValue.toFixed(2)} $
+        </div>
+      )}
+
+      {cart.length !== 0 && (
+        <BetterButton
+          buttonText="GO TO CHECKOUT"
+          bsPrefix="go-to-checkout-btn"
+          //  buttonStyles={{ padding: "10px 15px" }}
           onClick={() => {
             history.push("/checkout");
             handleClick();
           }}
-        >
-          <div>GO TO CHECKOUT</div>
-          <div>Total: {totalCartValue.toFixed(2)} $</div>
-        </Button>
+        ></BetterButton>
       )}
     </div>
   );

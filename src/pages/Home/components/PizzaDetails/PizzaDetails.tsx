@@ -1,9 +1,10 @@
 import get from "lodash/get";
 import React, { FC, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { match, useHistory, useRouteMatch } from "react-router-dom";
+import { BetterButton } from "src/components";
+import { Footer } from "src/pages/components";
 import { getPizzasRequest } from "src/reduxStore";
 import { Pizza } from "src/types";
 
@@ -23,10 +24,13 @@ const PizzaDetails: FC = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-center flex-wrap">
+      <div
+        className="d-flex justify-content-center flex-wrap flex-column align-items-center"
+        style={{ height: "calc(100vh - 56px - 1.5rem - 80px)" }}
+      >
         {!isLoading ? (
           <Card style={{ width: "18rem", margin: "10px 10px" }}>
-            <Card.Img variant="top" src="https://via.placeholder.com/286x180" />
+            <Card.Img variant="top" src={get(pizzas[0], "img")} />
             <Card.Body>
               <Card.Title>
                 <h2 style={{ textAlign: "center" }}>
@@ -39,19 +43,19 @@ const PizzaDetails: FC = () => {
               </Card.Text>
               <div className="d-flex justify-content-between align-items-center">
                 <p style={{ margin: 0 }}>Cost: ${get(pizzas[0], "price")}</p>
-                <Button
-                  style={{ alignSelf: "flex-end" }}
+                <BetterButton
+                  buttonText="Go Back To Home"
+                  bsPrefix="go-back-to-home-btn"
                   onClick={() => {
                     push("/");
                   }}
-                >
-                  Go Back To Home
-                </Button>
+                />
               </div>
             </Card.Body>
           </Card>
         ) : null}
       </div>
+      <Footer />
     </>
   );
 };

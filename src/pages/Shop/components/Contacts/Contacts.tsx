@@ -12,13 +12,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 import { Formik } from "formik";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import contactsBackground from "src/assets/contacts/findus-bg.jpg";
 import * as yup from "yup";
 
 import { useWindowWidth } from "@react-hook/window-size";
 
+import { BetterButton } from "src/components";
 import "./styles.scss";
 
 const contactSchema = yup.object({
@@ -347,15 +347,15 @@ const Contacts: React.FC = () => {
 
                           <Form.Row>
                             <Form.Group as={Col}>
-                              <div className="contact-btn-container">
-                                <Button
-                                  type="submit"
-                                  bsPrefix="contact-btn"
-                                  style={{ flexGrow: 1 }}
-                                >
-                                  Send
-                                </Button>
-                              </div>
+                              <BetterButton
+                                buttonText="Send"
+                                bsPrefix="contact-btn"
+                                buttonStyles={{
+                                  paddingTop: "10px",
+                                  paddingBottom: "10px"
+                                }}
+                                containerStyles={{ width: "100%" }}
+                              />
                             </Form.Group>
                           </Form.Row>
                         </Form>
