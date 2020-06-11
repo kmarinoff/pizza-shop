@@ -4,12 +4,14 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import "./CartIcon.scss";
 
+import { CartItem, IRootState } from "src/types";
+
 interface CartIconProps {
   handleClick: () => void;
 }
 
 const CartIcon: FC<CartIconProps> = ({ handleClick }) => {
-  const cart: any[] = useSelector((state: any) => state.cart);
+  const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
 
   const totalCartItems = cart.reduce(
     (

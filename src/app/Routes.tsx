@@ -9,11 +9,12 @@ import {
   SignUpScreen
 } from "src/components";
 import { Checkout, Home, PizzaDetails, Profile, Shop } from "src/pages";
+import { IRootState } from "src/types";
 import { Nav } from "./Nav";
 
 const Routes = () => {
   const { auth, profile }: { auth: any; profile: any } = useSelector(
-    (state: any) => state.firebase
+    (state: IRootState) => state.firebase
   );
 
   // console.log("auth.isLoaded:", auth.isLoaded);

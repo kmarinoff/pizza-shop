@@ -6,13 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { BetterButton, StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
 import { addToCart, removeFromCart } from "src/reduxStore";
-import { CartItem } from "src/types";
 import { totalCartPrice } from "src/utils";
+
+import { CartItem, IRootState } from "src/types";
+
 import "./styles.scss";
 
 const Checkout: FC = () => {
   const dispatch = useDispatch();
-  const cart: CartItem[] = useSelector((state: any) => state.cart);
+  const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const totalCartValue = totalCartPrice(cart);
 
   return (

@@ -9,11 +9,13 @@ import { Footer } from "src/pages/components";
 
 import { getPizza } from "src/reduxStore/modules/pizzas/pizzasActionCreators";
 
-import { Pizza } from "src/types";
+import { IRootState, Pizza } from "src/types";
 
 const PizzaDetails: FC = () => {
   const dispatch = useDispatch();
-  const pizzas: Pizza[] = useSelector((state: any) => state.pizzas.pizzas);
+  const pizzas: Pizza[] = useSelector(
+    (state: IRootState) => state.pizzas.pizzas
+  );
   const isFetching: boolean = useSelector(
     (state: any) => state.pizzas.isFetching
   );

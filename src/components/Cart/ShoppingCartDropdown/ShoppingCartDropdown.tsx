@@ -8,6 +8,8 @@ import { removeFromCart } from "src/reduxStore";
 import { totalCartPrice } from "src/utils";
 import "./ShoppingCartDropdown.scss";
 
+import { CartItem, IRootState } from "src/types";
+
 interface ShoppingCartDropdownProps {
   handleClick: () => void;
 }
@@ -15,7 +17,7 @@ interface ShoppingCartDropdownProps {
 const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
   handleClick
 }) => {
-  const cart: any[] = useSelector((state: any) => state.cart);
+  const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const dispatch = useDispatch();
   const history = useHistory();
   const totalCartValue = totalCartPrice(cart);

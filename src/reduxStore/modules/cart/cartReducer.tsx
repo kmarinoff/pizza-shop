@@ -5,13 +5,19 @@ import {
 
 import { CartItem, Pizza } from "src/types";
 
-const initState: CartItem[] = [];
+export interface ICartReducer {
+  cart: CartItem[];
+}
+
+const initState: ICartReducer = {
+  cart: []
+};
 
 const cartReducer = (state = initState, action: any) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      if (state.find((item: Pizza) => item.id === action.payload.id)) {
-        return state.map((item: any) =>
+      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+        return state.cart.map((item: any) =>
           item.id === action.payload.id
             ? {
                 ...item,
@@ -20,13 +26,15 @@ const cartReducer = (state = initState, action: any) => {
             : item
         );
       } else {
-        return [...state, { ...action.payload, count: 1 }];
+        return {
+          cart: [...state.cart, { ...action.payload, count: 1 }]
+        };
       }
     }
 
     case REMOVE_FROM_CART: {
-      if (state.find((item: Pizza) => item.id === action.payload.id)) {
-        return state
+      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+        return state.cart
           .map((item: any) =>
             item.id === action.payload.id
               ? {

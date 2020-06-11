@@ -9,11 +9,17 @@ import {
 
 import { Pizza } from "src/types";
 
-const initState: {
+export interface IPizzasReducer {
   isFetching: boolean;
   isFailed: boolean;
   pizzas: Pizza[];
-} = { isFetching: true, isFailed: false, pizzas: [] };
+}
+
+const initState: IPizzasReducer = {
+  isFetching: true,
+  isFailed: false,
+  pizzas: []
+};
 
 const pizzasReducer = (state = initState, action: any) => {
   switch (action.type) {
