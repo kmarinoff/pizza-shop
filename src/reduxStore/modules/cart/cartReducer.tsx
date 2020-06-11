@@ -1,21 +1,13 @@
-import { Pizza } from "src/types";
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART
+} from "src/reduxStore/actions/cartActions";
 
-const initState: any[] = [];
+import { CartItem, Pizza } from "src/types";
 
-const addToCart = (item: any) => {
-  return (dispatch: any, getState: any) => {
-    dispatch({ type: ADD_TO_CART, payload: item });
-  };
-};
+const initState: CartItem[] = [];
 
-const removeFromCart = (item: any) => {
-  return (dispatch: any, getState: any) => {
-    dispatch({ type: REMOVE_FROM_CART, payload: item });
-  };
-};
-
-const cart = (state: any = initState, action: any) => {
+const cartReducer = (state = initState, action: any) => {
   switch (action.type) {
     case ADD_TO_CART: {
       if (state.find((item: Pizza) => item.id === action.payload.id)) {
@@ -54,4 +46,4 @@ const cart = (state: any = initState, action: any) => {
   }
 };
 
-export { cart, addToCart, removeFromCart };
+export { cartReducer };

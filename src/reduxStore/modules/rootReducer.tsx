@@ -3,11 +3,8 @@ import { combineReducers } from "redux";
 import { firestoreReducer } from "redux-firestore"; // <- needed if using firestore
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { cart } from "./cart";
-import { errors } from "./errors";
-import { loadingReducer } from "./loading";
-import { pizzas } from "./pizzas";
-import { userRolesReducer } from "./users";
+import { cartReducer } from "./cart";
+import { pizzasReducer } from "./pizzas";
 
 const persistConfig = {
   key: "root",
@@ -16,11 +13,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  errors,
-  loading: loadingReducer,
-  pizzas,
-  users: userRolesReducer,
-  cart,
+  pizzas: pizzasReducer,
+  cart: cartReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer
 });
