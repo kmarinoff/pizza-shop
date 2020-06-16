@@ -20,6 +20,7 @@ exports[`Storyshots BetterButton Default 1`] = `
   <button
     className="custom custom-primary"
     disabled={false}
+    onClick={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
     style={
