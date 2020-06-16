@@ -3,9 +3,11 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "src/reduxStore";
 
+import { CartItem, IRootState } from "src/types";
+
 const Cart: FC = () => {
   const dispatch = useDispatch();
-  const cart: any[] = useSelector((state: any) => state.cart);
+  const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
 
   return (
     <>

@@ -1,10 +1,9 @@
 import { Formik } from "formik";
 import React, { FC, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Spinner from "react-bootstrap/Spinner";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BetterButton } from "src/components/BetterButton";
 import { signInWithFacebook, signInWithGoogle } from "src/setup";
 import { auth } from "src/setup";
 import * as yup from "yup";
@@ -108,37 +107,27 @@ const LogIn: FC = () => {
             <div className="conteiner">
               <div className="row no-gutters d-flex justify-content-between align-items-top">
                 <div className="col-sm-12 col-md-4">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="p-2 my-2 d-flex justify-content-center align-items-center"
-                    style={{ width: "100%" }}
+                  <BetterButton
+                    bsPrefix="login-with-email-btn"
+                    buttonText={!isSubmitting ? "Login with Email" : "Loading"}
+                    containerStyles={{ width: "100%" }}
+                    onClick={handleSubmit}
+                    loading={isSubmitting}
                     disabled={!isValid || isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Spinner
-                          className="mx-2"
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        Loading...
-                      </>
-                    ) : (
-                      "Login with Email"
-                    )}
-                  </Button>
+                  />
                 </div>
                 <div className="col-12 col-md-2 text-center my-2">Or:</div>
                 <div className="col-sm-12 col-md-4">
-                  <Button
-                    variant="primary"
-                    type="button"
-                    className="p-2 my-2 d-flex justify-content-center align-items-center"
-                    style={{ width: "100%" }}
+                  <BetterButton
+                    bsPrefix="google-login-btn"
+                    buttonText={
+                      isSubmittingGoogle
+                        ? "Logging in with Google..."
+                        : "Login with Google"
+                    }
+                    containerStyles={{ width: "100%" }}
+                    loading={isSubmittingGoogle}
+                    disabled={isSubmittingGoogle}
                     onClick={async () => {
                       setIsSubmittingGoogle(true);
                       try {
@@ -150,29 +139,17 @@ const LogIn: FC = () => {
                         toast.info(error.message);
                       }
                     }}
-                    disabled={isSubmitting || isSubmittingGoogle}
-                  >
-                    {isSubmittingGoogle ? (
-                      <>
-                        <Spinner
-                          className="mx-2"
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        Logging in with Google...
-                      </>
-                    ) : (
-                      "Login with Google"
-                    )}
-                  </Button>
-                  <Button
-                    variant="primary"
-                    type="button"
-                    className="p-2 my-2 d-flex justify-content-center align-items-center"
-                    style={{ width: "100%" }}
+                  />
+                  <BetterButton
+                    bsPrefix="facebook-login-btn"
+                    buttonText={
+                      isSubmittingFacebok
+                        ? "Logging in with Facebook..."
+                        : "Login with Facebook"
+                    }
+                    containerStyles={{ width: "100%", marginTop: "5px" }}
+                    loading={isSubmittingFacebok}
+                    disabled={isSubmittingFacebok}
                     onClick={async () => {
                       setIsSubmittingFacebook(true);
                       try {
@@ -185,24 +162,7 @@ const LogIn: FC = () => {
                         toast.info(error.message);
                       }
                     }}
-                    disabled={isSubmitting || isSubmittingFacebok}
-                  >
-                    {isSubmittingFacebok ? (
-                      <>
-                        <Spinner
-                          className="mx-2"
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        Logging in with Facebook...
-                      </>
-                    ) : (
-                      "Login with Facebook"
-                    )}
-                  </Button>
+                  />
                   <div className="text-center text-md-left">
                     <Link
                       to="/signup"

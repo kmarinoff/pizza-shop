@@ -1,17 +1,20 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import get from "lodash/get";
 import React, { FC } from "react";
-import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { Footer, StripeButton } from "src/components";
+import { BetterButton, StripeButton } from "src/components";
+import { Footer } from "src/pages/components";
 import { addToCart, removeFromCart } from "src/reduxStore";
-import { CartItem } from "src/types";
 import { totalCartPrice } from "src/utils";
+
+import { CartItem, IRootState } from "src/types";
+
 import "./styles.scss";
 
 const Checkout: FC = () => {
   const dispatch = useDispatch();
-  const cart: CartItem[] = useSelector((state: any) => state.cart);
+  const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const totalCartValue = totalCartPrice(cart);
 
   return (
@@ -32,7 +35,12 @@ const Checkout: FC = () => {
             {cart.map((cartItem: CartItem) => (
               <React.Fragment key={cartItem.id}>
                 <div className="my-2 col-4 d-flex align-items-center">
-                  Imagine a picture here
+                  <img
+                    width="200"
+                    height="120"
+                    src={get(cartItem, "img")}
+                    alt="pizzaImage"
+                  />
                 </div>
                 <div className="my-2 col-2 d-flex align-items-center">
                   {cartItem.name}
@@ -62,14 +70,14 @@ const Checkout: FC = () => {
                   {cartItem.price} $
                 </div>
                 <div className="my-2 col-2 d-flex align-items-center">
-                  <Button
-                    className="m-0"
+                  <BetterButton
+                    buttonText="&#10005;"
+                    bsPrefix="remove-from-cart-btn"
+                    buttonStyles={{ padding: "10px 15px" }}
                     onClick={() => {
                       dispatch(removeFromCart(cartItem));
                     }}
-                  >
-                    &#10005;
-                  </Button>
+                  />
                 </div>
               </React.Fragment>
             ))}

@@ -8,7 +8,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { CustomButton } from "src/components";
+import { BetterButton } from "src/components";
 import { burgersArray } from "./burgersArray";
 import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
@@ -580,20 +580,19 @@ const OrderBook: React.FC = () => {
       </div>
 
       {profile.isLoaded && (
-        <CustomButton
-          buttonText="Order Now"
-          bsPrefix="order-now-btn"
-          bgColor="#a0ce54"
-          bgActiveColor="#89b640"
-          containerStyles={{ marginTop: "40px" }}
-          onClick={() => {
-            if (profile.isEmpty) {
-              history.push("/login");
-            } else {
-              history.push("/");
-            }
-          }}
-        />
+        <div style={{ marginTop: "40px" }}>
+          <BetterButton
+            buttonText="Order Now"
+            bsPrefix="order-now"
+            onClick={() => {
+              if (profile.isEmpty) {
+                history.push("/login");
+              } else {
+                history.push("/");
+              }
+            }}
+          />
+        </div>
       )}
 
       <CenteredModal

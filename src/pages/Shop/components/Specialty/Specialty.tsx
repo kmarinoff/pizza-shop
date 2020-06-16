@@ -1,7 +1,7 @@
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { SpecialtyItem } from "../SpecialtyItem";
+import { SpecialtyItem } from "../../../../components/SpecialtyItem";
 import { specialtiesArray } from "./specialties";
 
 import { useWindowWidth } from "@react-hook/window-size";

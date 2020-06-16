@@ -10,6 +10,8 @@ import { signOut } from "src/setup";
 import "./Nav.scss";
 import { FontAwesome } from "./StyledNav";
 
+import { IRootState } from "src/types";
+
 interface NavProps {
   isLoggedIn: boolean;
 }
@@ -19,7 +21,7 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
   const [show, setShow] = useState(false);
 
   const { profile }: { profile: any } = useSelector(
-    (state: any) => state.firebase
+    (state: IRootState) => state.firebase
   );
 
   return (
