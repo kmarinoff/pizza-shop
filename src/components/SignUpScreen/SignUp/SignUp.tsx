@@ -1,10 +1,9 @@
 import { Formik } from "formik";
 import React, { FC, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Spinner from "react-bootstrap/Spinner";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BetterButton } from "src/components/BetterButton";
 import { auth, createUserProfileDocument } from "src/setup";
 import * as yup from "yup";
 
@@ -196,33 +195,18 @@ const SignUp: FC = () => {
             <div className="conteiner">
               <div className="row no-gutters d-flex justify-content-between align-items-top">
                 <div className="col-md-4 col-12">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="p-2 my-2 d-flex justify-content-center align-items-center"
-                    style={{ width: "100%" }}
+                  <BetterButton
+                    bsPrefix="sign-up-btn"
+                    buttonText={isSubmitting ? "Signing you up..." : "Sign Up"}
+                    containerStyles={{ width: "100%" }}
+                    loading={isSubmitting}
                     disabled={
                       !isValid ||
                       values.signUpPassword !== values.signUpConfirmPassword ||
                       isSubmitting
                     }
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Spinner
-                          className="mx-2"
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        Signing you up...
-                      </>
-                    ) : (
-                      "Sign up"
-                    )}
-                  </Button>
+                    onClick={handleSubmit}
+                  />
                 </div>
               </div>
               <div className="row no-gutters d-flex justify-content-between align-items-top">
