@@ -31,7 +31,10 @@ const Checkout: FC = () => {
             <div className="col-2">Price</div>
             <div className="col-2">Remove</div>
           </div>
-          <div className="row my-2">
+          <div
+            className="row my-2"
+            style={{ height: "415px", overflow: "auto" }}
+          >
             {cart.map((cartItem: CartItem) => (
               <React.Fragment key={cartItem.id}>
                 <div className="my-2 col-4 d-flex align-items-center">
@@ -86,7 +89,7 @@ const Checkout: FC = () => {
             className="row pt-2 justify-content-end align-items-center"
             style={{ borderTop: "1px solid black" }}
           >
-            <div className="col-2 font-weight-bold">
+            <div className="col-3 font-weight-bold text-right">
               Total: {totalCartValue.toFixed(2)} $
             </div>
             <StripeButton price={totalCartValue} />
