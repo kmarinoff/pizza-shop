@@ -3,7 +3,11 @@ import React from "react";
 import { BetterButton } from "src/components/BetterButton";
 
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "src/reduxStore/modules/cart";
+import {
+  addToCart,
+  removeFromCart,
+  removeItemTypeFromCart
+} from "src/reduxStore/modules/cart";
 
 import { CartItem } from "src/types";
 
@@ -56,7 +60,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
           bsPrefix="remove-from-cart-btn"
           buttonStyles={{ padding: "10px 15px" }}
           onClick={() => {
-            dispatch(removeFromCart(cartItem));
+            dispatch(removeItemTypeFromCart(cartItem));
           }}
         />
       </div>

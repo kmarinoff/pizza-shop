@@ -1,6 +1,7 @@
 import {
   ADD_TO_CART,
-  REMOVE_FROM_CART
+  REMOVE_FROM_CART,
+  REMOVE_ITEM_TYPE_FROM_CART
 } from "src/reduxStore/actions/cartActions";
 
 import { CartItem, Pizza } from "src/types";
@@ -57,6 +58,13 @@ const cartReducer = (state = initState, action: any) => {
         };
       }
       return state;
+    }
+
+    case REMOVE_ITEM_TYPE_FROM_CART: {
+      return {
+        ...state,
+        cart: state.cart.filter((item: Pizza) => action.payload.id !== item.id)
+      };
     }
 
     default: {
