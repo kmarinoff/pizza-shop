@@ -1,105 +1,61 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import get from "lodash/get";
 import React, { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { BetterButton, StripeButton } from "src/components";
+import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
-import { addToCart, removeFromCart } from "src/reduxStore";
 import { totalCartPrice } from "src/utils";
+import { CheckoutItem } from "../CheckoutItem";
 
 import { CartItem, IRootState } from "src/types";
 
 import "./styles.scss";
 
 const Checkout: FC = () => {
-  const dispatch = useDispatch();
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const totalCartValue = totalCartPrice(cart);
 
   return (
     <>
       {totalCartValue !== 0 ? (
-        <div
-          className="container mt-4"
+        <Container
+          fluid="md"
+          className="mt-4"
           style={{ height: "calc(100vh - 56px - 1.5rem - 100px)" }}
         >
-          <div className="row pb-2" style={{ borderBottom: "1px solid black" }}>
+          <Row className="pb-2" style={{ borderBottom: "1px solid black" }}>
             <div className="col-4">Pizza</div>
             <div className="col-2">Name</div>
             <div className="col-2">Quantity</div>
             <div className="col-2">Price</div>
             <div className="col-2">Remove</div>
-          </div>
-          <div
-            className="row my-2"
+          </Row>
+          <Row
+            className="checkout-items-container"
             style={{ height: "415px", overflow: "auto" }}
           >
             {cart.map((cartItem: CartItem) => (
-              <React.Fragment key={cartItem.id}>
-                <div className="my-2 col-4 d-flex align-items-center">
-                  <img
-                    width="200"
-                    height="120"
-                    src={get(cartItem, "img")}
-                    alt="pizzaImage"
-                  />
-                </div>
-                <div className="my-2 col-2 d-flex align-items-center">
-                  {cartItem.name}
-                </div>
-                <div className="my-2 col-2 d-flex align-items-center">
-                  <>
-                    <button
-                      style={{ border: "none", backgroundColor: "transparent" }}
-                      onClick={() => {
-                        dispatch(removeFromCart(cartItem));
-                      }}
-                    >
-                      <span>&#10094;</span>
-                    </button>
-                    <span style={{ margin: "0 5px" }}>{cartItem.count}</span>
-                    <button
-                      style={{ border: "none", backgroundColor: "transparent" }}
-                      onClick={() => {
-                        dispatch(addToCart(cartItem));
-                      }}
-                    >
-                      <span>&#10095;</span>
-                    </button>
-                  </>
-                </div>
-                <div className="my-2 col-2 d-flex align-items-center">
-                  {cartItem.price} $
-                </div>
-                <div className="my-2 col-2 d-flex align-items-center">
-                  <BetterButton
-                    buttonText="&#10005;"
-                    bsPrefix="remove-from-cart-btn"
-                    buttonStyles={{ padding: "10px 15px" }}
-                    onClick={() => {
-                      dispatch(removeFromCart(cartItem));
-                    }}
-                  />
-                </div>
-              </React.Fragment>
+              <CheckoutItem key={cartItem.id} cartItem={cartItem} />
             ))}
-          </div>
-          <div
-            className="row pt-2 justify-content-end align-items-center"
+          </Row>
+          <Row
+            className="pt-2 justify-content-end align-items-center"
             style={{ borderTop: "1px solid black" }}
           >
-            <div className="col-3 font-weight-bold text-right">
+            <Col className="font-weight-bold text-right">
               Total: {totalCartValue.toFixed(2)} $
-            </div>
-            <StripeButton price={totalCartValue} />
-          </div>
+            </Col>
+            <Col xs="auto">
+              <StripeButton price={totalCartValue} />
+            </Col>
+          </Row>
           <div className="test-warning">
             *Please use the following test credit card for payments
             <br />
             4242 4242 4242 4242 - Exp 01/25 - CVC: 123
           </div>
-        </div>
+        </Container>
       ) : (
         <div style={{ height: "calc(100vh - 56px - 1.5rem - 100px)" }}>
           <div
