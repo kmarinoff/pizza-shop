@@ -1,3 +1,5 @@
+import { useWindowWidth } from "@react-hook/window-size";
+import classNames from "classnames";
 import get from "lodash/get";
 import React from "react";
 import { BetterButton } from "src/components/BetterButton";
@@ -17,20 +19,58 @@ interface CheckoutItemProps {
 
 const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
+  const windowWidth = useWindowWidth();
+
   return (
     <>
-      <div className="my-2 col-4 d-flex align-items-center">
+      <div
+        style={{ justifyContent: windowWidth <= 581 ? "center" : "flex-start" }}
+        className={classNames(
+          "my-2",
+          windowWidth <= 581 ? "col-6" : windowWidth <= 631 ? "col-3" : "col-4",
+          "d-flex",
+          "align-items-center"
+        )}
+      >
         <img
-          width="200"
-          height="120"
+          style={
+            {
+              // width:
+              //   windowWidth <= 581 ? "70%" : windowWidth <= 631 ? "100%" : "200"
+              // height: windowWidth <= 631 ? "60" : "120"
+            }
+          }
+          // width={
+          //   windowWidth <= 581 ? "70%" : windowWidth <= 631 ? "100%" : "200"
+          // }
+          height={windowWidth <= 631 ? "60" : "120"}
           src={get(cartItem, "img")}
           alt="pizzaImage"
         />
       </div>
-      <div className="my-2 col-2 d-flex align-items-center">
+      <div
+        style={{ justifyContent: windowWidth <= 581 ? "center" : "flex-start" }}
+        className={classNames(
+          "my-2",
+          windowWidth <= 581 ? "col-6" : "col-2",
+          "d-flex",
+          "align-items-center"
+        )}
+      >
         {cartItem.name}
       </div>
-      <div className="my-2 col-2 d-flex align-items-center">
+      <div
+        style={{
+          justifyContent: windowWidth <= 581 ? "center" : "flex-start",
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+        }}
+        className={classNames(
+          "mt-2",
+          windowWidth <= 581 ? "col-4" : "col-2",
+          "d-flex",
+          "align-items-center"
+        )}
+      >
         <>
           <button
             style={{ border: "none", backgroundColor: "transparent" }}
@@ -51,10 +91,33 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
           </button>
         </>
       </div>
-      <div className="my-2 col-2 d-flex align-items-center">
+      <div
+        className={classNames(
+          "mt-2",
+          windowWidth <= 581 ? "col-4" : windowWidth <= 631 ? "col-3" : "col-2",
+          "d-flex",
+          "align-items-center",
+          "justify-content-center"
+        )}
+        style={{
+          justifyContent: windowWidth <= 581 ? "center" : "flex-start",
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+        }}
+      >
         {cartItem.price} $
       </div>
-      <div className="my-2 col-2 d-flex align-items-center">
+      <div
+        className={classNames(
+          "mt-2",
+          windowWidth <= 581 ? "col-4" : "col-2",
+          "d-flex",
+          "align-items-center"
+        )}
+        style={{
+          justifyContent: windowWidth <= 581 ? "center" : "flex-start",
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+        }}
+      >
         <BetterButton
           buttonText="&#10005;"
           bsPrefix="remove-from-cart-btn"
