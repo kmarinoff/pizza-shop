@@ -1,6 +1,7 @@
 import {
   ADD_TO_CART,
-  REMOVE_FROM_CART
+  REMOVE_FROM_CART,
+  REMOVE_ITEM_TYPE_FROM_CART
 } from "src/reduxStore/actions/cartActions";
 
 import { Dispatch } from "redux";
@@ -17,4 +18,10 @@ const removeFromCart = (item: any) => {
   };
 };
 
-export { addToCart, removeFromCart };
+const removeItemTypeFromCart = (item: any) => {
+  return (dispatch: Dispatch, getState: any) => {
+    dispatch({ type: REMOVE_ITEM_TYPE_FROM_CART, payload: item });
+  };
+};
+
+export { addToCart, removeFromCart, removeItemTypeFromCart };
