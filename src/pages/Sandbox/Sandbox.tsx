@@ -7,11 +7,11 @@ import { NewPizza } from "src/types/newPizza";
 
 const Sandbox: React.FC = () => {
   const dispatch = useDispatch();
-  const newPizzas: NewPizza[] = useSelector((state: any) => {
-    return state.newPizzas.newPizzas;
-  });
   const loadingPizzas: boolean = useSelector((state: any) => {
     return state.newPizzas.isFetching;
+  });
+  const newPizzas: NewPizza[] = useSelector((state: any) => {
+    return state.newPizzas.newPizzas;
   });
 
   React.useEffect(() => {

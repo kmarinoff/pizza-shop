@@ -122,6 +122,13 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   >
                     Sandbox
                   </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      push("/add-pizza");
+                    }}
+                  >
+                    Add pizza
+                  </Dropdown.Item>
                   <Dropdown.Item onClick={() => toast("Wow so easy !")}>
                     Toastify Test
                   </Dropdown.Item>

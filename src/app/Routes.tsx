@@ -9,6 +9,7 @@ import {
   SignUpScreen
 } from "src/components";
 import {
+  AddPizza,
   Checkout,
   Home,
   PizzaDetails,
@@ -45,6 +46,7 @@ const Routes = () => {
               <Route exact path="/pizza/:id" component={PizzaDetails} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/sandbox" component={Sandbox} />
+              <Route exact path="/add-pizza" component={AddPizza} />
             </PrivateRoute>
           </Switch>
         </>
