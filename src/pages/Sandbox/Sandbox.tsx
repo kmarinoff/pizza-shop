@@ -28,6 +28,12 @@ const Sandbox: React.FC = () => {
             {newPizzas.map((pizza: NewPizza, pizzaIdx: number) => {
               return (
                 <React.Fragment key={pizzaIdx}>
+                  <img
+                    width="120"
+                    height="100"
+                    src={pizza.img}
+                    alt={`${pizza.name}-img`}
+                  />
                   <li>{pizza.name}</li>
                   <ul>
                     {pizza.ingredients.map(
