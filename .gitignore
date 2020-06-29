@@ -35,3 +35,6 @@ functions
 # vscode
 .vscode
 coverage
+
+# webstorm
+.idea
