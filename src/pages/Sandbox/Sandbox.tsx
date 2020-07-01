@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewPizzas } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
 
+import { PizzaItem } from "src/components/PizzaItem";
 import { NewPizza } from "src/types/newPizza";
 
 const Sandbox: React.FC = () => {
@@ -24,28 +25,9 @@ const Sandbox: React.FC = () => {
     return (
       <div>
         {newPizzas.length > 0 ? (
-          <ol>
-            {newPizzas.map((pizza: NewPizza, pizzaIdx: number) => {
-              return (
-                <React.Fragment key={pizzaIdx}>
-                  <img
-                    width="120"
-                    height="100"
-                    src={pizza.img}
-                    alt={`${pizza.name}-img`}
-                  />
-                  <li>{pizza.name}</li>
-                  <ul>
-                    {pizza.ingredients.map(
-                      (ingredient: string, ingredientIdx: number) => {
-                        return <li key={ingredientIdx}>{ingredient}</li>;
-                      }
-                    )}
-                  </ul>
-                </React.Fragment>
-              );
-            })}
-          </ol>
+          newPizzas.map((pizza: NewPizza) => {
+            return <PizzaItem key={pizza.id} pizza={pizza} />;
+          })
         ) : (
           <div>No Pizzas Available!</div>
         )}
