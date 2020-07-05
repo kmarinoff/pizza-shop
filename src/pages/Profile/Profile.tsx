@@ -202,7 +202,7 @@ const Profile = () => {
                       )}
                     </Form.File.Label>
                     <Form.File.Input
-                      style={{ display: "none " }}
+                      style={{ display: "none" }}
                       onChange={handleChange}
                     />
                     {file?.preview && (
