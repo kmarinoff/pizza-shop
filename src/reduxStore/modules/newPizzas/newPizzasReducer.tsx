@@ -1,4 +1,7 @@
 import {
+  DELETE_NEW_PIZZA_FAILURE,
+  DELETE_NEW_PIZZA_REQUEST,
+  DELETE_NEW_PIZZA_SUCCESS,
   GET_NEW_PIZZA_FAILURE,
   GET_NEW_PIZZA_REQUEST,
   GET_NEW_PIZZA_SUCCESS,
@@ -124,6 +127,28 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       //   newPizzas: []
       // };
       return state;
+    }
+
+    case DELETE_NEW_PIZZA_REQUEST: {
+      return { isFetching: true, isFailed: false, newPizzas: state.newPizzas };
+    }
+
+    case DELETE_NEW_PIZZA_SUCCESS: {
+      return {
+        isFetching: false,
+        isFailed: false,
+        newPizzas: state.newPizzas.filter(
+          (pizza: NewPizza) => pizza.id !== action.payload.id
+        )
+      };
+    }
+
+    case DELETE_NEW_PIZZA_FAILURE: {
+      return {
+        isFetching: false,
+        isFailed: true,
+        newPizzas: state.newPizzas
+      };
     }
 
     default: {

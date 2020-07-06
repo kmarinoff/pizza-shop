@@ -1,4 +1,7 @@
 import {
+  DELETE_NEW_PIZZA_FAILURE,
+  DELETE_NEW_PIZZA_REQUEST,
+  DELETE_NEW_PIZZA_SUCCESS,
   GET_NEW_PIZZA_FAILURE,
   GET_NEW_PIZZA_REQUEST,
   GET_NEW_PIZZA_SUCCESS,
@@ -62,9 +65,15 @@ const updateNewPizza = (pizza: NewPizza) => {
     firestore
       .collection("pizzas")
       .doc(pizza.id)
-      .update({ name: pizza.name })
+      .update({
+        name: pizza.name,
+        img: pizza.img,
+        price: pizza.price,
+        ingredients: pizza.ingredients,
+        description: pizza.description,
+        createdAt: pizza.createdAt
+      })
       .then(result => {
-        console.log(result);
         dispatch({ type: UPDATE_NEW_PIZZAS_SUCCESS, payload: pizza });
         toast.success(`Update pizza success`);
       })
@@ -75,4 +84,23 @@ const updateNewPizza = (pizza: NewPizza) => {
   };
 };
 
-export { getNewPizzas, updateNewPizza, getNewPizza };
+const deleteNewPizza = (pizza: NewPizza) => {
+  return (dispatch: Dispatch) => {
+    dispatch({ type: DELETE_NEW_PIZZA_REQUEST, payload: pizza });
+
+    firestore
+      .collection("pizzas")
+      .doc(pizza.id)
+      .delete()
+      .then(() => {
+        dispatch({ type: DELETE_NEW_PIZZA_SUCCESS, payload: pizza });
+        toast.success(`Pizza deleted successfully`);
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_NEW_PIZZA_FAILURE });
+        toast.error(`${error.message}`);
+      });
+  };
+};
+
+export { getNewPizzas, updateNewPizza, getNewPizza, deleteNewPizza };

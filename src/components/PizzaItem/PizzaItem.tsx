@@ -2,11 +2,12 @@ import { Formik } from "formik";
 import isNumber from "is-number";
 import { Base64 } from "js-base64";
 import React from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
 import {
+  deleteNewPizza,
   getNewPizza,
   updateNewPizza
 } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
@@ -73,39 +74,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
     raw?: File;
   }>(initialFileState);
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    try {
-      if (event.target.files) {
-        const type = event.target.files[0].type;
-
-        setFile({
-          preview: URL.createObjectURL(event.target.files[0]),
-          raw: event.target.files[0]
-        });
-
-        // base64 encode the pizza image
-        event.target.files[0]
-          .arrayBuffer()
-          .then(result => {
-            if (result) {
-              const encodedBase64Image = Base64.fromUint8Array(
-                new Uint8Array(result)
-              );
-
-              // setPizza({
-              //   ...pizza,
-              //   img: `data:${type};base64,${encodedBase64Image}`
-              // });
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [isImageLoading, setIsImageLoading] = React.useState(false);
 
   return (
     <Formik
@@ -126,7 +95,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
           createdAt: values.createdAt
         };
         console.log(updatedPizza);
-        // dispatch(updateNewPizza(updatedPizza));
+        dispatch(updateNewPizza(updatedPizza));
         setIsEditing(false);
       }}
       initialValues={initialValue}
@@ -142,7 +111,9 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
         resetForm
       }) => (
         <>
-          <div style={{ padding: "10px" }}>
+          <div
+            style={{ padding: "10px", maxWidth: "1000px", margin: "0 auto" }}
+          >
             <div
               style={{
                 margin: "30px",
@@ -157,23 +128,43 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                   <Row>
                     <Col
                       xs="4"
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
                     >
                       {isEditing ? (
                         <Form.File id="formcheck-api-regular">
-                          <img
-                            style={{
-                              width: "100%",
-                              borderRadius: "10px"
-                            }}
-                            src={file?.preview ? file?.preview : values.img}
-                            alt={pizza.name}
-                          />
+                          {!isImageLoading ? (
+                            <img
+                              style={{
+                                width: "100%",
+                                borderRadius: "10px"
+                              }}
+                              src={file?.preview ? file?.preview : values.img}
+                              alt={pizza.name}
+                            />
+                          ) : (
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"
+                              }}
+                            >
+                              <Spinner animation="grow" />
+                            </div>
+                          )}
                           <Form.File.Input
+                            style={{ display: isImageLoading ? "none" : "" }}
                             name="img"
                             onChange={(
                               event: React.ChangeEvent<HTMLInputElement>
                             ) => {
+                              // debugger;
                               if (
                                 event.target.files &&
                                 event.target.files.length > 0
@@ -184,7 +175,32 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   fileType === "image/jpeg" ||
                                   fileType === "image/png"
                                 ) {
-                                  handleImageChange(event);
+                                  setIsImageLoading(true);
+                                  setFile({
+                                    preview: URL.createObjectURL(
+                                      event.target.files[0]
+                                    ),
+                                    raw: event.target.files[0]
+                                  });
+                                  // base64 encode the pizza image
+                                  event.target.files[0]
+                                    .arrayBuffer()
+                                    .then(result => {
+                                      if (result) {
+                                        const encodedBase64Image = Base64.fromUint8Array(
+                                          new Uint8Array(result)
+                                        );
+
+                                        setFieldValue(
+                                          "img",
+                                          `data:${fileType};base64,${encodedBase64Image}`
+                                        );
+                                        setIsImageLoading(false);
+                                      }
+                                    })
+                                    .catch(error => {
+                                      console.log(error);
+                                    });
                                 } else {
                                   // console.log("File type not supported!");
                                   toast.error("File type not supported");
@@ -491,6 +507,28 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               variant="danger"
                               type="submit"
                               style={{ width: "100%" }}
+                              onClick={(e: React.SyntheticEvent) => {
+                                e.preventDefault();
+                                const deletedPizza: NewPizza = {
+                                  id: values.id,
+                                  name: values.name,
+                                  img: values.img,
+                                  size: values.size,
+                                  price: [
+                                    Number(values.smallPrice),
+                                    Number(values.mediumPrice),
+                                    Number(values.largePrice)
+                                  ],
+                                  ingredients: values.ingredients,
+                                  description: values.description,
+                                  createdAt: values.createdAt
+                                };
+                                // console.log(deletedPizza);
+                                setIsEditing(false);
+                                resetForm();
+                                setFile(initialFileState);
+                                dispatch(deleteNewPizza(deletedPizza));
+                              }}
                             >
                               Delete
                             </Button>
