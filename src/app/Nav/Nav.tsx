@@ -115,6 +115,15 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                   >
                     My Profile
                   </Dropdown.Item>
+                  {profile.isAdmin && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        push("/admin");
+                      }}
+                    >
+                      Admin Panel
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Item
                     onClick={() => {
                       push("/sandbox");

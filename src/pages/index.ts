@@ -4,3 +4,4 @@ export * from "./Profile";
 export * from "./components";
 export * from "./Sandbox";
 export * from "./AddPizza";
+export * from "./Admin";

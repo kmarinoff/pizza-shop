@@ -10,6 +10,7 @@ import {
 } from "src/components";
 import {
   AddPizza,
+  Admin,
   Checkout,
   Home,
   PizzaDetails,
@@ -45,6 +46,9 @@ const Routes = () => {
               <Route exact path="/checkout" component={Checkout} />
               <Route exact path="/pizza/:id" component={PizzaDetails} />
               <Route exact path="/profile" component={Profile} />
+              {profile.isAdmin && (
+                <Route exact path="/admin" component={Admin} />
+              )}
               <Route exact path="/sandbox" component={Sandbox} />
               <Route exact path="/add-pizza" component={AddPizza} />
             </PrivateRoute>

@@ -171,7 +171,7 @@ const AddPizza: React.FC = () => {
   // }, [pizza]);
 
   return (
-    <div>
+    <div className="container" style={{ maxWidth: "1000px", margin: "0 auto" }}>
       <Form onSubmit={handleSubmit} style={{ margin: "5px" }}>
         <Form.Group>
           <Form.Label>Pizza Name</Form.Label>
@@ -182,6 +182,17 @@ const AddPizza: React.FC = () => {
               setPizza({ ...pizza, name: event.currentTarget.value });
             }}
             value={pizza.name}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Pizza Description</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Pizza Description"
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              setPizza({ ...pizza, description: event.currentTarget.value });
+            }}
+            value={pizza.description}
           />
         </Form.Group>
         <Form.Group>
@@ -256,17 +267,6 @@ const AddPizza: React.FC = () => {
               value={pizza.price[2]}
             />
           </div>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Pizza Description</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Pizza Description"
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              setPizza({ ...pizza, description: event.currentTarget.value });
-            }}
-            value={pizza.description}
-          />
         </Form.Group>
         <Form.Group>
           <Form.File id="pizza-img-file" custom>
