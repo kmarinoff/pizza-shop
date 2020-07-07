@@ -8,9 +8,12 @@ import {
   GET_NEW_PIZZAS_FAILURE,
   GET_NEW_PIZZAS_REQUEST,
   GET_NEW_PIZZAS_SUCCESS,
+  SEARCH_NEW_PIZZA_FAILURE,
+  SEARCH_NEW_PIZZA_REQUEST,
+  SEARCH_NEW_PIZZA_SUCCESS,
   UPDATE_NEW_PIZZAS_FAILURE,
   UPDATE_NEW_PIZZAS_REQUEST,
-  UPDATE_NEW_PIZZAS_SUCCESS
+  UPDATE_NEW_PIZZAS_SUCCESS,
 } from "src/reduxStore/actions";
 
 import firebase from "firebase";
@@ -71,7 +74,7 @@ const updateNewPizza = (pizza: NewPizza) => {
         price: pizza.price,
         ingredients: pizza.ingredients,
         description: pizza.description,
-        createdAt: pizza.createdAt
+        createdAt: pizza.createdAt,
       })
       .then(result => {
         dispatch({ type: UPDATE_NEW_PIZZAS_SUCCESS, payload: pizza });
@@ -103,4 +106,29 @@ const deleteNewPizza = (pizza: NewPizza) => {
   };
 };
 
-export { getNewPizzas, updateNewPizza, getNewPizza, deleteNewPizza };
+const searchPizzas = (searchString: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch({ type: SEARCH_NEW_PIZZA_REQUEST });
+
+    firestore
+      .collection("pizzas")
+      .where("name", "in", searchString)
+      .get()
+      .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
+        dispatch({ type: SEARCH_NEW_PIZZA_SUCCESS, payload: querySnapshot });
+        // console.log(querySnapshot);
+      })
+      .catch(error => {
+        dispatch({ type: SEARCH_NEW_PIZZA_FAILURE });
+        toast.error(`${error.message}`);
+      });
+  };
+};
+
+export {
+  getNewPizzas,
+  updateNewPizza,
+  getNewPizza,
+  deleteNewPizza,
+  searchPizzas,
+};

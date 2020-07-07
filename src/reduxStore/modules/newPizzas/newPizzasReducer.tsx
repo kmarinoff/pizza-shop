@@ -10,7 +10,10 @@ import {
   GET_NEW_PIZZAS_SUCCESS,
   UPDATE_NEW_PIZZAS_FAILURE,
   UPDATE_NEW_PIZZAS_REQUEST,
-  UPDATE_NEW_PIZZAS_SUCCESS
+  UPDATE_NEW_PIZZAS_SUCCESS,
+  SEARCH_NEW_PIZZA_SUCCESS,
+  SEARCH_NEW_PIZZA_FAILURE,
+  SEARCH_NEW_PIZZA_REQUEST,
 } from "src/reduxStore/actions";
 
 import { NewPizza } from "src/types/newPizza";
@@ -26,7 +29,7 @@ export interface INewPizzaReducer {
 const initState: INewPizzaReducer = {
   isFetching: true,
   isFailed: false,
-  newPizzas: []
+  newPizzas: [],
 };
 
 const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
@@ -36,7 +39,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: true,
         isFailed: false,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -48,13 +51,13 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
           const pizza = item.data() as NewPizza;
           pizza.id = item.id;
           newPizzasArray.push(pizza);
-        }
+        },
       );
 
       return {
         isFetching: false,
         isFailed: false,
-        newPizzas: [...state.newPizzas, ...newPizzasArray]
+        newPizzas: [...state.newPizzas, ...newPizzasArray],
       };
     }
 
@@ -62,7 +65,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -80,7 +83,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
           } else {
             return action.payload;
           }
-        })
+        }),
       };
     }
 
@@ -88,7 +91,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -138,8 +141,8 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
         isFetching: false,
         isFailed: false,
         newPizzas: state.newPizzas.filter(
-          (pizza: NewPizza) => pizza.id !== action.payload.id
-        )
+          (pizza: NewPizza) => pizza.id !== action.payload.id,
+        ),
       };
     }
 
@@ -147,7 +150,43 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: state.newPizzas
+        newPizzas: state.newPizzas,
+      };
+    }
+
+    case SEARCH_NEW_PIZZA_REQUEST: {
+      return {
+        isFetching: true,
+        isFailed: false,
+        newPizzas: [],
+      };
+    }
+
+    case SEARCH_NEW_PIZZA_SUCCESS: {
+      const newPizzasArray: NewPizza[] = [];
+
+      action.payload.forEach(
+        (item: firebase.firestore.QueryDocumentSnapshot) => {
+          const pizza = item.data() as NewPizza;
+          pizza.id = item.id;
+          newPizzasArray.push(pizza);
+        },
+      );
+
+      console.log(newPizzasArray);
+
+      return {
+        isFetching: false,
+        isFailed: false,
+        newPizzas: [...state.newPizzas, ...newPizzasArray],
+      };
+    }
+
+    case SEARCH_NEW_PIZZA_FAILURE: {
+      return {
+        isFetching: false,
+        isFailed: true,
+        newPizzas: [],
       };
     }
 

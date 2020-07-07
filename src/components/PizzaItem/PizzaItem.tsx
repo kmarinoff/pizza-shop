@@ -8,7 +8,7 @@ import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
 import {
   deleteNewPizza,
-  updateNewPizza
+  updateNewPizza,
 } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
 import { NewPizza } from "src/types/newPizza";
 import * as yup from "yup";
@@ -27,7 +27,7 @@ const schema = yup.object({
       yup
         .number()
         .max(3)
-        .required()
+        .required(),
     )
     .required(),
   ingredients: yup
@@ -35,7 +35,7 @@ const schema = yup.object({
     .of(yup.string().min(1))
     .required(),
   description: yup.string().required(),
-  createdAt: yup.date().required()
+  createdAt: yup.date().required(),
 });
 
 const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
@@ -63,7 +63,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
     largePrice: pizza.price[2],
     ingredients: pizza.ingredients,
     description: pizza.description,
-    createdAt: pizza.createdAt
+    createdAt: pizza.createdAt,
   };
 
   const initialFileState = { preview: "", raw: undefined };
@@ -87,11 +87,11 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
           price: [
             Number(values.smallPrice),
             Number(values.mediumPrice),
-            Number(values.largePrice)
+            Number(values.largePrice),
           ],
           ingredients: values.ingredients,
           description: values.description,
-          createdAt: values.createdAt
+          createdAt: values.createdAt,
         };
         // console.log(updatedPizza);
         dispatch(updateNewPizza(updatedPizza));
@@ -107,7 +107,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
         isValid,
         errors,
         setFieldValue,
-        resetForm
+        resetForm,
       }) => (
         <>
           <div
@@ -119,7 +119,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                 padding: "10px",
                 backgroundColor: "white",
                 borderRadius: "10px",
-                boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.1)"
+                boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Container>
@@ -130,7 +130,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center"
+                        justifyContent: "center",
                       }}
                     >
                       {isEditing ? (
@@ -139,7 +139,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                             <img
                               style={{
                                 width: "100%",
-                                borderRadius: "10px"
+                                borderRadius: "10px",
                               }}
                               src={file?.preview ? file?.preview : values.img}
                               alt={pizza.name}
@@ -151,7 +151,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                 height: "100%",
                                 display: "flex",
                                 justifyContent: "center",
-                                alignItems: "center"
+                                alignItems: "center",
                               }}
                             >
                               <Spinner animation="grow" />
@@ -161,7 +161,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                             style={{ display: isImageLoading ? "none" : "" }}
                             name="img"
                             onChange={(
-                              event: React.ChangeEvent<HTMLInputElement>
+                              event: React.ChangeEvent<HTMLInputElement>,
                             ) => {
                               // debugger;
                               if (
@@ -177,9 +177,9 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   setIsImageLoading(true);
                                   setFile({
                                     preview: URL.createObjectURL(
-                                      event.target.files[0]
+                                      event.target.files[0],
                                     ),
-                                    raw: event.target.files[0]
+                                    raw: event.target.files[0],
                                   });
                                   // base64 encode the pizza image
                                   event.target.files[0]
@@ -187,12 +187,12 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                     .then(result => {
                                       if (result) {
                                         const encodedBase64Image = Base64.fromUint8Array(
-                                          new Uint8Array(result)
+                                          new Uint8Array(result),
                                         );
 
                                         setFieldValue(
                                           "img",
-                                          `data:${fileType};base64,${encodedBase64Image}`
+                                          `data:${fileType};base64,${encodedBase64Image}`,
                                         );
                                         setIsImageLoading(false);
                                       }
@@ -213,7 +213,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                         <img
                           style={{
                             width: "100%",
-                            borderRadius: "10px"
+                            borderRadius: "10px",
                           }}
                           src={pizza.img}
                           alt={pizza.name}
@@ -226,7 +226,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        marginBottom: "20px"
+                        marginBottom: "20px",
                       }}
                     >
                       <Row>
@@ -238,7 +238,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -273,7 +273,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -315,11 +315,11 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               onChange={(newValue: any, actionMeta: any) => {
                                 if (newValue !== null) {
                                   const ingredientsValues = newValue.map(
-                                    (item: any) => item.value
+                                    (item: any) => item.value,
                                   );
                                   setFieldValue(
                                     "ingredients",
-                                    ingredientsValues
+                                    ingredientsValues,
                                   );
                                 } else {
                                   setFieldValue("ingredients", []);
@@ -328,8 +328,8 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               value={values.ingredients.map(
                                 (ingredient: string) => ({
                                   label: ingredient,
-                                  value: ingredient
-                                })
+                                  value: ingredient,
+                                }),
                               )}
                               noOptionsMessage={() => {
                                 return "Type an ingredient ...";
@@ -349,7 +349,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   } else {
                                     return <span key={idx}>{ingredient}</span>;
                                   }
-                                }
+                                },
                               )}
                             </>
                           )}
@@ -364,7 +364,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -373,7 +373,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   name="smallPrice"
                                   value={values.smallPrice}
                                   onChange={(
-                                    event: React.ChangeEvent<HTMLInputElement>
+                                    event: React.ChangeEvent<HTMLInputElement>,
                                   ) => {
                                     if (
                                       event.currentTarget.value === "" ||
@@ -403,7 +403,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -412,7 +412,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   name="mediumPrice"
                                   value={values.mediumPrice}
                                   onChange={(
-                                    event: React.ChangeEvent<HTMLInputElement>
+                                    event: React.ChangeEvent<HTMLInputElement>,
                                   ) => {
                                     if (
                                       event.currentTarget.value === "" ||
@@ -442,7 +442,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -451,7 +451,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   name="largePrice"
                                   value={values.largePrice}
                                   onChange={(
-                                    event: React.ChangeEvent<HTMLInputElement>
+                                    event: React.ChangeEvent<HTMLInputElement>,
                                   ) => {
                                     if (
                                       event.currentTarget.value === "" ||
@@ -516,11 +516,11 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   price: [
                                     Number(values.smallPrice),
                                     Number(values.mediumPrice),
-                                    Number(values.largePrice)
+                                    Number(values.largePrice),
                                   ],
                                   ingredients: values.ingredients,
                                   description: values.description,
-                                  createdAt: values.createdAt
+                                  createdAt: values.createdAt,
                                 };
                                 // console.log(deletedPizza);
                                 setIsEditing(false);
