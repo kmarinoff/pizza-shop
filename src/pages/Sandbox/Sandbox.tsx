@@ -1,13 +1,9 @@
-import { Formik } from "formik";
 import React from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { PizzaList } from "src/components";
 import { Pagination } from "src/components/Pagination";
-import {
-  getNewPizzas,
-  searchPizzas,
-} from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
+import { getNewPizzas } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
 import { NewPizza } from "src/types/newPizza";
 
 const Sandbox: React.FC = () => {
@@ -33,61 +29,72 @@ const Sandbox: React.FC = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = newPizzas.slice(indexOfFirstItem, indexOfLastItem);
 
-  if (loadingPizzas) {
-    return <div>Loading Pizzas ...</div>;
-  } else {
-    return (
-      <div>
-        <Container>
-          <Row>
-            <Col>
-              <Formik
-                onSubmit={async (values, action) => {
-                  console.log(values);
-                  dispatch(searchPizzas(values.search));
-                }}
-                initialValues={{
-                  search: searchField,
-                }}
-              >
-                {({ handleSubmit, handleChange, values }) => (
-                  <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
-                    <Form.Group>
-                      <Form.Label>
-                        {/* Search for pizzas by name or ingredients... */}
-                      </Form.Label>
-                      <Form.Control
-                        id="pizza-search"
-                        name="search"
-                        value={values.search}
-                        onChange={handleChange}
-                        type="text"
-                        placeholder="Search for pizzas..."
-                      />
-                    </Form.Group>
-                  </Form>
-                )}
-              </Formik>
-            </Col>
-          </Row>
-        </Container>
+  const [pizzaItems, setPizzaItems] = React.useState(currentItems);
 
-        {newPizzas.length > 0 ? (
-          <PizzaList currentItems={currentItems} />
-        ) : (
-          <div>No Pizzas Available!</div>
-        )}
+  // React.useEffect(() => {
+  //   console.log("pizzaItems", pizzaItems);
+  // }, [pizzaItems]);
+
+  return (
+    <div>
+      <Container style={{ marginTop: "2rem" }}>
+        <Row>
+          <Col>
+            <Form
+              style={{ width: "100%" }}
+              onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+              }}
+            >
+              <Form.Group>
+                <Form.Label>
+                  Search for pizzas by name or ingredients...
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  id="pizza-search"
+                  name="search"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setSearchField(e.currentTarget.value);
+                    setPizzaItems(
+                      newPizzas.filter((pizza: NewPizza) =>
+                        pizza.name.includes(e.currentTarget.value)
+                      )
+                    );
+                    setCurrentPage(1);
+                  }}
+                  value={searchField}
+                  placeholder="Search for pizzas..."
+                />
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+
+      {loadingPizzas ? (
+        <div>Loading Pizzas ...</div>
+      ) : newPizzas.length > 0 ? (
+        <PizzaList
+          currentItems={searchField !== "" ? pizzaItems : currentItems}
+        />
+      ) : (
+        <div>No Pizzas Available!</div>
+      )}
+      {!loadingPizzas && (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginBottom: "1rem",
+            marginBottom: "1rem"
           }}
         >
           <Pagination
             itemsPerPage={itemsPerPage}
-            totalItems={newPizzas.length}
+            totalItems={
+              searchField !== "" ? pizzaItems.length : newPizzas.length
+            }
             active={currentPage}
             paginate={(pageNumber: number) => {
               setCurrentPage(pageNumber);
@@ -117,9 +124,9 @@ const Sandbox: React.FC = () => {
             </Dropdown.Item>
           </DropdownButton> */}
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export { Sandbox };

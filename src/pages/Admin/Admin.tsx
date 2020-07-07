@@ -7,8 +7,7 @@ import {
   BrowserRouter as Router,
   NavLink,
   Route,
-  Switch,
-  useRouteMatch,
+  Switch
 } from "react-router-dom";
 import { storage } from "src/setup/firebase";
 import { IRootState } from "src/types/rootState";
@@ -17,10 +16,8 @@ import { Sandbox } from "../Sandbox";
 import "./styles.scss";
 
 const Admin = () => {
-  const match = useRouteMatch();
-
   const { auth, profile }: { profile: any; auth: any } = useSelector(
-    (state: IRootState) => state.firebase,
+    (state: IRootState) => state.firebase
   );
 
   const [avatarURI, setAvatarURI] = React.useState("");
@@ -78,7 +75,7 @@ const Admin = () => {
               justifyContent: "center",
               alignItems: "center",
               marginTop: "50px",
-              marginBottom: "20px",
+              marginBottom: "20px"
             }}
           >
             {avatarURI === "no-avatar" ? (
@@ -91,7 +88,7 @@ const Admin = () => {
                   fontSize: "1.3em",
                   fontStyle: "bold",
                   color: "#A0CE54",
-                  padding: "15px",
+                  padding: "15px"
                 }}
                 icon={faUser}
               />
@@ -104,7 +101,7 @@ const Admin = () => {
                   minHeight: "100px",
                   background: `url(${avatarURI}) no-repeat center / cover`,
                   borderRadius: "50%",
-                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)",
+                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)"
                 }}
               />
             )}

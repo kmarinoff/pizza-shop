@@ -8,16 +8,7 @@ import {
   PrivateRoute,
   SignUpScreen
 } from "src/components";
-import {
-  AddPizza,
-  Admin,
-  Checkout,
-  Home,
-  PizzaDetails,
-  Profile,
-  Sandbox,
-  Shop
-} from "src/pages";
+import { Admin, Checkout, Home, PizzaDetails, Profile, Shop } from "src/pages";
 import { IRootState } from "src/types";
 import { Nav } from "./Nav";
 
