@@ -33,7 +33,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
           <>
             {cart.map((item: CartItem) => (
               <div
-                key={item.id}
+                key={`${item.id}-${item.size}`}
                 className="d-flex flex-row justify-content-between my-1 mx-2 align-items-center"
               >
                 <div
