@@ -5,8 +5,9 @@ import {
 } from "src/reduxStore/actions/cartActions";
 
 import { Dispatch } from "redux";
+import { CartItem } from "src/types";
 
-const addToCart = (item: any) => {
+const addToCart = (item: CartItem) => {
   return (dispatch: Dispatch, getState: any) => {
     dispatch({ type: ADD_TO_CART, payload: item });
   };

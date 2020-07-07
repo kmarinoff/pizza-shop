@@ -13,15 +13,9 @@ interface CartIconProps {
 const CartIcon: FC<CartIconProps> = ({ handleClick }) => {
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
 
-  const totalCartItems = cart.reduce(
-    (
-      accumulator: number,
-      currentItem: { id: number; name: string; price: number; count: number }
-    ) => {
-      return accumulator + currentItem.count;
-    },
-    0
-  );
+  const totalCartItems = cart.reduce((accumulator: number, currentItem) => {
+    return accumulator + currentItem.count;
+  }, 0);
 
   return (
     <div className="cart-icon" onClick={handleClick}>

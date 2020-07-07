@@ -4,7 +4,7 @@ import {
   REMOVE_ITEM_TYPE_FROM_CART
 } from "src/reduxStore/actions/cartActions";
 
-import { CartItem, Pizza } from "src/types";
+import { CartItem } from "src/types";
 
 export interface ICartReducer {
   isFetching: boolean;
@@ -21,11 +21,13 @@ const initState: ICartReducer = {
 const cartReducer = (state = initState, action: any) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+      if (
+        state.cart.find((item: CartItem) => item.size === action.payload.size)
+      ) {
         return {
           ...state,
           cart: state.cart.map((item: any) =>
-            item.id === action.payload.id
+            item.size === action.payload.size
               ? {
                   ...item,
                   count: item.count + 1
@@ -42,12 +44,14 @@ const cartReducer = (state = initState, action: any) => {
     }
 
     case REMOVE_FROM_CART: {
-      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+      if (
+        state.cart.find((item: CartItem) => item.size === action.payload.size)
+      ) {
         return {
           ...state,
           cart: state.cart
             .map((item: any) =>
-              item.id === action.payload.id
+              item.size === action.payload.size
                 ? {
                     ...item,
                     count: item.count - 1
@@ -63,7 +67,9 @@ const cartReducer = (state = initState, action: any) => {
     case REMOVE_ITEM_TYPE_FROM_CART: {
       return {
         ...state,
-        cart: state.cart.filter((item: Pizza) => action.payload.id !== item.id)
+        cart: state.cart.filter(
+          (item: CartItem) => action.payload.id !== item.id
+        )
       };
     }
 

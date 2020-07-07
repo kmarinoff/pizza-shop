@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import isNumber from "is-number";
 import { Base64 } from "js-base64";
+import _ from "lodash";
 import React from "react";
 import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
@@ -259,7 +260,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               <span style={{ fontStyle: "italic" }}>
                                 Name:{" "}
                               </span>
-                              {pizza.name}
+                              {_.startCase(_.toLower(pizza.name))}
                             </>
                           )}
                         </Col>

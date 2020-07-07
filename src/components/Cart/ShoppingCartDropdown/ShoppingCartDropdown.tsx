@@ -1,5 +1,6 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import _ from "lodash";
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -30,7 +31,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
       >
         {cart.length !== 0 ? (
           <>
-            {cart.map((item: any) => (
+            {cart.map((item: CartItem) => (
               <div
                 key={item.id}
                 className="d-flex flex-row justify-content-between my-1 mx-2 align-items-center"
@@ -40,7 +41,11 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
                   className="d-flex justify-content-between align-items-center"
                 >
                   <div className="d-flex flex-column">
-                    <div>{item.name}</div>
+                    <div>
+                      {_.startCase(_.toLower(item.name))}
+                      {" - "}
+                      {item.size === 0 ? "S" : item.size === 1 ? "M" : "L"}
+                    </div>
                     <div>Count: {item.count}</div>
                   </div>
                   <div style={{ fontSize: "0.8em" }} className="mr-2">

@@ -13,7 +13,7 @@ import {
   SEARCH_NEW_PIZZA_SUCCESS,
   UPDATE_NEW_PIZZAS_FAILURE,
   UPDATE_NEW_PIZZAS_REQUEST,
-  UPDATE_NEW_PIZZAS_SUCCESS,
+  UPDATE_NEW_PIZZAS_SUCCESS
 } from "src/reduxStore/actions";
 
 import firebase from "firebase";
@@ -74,7 +74,7 @@ const updateNewPizza = (pizza: NewPizza) => {
         price: pizza.price,
         ingredients: pizza.ingredients,
         description: pizza.description,
-        createdAt: pizza.createdAt,
+        createdAt: pizza.createdAt
       })
       .then(result => {
         dispatch({ type: UPDATE_NEW_PIZZAS_SUCCESS, payload: pizza });
@@ -130,5 +130,5 @@ export {
   updateNewPizza,
   getNewPizza,
   deleteNewPizza,
-  searchPizzas,
+  searchPizzas
 };

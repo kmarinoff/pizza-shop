@@ -1,5 +1,6 @@
 import { useWindowWidth } from "@react-hook/window-size";
 import classNames from "classnames";
+import _ from "lodash";
 import get from "lodash/get";
 import React from "react";
 import { BetterButton } from "src/components/BetterButton";
@@ -57,7 +58,9 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
           "align-items-center"
         )}
       >
-        {cartItem.name}
+        {`${_.startCase(_.toLower(cartItem.name))} - ${
+          cartItem.size === 0 ? "S" : cartItem.size === 1 ? "M" : "L"
+        }`}
       </div>
       <div
         style={{
@@ -104,7 +107,10 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
           marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
         }}
       >
-        {cartItem.price} $
+        {cartItem.count === 1
+          ? cartItem.price
+          : (cartItem.price * cartItem.count).toFixed(2)}{" "}
+        $
       </div>
       <div
         className={classNames(
