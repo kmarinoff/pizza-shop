@@ -277,6 +277,19 @@ const Profile = () => {
                 margin: "20px 0"
               }}
             >
+              {profile.isAdmin ? "Admin" : "User"}
+            </Col>
+          </Row>
+
+          <Row xs={1}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "20px 0"
+              }}
+            >
               Email: {profile.email}
             </Col>
           </Row>

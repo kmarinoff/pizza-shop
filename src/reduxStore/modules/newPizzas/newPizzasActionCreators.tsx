@@ -29,7 +29,7 @@ const getNewPizzas = () => {
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
         dispatch({ type: GET_NEW_PIZZAS_SUCCESS, payload: querySnapshot });
-        toast.success(`Get pizzas success`);
+        // toast.success(`Get pizzas success`);
       })
       .catch(error => {
         dispatch({ type: GET_NEW_PIZZAS_FAILURE, payload: error });
@@ -49,7 +49,7 @@ const getNewPizza = (pizzaId: string) => {
       .then((documentSnapshot: firebase.firestore.DocumentSnapshot) => {
         console.log("GET SINGLE PIZZA", documentSnapshot);
         dispatch({ type: GET_NEW_PIZZA_SUCCESS, payload: documentSnapshot });
-        toast.success(`Get pizza success`);
+        // toast.success(`Get pizza success`);
       })
       .catch(error => {
         dispatch({ type: GET_NEW_PIZZA_FAILURE, payload: error });

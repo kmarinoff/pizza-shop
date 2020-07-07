@@ -47,10 +47,10 @@ const Routes = () => {
               <Route exact path="/pizza/:id" component={PizzaDetails} />
               <Route exact path="/profile" component={Profile} />
               {profile.isAdmin && (
-                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/admin">
+                  <Admin />
+                </Route>
               )}
-              <Route exact path="/sandbox" component={Sandbox} />
-              <Route exact path="/add-pizza" component={AddPizza} />
             </PrivateRoute>
           </Switch>
         </>

@@ -8,7 +8,6 @@ import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
 import {
   deleteNewPizza,
-  getNewPizza,
   updateNewPizza
 } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
 import { NewPizza } from "src/types/newPizza";
@@ -94,7 +93,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
           description: values.description,
           createdAt: values.createdAt
         };
-        console.log(updatedPizza);
+        // console.log(updatedPizza);
         dispatch(updateNewPizza(updatedPizza));
         setIsEditing(false);
       }}

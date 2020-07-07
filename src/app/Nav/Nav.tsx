@@ -124,23 +124,9 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                       Admin Panel
                     </Dropdown.Item>
                   )}
-                  <Dropdown.Item
-                    onClick={() => {
-                      push("/sandbox");
-                    }}
-                  >
-                    Sandbox
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      push("/add-pizza");
-                    }}
-                  >
-                    Add pizza
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => toast("Wow so easy !")}>
+                  {/* <Dropdown.Item onClick={() => toast("Wow so easy !")}>
                     Toastify Test
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
                   <Dropdown.Divider />
                   <Dropdown.Item
                     onClick={async () => {

@@ -13,3 +13,5 @@ export * from "./BetterButton";
 export * from "./StripeButton";
 export * from "./Task";
 export * from "./TaskList";
+export * from "./Pagination";
+export * from "./PizzaList";
