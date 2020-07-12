@@ -62,7 +62,10 @@ const Checkout: FC = () => {
               }}
             >
               {cart.map((cartItem: CartItem) => (
-                <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                <CheckoutItem
+                  key={`${cartItem.id}-${cartItem.size}`}
+                  cartItem={cartItem}
+                />
               ))}
             </Row>
             <Row className="pt-2 justify-content-end align-items-center">

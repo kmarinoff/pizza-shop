@@ -202,7 +202,7 @@ const Profile = () => {
                       )}
                     </Form.File.Label>
                     <Form.File.Input
-                      style={{ display: "none " }}
+                      style={{ display: "none" }}
                       onChange={handleChange}
                     />
                     {file?.preview && (
@@ -265,6 +265,19 @@ const Profile = () => {
               }}
             >
               Name: {profile.displayName}
+            </Col>
+          </Row>
+
+          <Row xs={1}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "20px 0"
+              }}
+            >
+              {profile.isAdmin ? "Admin" : "User"}
             </Col>
           </Row>
 

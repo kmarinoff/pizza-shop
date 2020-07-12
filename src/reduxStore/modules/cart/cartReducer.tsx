@@ -1,10 +1,9 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  REMOVE_ITEM_TYPE_FROM_CART
+  REMOVE_ITEM_TYPE_FROM_CART,
 } from "src/reduxStore/actions/cartActions";
-
-import { CartItem, Pizza } from "src/types";
+import { CartItem } from "src/types";
 
 export interface ICartReducer {
   isFetching: boolean;
@@ -15,46 +14,49 @@ export interface ICartReducer {
 const initState: ICartReducer = {
   isFetching: false,
   isFailed: false,
-  cart: []
+  cart: [],
 };
 
 const cartReducer = (state = initState, action: any) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+      if (
+        state.cart.find((item: CartItem) => item.size === action.payload.size)
+      ) {
         return {
           ...state,
           cart: state.cart.map((item: any) =>
-            item.id === action.payload.id
+            item.size === action.payload.size
               ? {
                   ...item,
-                  count: item.count + 1
+                  count: item.count + 1,
                 }
               : item
-          )
-        };
-      } else {
-        return {
-          ...state,
-          cart: [...state.cart, { ...action.payload, count: 1 }]
+          ),
         };
       }
+      return {
+        ...state,
+        cart: [...state.cart, { ...action.payload, count: 1 }],
+      };
     }
 
     case REMOVE_FROM_CART: {
-      if (state.cart.find((item: Pizza) => item.id === action.payload.id)) {
+      if (
+        state.cart.find((item: CartItem) => item.size === action.payload.size)
+      ) {
         return {
           ...state,
           cart: state.cart
             .map((item: any) =>
-              item.id === action.payload.id
+              item.size === action.payload.size
                 ? {
                     ...item,
-                    count: item.count - 1
+                    count: item.count - 1,
                   }
                 : item
             )
-            .filter((item: any) => item.count > 0)
+            .filter((item: any) => item.count > 0),
         };
       }
       return state;
@@ -63,7 +65,9 @@ const cartReducer = (state = initState, action: any) => {
     case REMOVE_ITEM_TYPE_FROM_CART: {
       return {
         ...state,
-        cart: state.cart.filter((item: Pizza) => action.payload.id !== item.id)
+        cart: state.cart.filter(
+          (item: CartItem) => action.payload.id !== item.id
+        ),
       };
     }
 
