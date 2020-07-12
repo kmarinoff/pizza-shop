@@ -87,7 +87,7 @@ const Sandbox: React.FC = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginBottom: "1rem"
+            marginBottom: "1rem",
           }}
         >
           <Pagination

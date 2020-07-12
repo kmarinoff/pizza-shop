@@ -25,7 +25,7 @@ const GuardedRoute: React.FC<GuardedRouteProps> = ({
           <Redirect
             to={{
               pathname: "/home",
-              state: { from: location }
+              state: { from: location },
             }}
           />
         )

@@ -9,7 +9,7 @@ import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
 import {
   deleteNewPizza,
-  updateNewPizza
+  updateNewPizza,
 } from "src/reduxStore/modules/newPizzas/newPizzasActionCreators";
 import { NewPizza } from "src/types/newPizza";
 import * as yup from "yup";
@@ -22,21 +22,10 @@ const schema = yup.object({
   id: yup.string().required(),
   name: yup.string().required(),
   img: yup.string().required(),
-  price: yup
-    .array()
-    .of(
-      yup
-        .number()
-        .max(3)
-        .required()
-    )
-    .required(),
-  ingredients: yup
-    .array()
-    .of(yup.string().min(1))
-    .required(),
+  price: yup.array().of(yup.number().max(3).required()).required(),
+  ingredients: yup.array().of(yup.string().min(1)).required(),
   description: yup.string().required(),
-  createdAt: yup.date().required()
+  createdAt: yup.date().required(),
 });
 
 const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
@@ -64,7 +53,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
     largePrice: pizza.price[2],
     ingredients: pizza.ingredients,
     description: pizza.description,
-    createdAt: pizza.createdAt
+    createdAt: pizza.createdAt,
   };
 
   const initialFileState = { preview: "", raw: undefined };
@@ -88,11 +77,11 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
           price: [
             Number(values.smallPrice),
             Number(values.mediumPrice),
-            Number(values.largePrice)
+            Number(values.largePrice),
           ],
           ingredients: values.ingredients,
           description: values.description,
-          createdAt: values.createdAt
+          createdAt: values.createdAt,
         };
         // console.log(updatedPizza);
         dispatch(updateNewPizza(updatedPizza));
@@ -108,7 +97,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
         isValid,
         errors,
         setFieldValue,
-        resetForm
+        resetForm,
       }) => (
         <>
           <div
@@ -120,7 +109,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                 padding: "10px",
                 backgroundColor: "white",
                 borderRadius: "10px",
-                boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.1)"
+                boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Container>
@@ -131,7 +120,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center"
+                        justifyContent: "center",
                       }}
                     >
                       {isEditing ? (
@@ -140,7 +129,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                             <img
                               style={{
                                 width: "100%",
-                                borderRadius: "10px"
+                                borderRadius: "10px",
                               }}
                               src={file?.preview ? file?.preview : values.img}
                               alt={pizza.name}
@@ -152,7 +141,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                 height: "100%",
                                 display: "flex",
                                 justifyContent: "center",
-                                alignItems: "center"
+                                alignItems: "center",
                               }}
                             >
                               <Spinner animation="grow" />
@@ -180,12 +169,12 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                     preview: URL.createObjectURL(
                                       event.target.files[0]
                                     ),
-                                    raw: event.target.files[0]
+                                    raw: event.target.files[0],
                                   });
                                   // base64 encode the pizza image
                                   event.target.files[0]
                                     .arrayBuffer()
-                                    .then(result => {
+                                    .then((result) => {
                                       if (result) {
                                         const encodedBase64Image = Base64.fromUint8Array(
                                           new Uint8Array(result)
@@ -198,7 +187,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                         setIsImageLoading(false);
                                       }
                                     })
-                                    .catch(error => {
+                                    .catch((error) => {
                                       console.log(error);
                                     });
                                 } else {
@@ -214,7 +203,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                         <img
                           style={{
                             width: "100%",
-                            borderRadius: "10px"
+                            borderRadius: "10px",
                           }}
                           src={pizza.img}
                           alt={pizza.name}
@@ -227,7 +216,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        marginBottom: "20px"
+                        marginBottom: "20px",
                       }}
                     >
                       <Row>
@@ -239,7 +228,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -258,7 +247,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                           ) : (
                             <>
                               <span style={{ fontStyle: "italic" }}>
-                                Name:{" "}
+                                Name:&nbsp;
                               </span>
                               {_.startCase(_.toLower(pizza.name))}
                             </>
@@ -274,7 +263,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -298,7 +287,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                           ) : (
                             <>
                               <span style={{ fontStyle: "italic" }}>
-                                Description:{" "}
+                                Description:&nbsp;
                               </span>
                               {pizza.description
                                 ? pizza.description
@@ -329,27 +318,28 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               value={values.ingredients.map(
                                 (ingredient: string) => ({
                                   label: ingredient,
-                                  value: ingredient
+                                  value: ingredient,
                                 })
                               )}
-                              noOptionsMessage={() => {
-                                return "Type an ingredient ...";
-                              }}
+                              noOptionsMessage={() => "Type an ingredient ..."}
                             />
                           ) : (
                             <>
                               <span style={{ fontStyle: "italic" }}>
-                                Ingredients:{" "}
+                                Ingredients:&nbsp;
                               </span>
                               {pizza.ingredients.map(
                                 (ingredient: string, idx: number) => {
                                   if (pizza.ingredients.length !== idx + 1) {
                                     return (
-                                      <span key={idx}>{ingredient}, </span>
+                                      <span key={idx}>
+                                        &nbsp;
+                                        {ingredient}
+                                        ,&nbsp;
+                                      </span>
                                     );
-                                  } else {
-                                    return <span key={idx}>{ingredient}</span>;
                                   }
+                                  return <span key={idx}>{ingredient}</span>;
                                 }
                               )}
                             </>
@@ -365,7 +355,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -393,7 +383,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               </Form.Group>
                             </>
                           ) : (
-                            <>Small: $ {Number(pizza.price[0]).toFixed(2)}</>
+                            <>Small: ${Number(pizza.price[0]).toFixed(2)}</>
                           )}
                         </Col>
                         <Col xs="4" style={{ marginBottom: "20px" }}>
@@ -404,7 +394,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -432,7 +422,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               </Form.Group>
                             </>
                           ) : (
-                            <>Medium: $ {Number(pizza.price[1]).toFixed(2)}</>
+                            <>Medium: ${Number(pizza.price[1]).toFixed(2)}</>
                           )}
                         </Col>
                         <Col xs="4" style={{ marginBottom: "20px" }}>
@@ -443,7 +433,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
-                                  margin: 0
+                                  margin: 0,
                                 }}
                               >
                                 <Form.Control
@@ -471,7 +461,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               </Form.Group>
                             </>
                           ) : (
-                            <>Large: $ {Number(pizza.price[2]).toFixed(2)}</>
+                            <>Large: ${Number(pizza.price[2]).toFixed(2)}</>
                           )}
                         </Col>
                       </Row>
@@ -517,11 +507,11 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   price: [
                                     Number(values.smallPrice),
                                     Number(values.mediumPrice),
-                                    Number(values.largePrice)
+                                    Number(values.largePrice),
                                   ],
                                   ingredients: values.ingredients,
                                   description: values.description,
-                                  createdAt: values.createdAt
+                                  createdAt: values.createdAt,
                                 };
                                 // console.log(deletedPizza);
                                 setIsEditing(false);
