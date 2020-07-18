@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: off */
+
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
@@ -21,12 +23,19 @@ const cartReducer = (state = initState, action: any) => {
   switch (action.type) {
     case ADD_TO_CART: {
       if (
-        state.cart.find((item: CartItem) => item.size === action.payload.size)
+        state.cart.find(
+          (item: CartItem) =>
+            item.size === action.payload.size &&
+            item.name === action.payload.name &&
+            item.id === action.payload.id
+        )
       ) {
         return {
           ...state,
           cart: state.cart.map((item: any) =>
-            item.size === action.payload.size
+            item.size === action.payload.size &&
+            item.name === action.payload.name &&
+            item.id === action.payload.id
               ? {
                   ...item,
                   count: item.count + 1,
@@ -35,6 +44,7 @@ const cartReducer = (state = initState, action: any) => {
           ),
         };
       }
+
       return {
         ...state,
         cart: [...state.cart, { ...action.payload, count: 1 }],
@@ -43,13 +53,20 @@ const cartReducer = (state = initState, action: any) => {
 
     case REMOVE_FROM_CART: {
       if (
-        state.cart.find((item: CartItem) => item.size === action.payload.size)
+        state.cart.find(
+          (item: CartItem) =>
+            item.size === action.payload.size &&
+            item.name === action.payload.name &&
+            item.id === action.payload.id
+        )
       ) {
         return {
           ...state,
           cart: state.cart
             .map((item: any) =>
-              item.size === action.payload.size
+              item.size === action.payload.size &&
+              item.name === action.payload.name &&
+              item.id === action.payload.id
                 ? {
                     ...item,
                     count: item.count - 1,
@@ -65,9 +82,15 @@ const cartReducer = (state = initState, action: any) => {
     case REMOVE_ITEM_TYPE_FROM_CART: {
       return {
         ...state,
-        cart: state.cart.filter(
-          (item: CartItem) => action.payload.id !== item.id
-        ),
+        cart: state.cart.filter((item: CartItem) => {
+          if (item.id === action.payload.id) {
+            if (item.size !== action.payload.size) {
+              return item;
+            }
+            return null;
+          }
+          return item;
+        }),
       };
     }
 

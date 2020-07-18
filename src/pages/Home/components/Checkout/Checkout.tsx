@@ -1,3 +1,5 @@
+import "./styles.scss";
+
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -7,12 +9,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
-import { totalCartPrice } from "src/utils";
-import { CheckoutItem } from "../CheckoutItem";
-
 import { CartItem, IRootState } from "src/types";
+import { totalCartPrice } from "src/utils";
 
-import "./styles.scss";
+import { CheckoutItem } from "../CheckoutItem";
 
 const Checkout: FC = () => {
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
@@ -27,7 +27,7 @@ const Checkout: FC = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            height: "calc(100vh)"
+            height: "calc(100vh)",
           }}
         >
           <Container fluid="md" className="mt-4 mb-4">
@@ -58,7 +58,7 @@ const Checkout: FC = () => {
                 maxHeight: windowWidth <= 581 ? "320px" : "415px",
                 overflow: "auto",
                 borderBottom: "1px solid black",
-                borderTop: "1px solid black"
+                borderTop: "1px solid black",
               }}
             >
               {cart.map((cartItem: CartItem) => (
@@ -90,7 +90,7 @@ const Checkout: FC = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            height: "calc(100vh)"
+            height: "calc(100vh)",
           }}
         >
           <div
@@ -102,7 +102,7 @@ const Checkout: FC = () => {
               flexDirection: "column",
               borderTop: "1px solid black",
               borderBottom: "1px solid black",
-              padding: "30px 0"
+              padding: "30px 0",
             }}
           >
             <FontAwesomeIcon
@@ -110,7 +110,7 @@ const Checkout: FC = () => {
               style={{
                 fontSize: "2.63em",
                 fontStyle: "bold",
-                color: "rgba(0,0,0,0.2)"
+                color: "rgba(0,0,0,0.2)",
               }}
               icon={faShoppingCart}
             />

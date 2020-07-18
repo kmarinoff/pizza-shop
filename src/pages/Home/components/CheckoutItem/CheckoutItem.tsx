@@ -1,17 +1,17 @@
+/* eslint no-nested-ternary: off, no-unused-vars: off */
+
 import { useWindowWidth } from "@react-hook/window-size";
 import classNames from "classnames";
 import _ from "lodash";
 import get from "lodash/get";
 import React from "react";
-import { BetterButton } from "src/components/BetterButton";
-
 import { useDispatch } from "react-redux";
+import { BetterButton } from "src/components/BetterButton";
 import {
   addToCart,
   removeFromCart,
-  removeItemTypeFromCart
+  removeItemTypeFromCart,
 } from "src/reduxStore/modules/cart";
-
 import { CartItem } from "src/types";
 
 interface CheckoutItemProps {
@@ -65,7 +65,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
       <div
         style={{
           justifyContent: windowWidth <= 581 ? "center" : "flex-start",
-          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem",
         }}
         className={classNames(
           "mt-2",
@@ -76,6 +76,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
       >
         <>
           <button
+            type="button"
             style={{ border: "none", backgroundColor: "transparent" }}
             onClick={() => {
               dispatch(removeFromCart(cartItem));
@@ -85,6 +86,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
           </button>
           <span style={{ margin: "0 5px" }}>{cartItem.count}</span>
           <button
+            type="button"
             style={{ border: "none", backgroundColor: "transparent" }}
             onClick={() => {
               dispatch(addToCart(cartItem));
@@ -104,11 +106,11 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
         )}
         style={{
           justifyContent: windowWidth <= 581 ? "center" : "flex-start",
-          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem",
         }}
       >
         {cartItem.count === 1
-          ? cartItem.price
+          ? cartItem.price.toFixed(2)
           : (cartItem.price * cartItem.count).toFixed(2)}{" "}
         $
       </div>
@@ -121,7 +123,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
         )}
         style={{
           justifyContent: windowWidth <= 581 ? "center" : "flex-start",
-          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem"
+          marginBottom: windowWidth <= 581 ? "1.5rem" : "0.5rem",
         }}
       >
         <BetterButton

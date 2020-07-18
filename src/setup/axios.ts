@@ -1,29 +1,36 @@
+/* eslint no-console: "off" */
+
 import axios from "axios";
+
 import { apiUrl } from "./api";
 
 axios.interceptors.request.use(
-  request => {
+  (request) => {
     console.log("request", request);
     // Edit request config
     return request;
   },
-  error => {
+  (error) => {
     console.log("error on request", error);
     return Promise.reject(error);
   }
 );
 
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     console.log("response", response);
     // Edit request config
     return response;
   },
-  error => {
+  (error) => {
     console.log("error on response", error);
     return Promise.reject(error);
   }
 );
+
+const resetAxiosBaseURL = () => {
+  axios.defaults.baseURL = apiUrl;
+};
 
 const setAxiosBaseURL = (baseURL?: string) => {
   try {
@@ -33,32 +40,28 @@ const setAxiosBaseURL = (baseURL?: string) => {
   }
 };
 
-const resetAxiosBaseURL = () => {
-  axios.defaults.baseURL = apiUrl;
-};
-
 const instance = axios.create();
 instance.defaults.baseURL = apiUrl;
 
 instance.interceptors.request.use(
-  request => {
+  (request) => {
     console.log("request", request);
     // Edit request config
     return request;
   },
-  error => {
+  (error) => {
     console.log("error on request", error);
     return Promise.reject(error);
   }
 );
 
 instance.interceptors.response.use(
-  response => {
+  (response) => {
     console.log("response", response);
     // Edit request config
     return response;
   },
-  error => {
+  (error) => {
     console.log("error on response", error);
     return Promise.reject(error);
   }

@@ -1,3 +1,5 @@
+import "./ShoppingCartDropdown.scss";
+
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
@@ -6,17 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { BetterButton } from "src/components";
 import { removeFromCart } from "src/reduxStore";
-import { totalCartPrice } from "src/utils";
-import "./ShoppingCartDropdown.scss";
-
 import { CartItem, IRootState } from "src/types";
+import { totalCartPrice } from "src/utils";
 
 interface ShoppingCartDropdownProps {
   handleClick: () => void;
 }
 
 const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
-  handleClick
+  handleClick,
 }) => {
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const dispatch = useDispatch();
@@ -44,13 +44,14 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
                     <div>
                       {_.startCase(_.toLower(item.name))}
                       {" - "}
+                      {/* eslint-disable-next-line no-nested-ternary */}
                       {item.size === 0 ? "S" : item.size === 1 ? "M" : "L"}
                     </div>
                     <div>Count: {item.count}</div>
                   </div>
                   <div style={{ fontSize: "0.8em" }} className="mr-2">
                     {item.count === 1
-                      ? item.price
+                      ? item.price.toFixed(2)
                       : (item.price * item.count).toFixed(2)}{" "}
                     $
                   </div>
@@ -76,7 +77,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
               style={{
                 fontSize: "2.63em",
                 fontStyle: "bold",
-                color: "rgba(0,0,0,0.2)"
+                color: "rgba(0,0,0,0.2)",
               }}
               icon={faShoppingCart}
             />
@@ -102,7 +103,7 @@ const ShoppingCartDropdown: FC<ShoppingCartDropdownProps> = ({
             history.push("/checkout");
             handleClick();
           }}
-        ></BetterButton>
+        />
       )}
     </div>
   );

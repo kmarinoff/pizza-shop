@@ -1,8 +1,11 @@
+/* eslint no-console: off, no-unused-vars: off */
+
 import "firebase/analytics";
-import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+
+import firebase from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "kmarinoff-pizza-shop.appspot.com",
   messagingSenderId: "667388534185",
   appId: "1:667388534185:web:4ca9f15fd26615424bf8b8",
-  measurementId: "G-PLS31PP2VZ"
+  measurementId: "G-PLS31PP2VZ",
 };
 
 // Initialize Firebase
@@ -28,7 +31,7 @@ const firestore = firebaseInstance.firestore(); // <- needed if using firestore
 // const firestoreFunctions = firebase.functions(); // <- needed if using httpsCallable
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-googleAuthProvider.setCustomParameters({ proppt: "select_account" });
+googleAuthProvider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = async () => {
   await auth.signInWithPopup(googleAuthProvider);
 };
@@ -64,31 +67,31 @@ const createUserProfileDocument = async (
 ) => {
   if (!userAuth) {
     return null;
-  } else {
-    const userRef = firestore.doc(`users/${userAuth.uid}`);
-    const snapShot = await userRef.get();
-
-    if (!snapShot.exists) {
-      const { displayName, email, photoURL } = userAuth;
-      const createdAt = new Date();
-
-      try {
-        await userRef.set({
-          displayName,
-          email,
-          photoURL,
-          createdAt,
-          ...additionalData
-        });
-      } catch (error) {
-        console.log("error creating user", error.message);
-      }
-    }
-
-    return userRef;
   }
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email, photoURL } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        photoURL,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    }
+  }
+
+  return userRef;
 };
 
+// eslint-disable-next-line no-return-await
 const signOut = async () => await auth.signOut();
 
 // Get a reference to the storage service,
@@ -104,5 +107,5 @@ export {
   signOut,
   signInWithFacebook,
   createUserProfileDocument,
-  storage
+  storage,
 };

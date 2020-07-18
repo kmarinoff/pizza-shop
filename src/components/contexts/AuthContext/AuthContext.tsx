@@ -1,4 +1,4 @@
-import React, { createContext, FC, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { auth, createUserProfileDocument } from "src/setup";
 
 const AuthContext = createContext(
@@ -8,14 +8,14 @@ const AuthContext = createContext(
   }
 );
 
-const AuthContextProvider: FC = ({ children }) => {
+const AuthContextProvider: React.FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentUserIsLoaded, setCurrentUserIsLoaded] = useState<boolean>(
     false
   );
 
   useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
+    auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -24,7 +24,7 @@ const AuthContextProvider: FC = ({ children }) => {
             (snapShot: firebase.firestore.DocumentSnapshot) => {
               setCurrentUser({
                 id: snapShot.id,
-                ...snapShot.data()
+                ...snapShot.data(),
               });
             }
           );

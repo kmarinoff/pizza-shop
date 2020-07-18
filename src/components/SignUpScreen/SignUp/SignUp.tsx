@@ -1,3 +1,5 @@
+/* eslint no-console: off, no-unused-vars: off, no-nested-ternary: off */
+
 import { Formik } from "formik";
 import React, { FC, useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -25,7 +27,7 @@ const schema = yup.object({
     .string()
     .required("Confirm password is a required field")
     .max(255, "Password must be at most 255 characters")
-    .min(6, "Password must be at least 6 characters long")
+    .min(6, "Password must be at least 6 characters long"),
 });
 
 const SignUp: FC = () => {
@@ -45,7 +47,7 @@ const SignUp: FC = () => {
           try {
             setIsSubmitting(true);
             const {
-              user
+              user,
             }: {
               user: any;
             } = await auth.createUserWithEmailAndPassword(
@@ -54,7 +56,7 @@ const SignUp: FC = () => {
             );
 
             await createUserProfileDocument(user, {
-              displayName: values.signUpDisplayName
+              displayName: values.signUpDisplayName,
             });
 
             await auth.signInWithEmailAndPassword(
@@ -73,7 +75,7 @@ const SignUp: FC = () => {
           signUpDisplayName: "",
           signUpEmail: "",
           signUpPassword: "",
-          signUpConfirmPassword: ""
+          signUpConfirmPassword: "",
         }}
       >
         {({ handleSubmit, handleChange, values, touched, isValid, errors }) => (
@@ -90,7 +92,7 @@ const SignUp: FC = () => {
                 isValid={touched.signUpDisplayName && !errors.signUpDisplayName}
                 isInvalid={!!errors.signUpDisplayName}
               />
-              {!!errors.signUpDisplayName ? (
+              {errors.signUpDisplayName ? (
                 <Form.Control.Feedback type="invalid">
                   {errors.signUpDisplayName}
                 </Form.Control.Feedback>
@@ -111,7 +113,7 @@ const SignUp: FC = () => {
                 isValid={touched.signUpEmail && !errors.signUpEmail}
                 isInvalid={!!errors.signUpEmail}
               />
-              {!!errors.signUpEmail ? (
+              {errors.signUpEmail ? (
                 <Form.Control.Feedback type="invalid">
                   {errors.signUpEmail}
                 </Form.Control.Feedback>
@@ -119,7 +121,7 @@ const SignUp: FC = () => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               )}
               <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+                We&apos;ll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
 
