@@ -9,7 +9,7 @@ import {
   PaymentMethods,
   Products,
   Specialty,
-  Staff
+  Staff,
 } from "src/pages/Shop/components";
 
 const Shop: React.FC = () => {

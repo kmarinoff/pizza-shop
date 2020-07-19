@@ -1,3 +1,7 @@
+/* eslint no-console: off, no-unused-vars: off */
+
+import "./styles.scss";
+
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -7,13 +11,13 @@ import {
   BrowserRouter as Router,
   NavLink,
   Route,
-  Switch
+  Switch,
 } from "react-router-dom";
 import { storage } from "src/setup/firebase";
 import { IRootState } from "src/types/rootState";
+
 import { AddPizza } from "../AddPizza";
 import { Sandbox } from "../Sandbox";
-import "./styles.scss";
 
 const Admin = () => {
   const { auth, profile }: { profile: any; auth: any } = useSelector(
@@ -32,11 +36,11 @@ const Admin = () => {
     storageRef
       .child(pathReference.fullPath)
       .getDownloadURL()
-      .then(url => {
+      .then((url) => {
         // console.log(url);
         setAvatarURI(url);
       })
-      .catch(error => {
+      .catch((error) => {
         // Handle any errors
         setAvatarURI("no-avatar");
         // console.log(error);
@@ -75,7 +79,7 @@ const Admin = () => {
               justifyContent: "center",
               alignItems: "center",
               marginTop: "50px",
-              marginBottom: "20px"
+              marginBottom: "20px",
             }}
           >
             {avatarURI === "no-avatar" ? (
@@ -88,7 +92,7 @@ const Admin = () => {
                   fontSize: "1.3em",
                   fontStyle: "bold",
                   color: "#A0CE54",
-                  padding: "15px"
+                  padding: "15px",
                 }}
                 icon={faUser}
               />
@@ -101,7 +105,7 @@ const Admin = () => {
                   minHeight: "100px",
                   background: `url(${avatarURI}) no-repeat center / cover`,
                   borderRadius: "50%",
-                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)"
+                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)",
                 }}
               />
             )}
@@ -110,8 +114,8 @@ const Admin = () => {
             style={{ display: "flex", flexDirection: "column" }}
             className="side-bar-menu"
           >
-            <NavLink to={"/admin/add-pizza"}>Add New Pizza</NavLink>
-            <NavLink to={"/admin/pizzas"}>All Pizzas</NavLink>
+            <NavLink to="/admin/add-pizza">Add New Pizza</NavLink>
+            <NavLink to="/admin/pizzas">All Pizzas</NavLink>
           </div>
         </div>
         <div className="admin-content col-10">

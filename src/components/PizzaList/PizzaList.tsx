@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: off */
+
 import React from "react";
 import { PizzaItem } from "src/components/PizzaItem";
 import { NewPizza } from "src/types/newPizza";

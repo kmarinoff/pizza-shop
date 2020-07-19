@@ -1,3 +1,5 @@
+/* eslint no-console: off, no-unused-vars: off */
+
 import { Formik } from "formik";
 import isNumber from "is-number";
 import { Base64 } from "js-base64";
@@ -19,13 +21,18 @@ interface PizzaItemProps {
 }
 
 const schema = yup.object({
-  id: yup.string().required(),
-  name: yup.string().required(),
-  img: yup.string().required(),
-  price: yup.array().of(yup.number().max(3).required()).required(),
-  ingredients: yup.array().of(yup.string().min(1)).required(),
-  description: yup.string().required(),
-  createdAt: yup.date().required(),
+  id: yup.string().required("This field is required."),
+  name: yup.string().required("This field is required."),
+  img: yup.string().required("This field is required."),
+  smallPrice: yup.string().required("This field is required."),
+  mediumPrice: yup.string().required("This field is required."),
+  largePrice: yup.string().required("This field is required."),
+  ingredients: yup
+    .array()
+    .of(yup.string().min(1))
+    .required("This field is required."),
+  description: yup.string().required("This field is required."),
+  createdAt: yup.string().required("This field is required."),
 });
 
 const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
@@ -67,7 +74,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
 
   return (
     <Formik
-      // validationSchema={schema}
+      validationSchema={schema}
       onSubmit={async (values, action) => {
         const updatedPizza: NewPizza = {
           id: values.id,
@@ -297,9 +304,33 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                         </Col>
                       </Row>
                       <Row>
-                        <Col xs="12" style={{ marginBottom: "20px" }}>
+                        <Col
+                          xs="12"
+                          style={{
+                            marginBottom: "20px",
+                          }}
+                        >
                           {isEditing ? (
                             <CreatableSelect
+                              styles={{
+                                control: (base, state) => ({
+                                  ...base,
+                                  "&:focus": {
+                                    boxShadow: errors.ingredients
+                                      ? "0 0 0 0.2rem rgba(220,53,69,.25)"
+                                      : "0 0 0 0.2rem rgba(0,123,255,.25)",
+                                  },
+                                  "&:hover": {
+                                    borderColor: errors.ingredients
+                                      ? "#dc3545"
+                                      : "gray",
+                                  }, // border style on hover
+                                  border: errors.ingredients
+                                    ? "1px solid #dc3545"
+                                    : "1px solid lightgray", // default border color
+                                  boxShadow: "none", // no box-shadow
+                                }),
+                              }}
                               isMulti
                               name="ingredients"
                               onChange={(newValue: any, actionMeta: any) => {
@@ -324,7 +355,12 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                               noOptionsMessage={() => "Type an ingredient ..."}
                             />
                           ) : (
-                            <>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                              }}
+                            >
                               <span style={{ fontStyle: "italic" }}>
                                 Ingredients:&nbsp;
                               </span>
@@ -342,7 +378,7 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                                   return <span key={idx}>{ingredient}</span>;
                                 }
                               )}
-                            </>
+                            </div>
                           )}
                         </Col>
                       </Row>
@@ -542,6 +578,15 @@ const PizzaItem: React.FC<PizzaItemProps> = ({ pizza }) => {
                   </Row>
                 </Form>
               </Container>
+              {/* <pre
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {JSON.stringify(errors, null, 4)}
+              </pre> */}
             </div>
           </div>
         </>

@@ -1,13 +1,12 @@
-import React, { ChangeEvent, SyntheticEvent } from "react";
+/* eslint no-console: off, no-unused-vars: off */
 
 import isNumber from "is-number";
+import { Base64 } from "js-base64";
+import React, { ChangeEvent, SyntheticEvent } from "react";
 import { Button, Form } from "react-bootstrap";
 import CreatableSelect from "react-select/creatable";
-
-import { Base64 } from "js-base64";
-import { firestore } from "src/setup";
-
 import { toast } from "react-toastify";
+import { firestore } from "src/setup";
 
 const AddPizza: React.FC = () => {
   const initialPizzaState = {
@@ -15,7 +14,7 @@ const AddPizza: React.FC = () => {
     img: "",
     ingredients: [],
     price: ["", "", ""],
-    description: ""
+    description: "",
   };
 
   const [pizza, setPizza] = React.useState<{
@@ -57,17 +56,17 @@ const AddPizza: React.FC = () => {
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     try {
       if (event.target.files) {
-        const type = event.target.files[0].type;
+        const { type } = event.target.files[0];
 
         setFile({
           preview: URL.createObjectURL(event.target.files[0]),
-          raw: event.target.files[0]
+          raw: event.target.files[0],
         });
 
         // base64 encode the pizza image
         event.target.files[0]
           .arrayBuffer()
-          .then(result => {
+          .then((result) => {
             if (result) {
               const encodedBase64Image = Base64.fromUint8Array(
                 new Uint8Array(result)
@@ -75,11 +74,11 @@ const AddPizza: React.FC = () => {
 
               setPizza({
                 ...pizza,
-                img: `data:${type};base64,${encodedBase64Image}`
+                img: `data:${type};base64,${encodedBase64Image}`,
               });
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
           });
       }
@@ -101,6 +100,12 @@ const AddPizza: React.FC = () => {
 
     if (pizza.name === "") {
       toast.error("Fill out pizza name");
+      timeOut();
+      return;
+    }
+
+    if (pizza.description === "") {
+      toast.error("Fill out a description fot the pizza");
       timeOut();
       return;
     }
@@ -129,12 +134,6 @@ const AddPizza: React.FC = () => {
       return;
     }
 
-    if (pizza.description === "") {
-      toast.error("Fill out a description fot the pizza");
-      timeOut();
-      return;
-    }
-
     if (file.raw === undefined) {
       toast.error("Please, select an image for the pizza");
       return;
@@ -145,7 +144,7 @@ const AddPizza: React.FC = () => {
     firestore
       .collection("pizzas")
       .add({ ...pizza, createdAt: new Date() })
-      .then(result => {
+      .then((result) => {
         // console.log(result);
         // console.log("Pizza added successfully!");
         toast.success("Pizza added successfully!");
@@ -156,7 +155,7 @@ const AddPizza: React.FC = () => {
         setReactSelectValues([]);
         setFile(initialFileState);
       })
-      .catch(error => {
+      .catch((error) => {
         // console.log("Error on adding a new pizza!", error);
         toast.error("Error on adding a new pizza!");
       });

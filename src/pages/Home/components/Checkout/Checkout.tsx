@@ -1,3 +1,5 @@
+/* eslint no-console: off, no-unused-vars: off */
+
 import "./styles.scss";
 
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -5,8 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWindowWidth } from "@react-hook/window-size";
 import classNames from "classnames";
 import React, { FC } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Token } from "react-stripe-checkout";
 import { StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
 import { CartItem, IRootState } from "src/types";
@@ -18,6 +21,9 @@ const Checkout: FC = () => {
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const totalCartValue = totalCartPrice(cart);
   const windowWidth = useWindowWidth();
+
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [tokenObject, setTokenObject] = React.useState<Token | null>(null);
 
   return (
     <>
@@ -73,7 +79,13 @@ const Checkout: FC = () => {
                 Total: {totalCartValue.toFixed(2)} $
               </Col>
               <Col xs="auto">
-                <StripeButton price={totalCartValue} />
+                <StripeButton
+                  price={totalCartValue}
+                  handleToken={(token) => {
+                    setIsOpen(true);
+                    setTokenObject(token);
+                  }}
+                />
               </Col>
             </Row>
             <div className="test-warning">
@@ -83,6 +95,41 @@ const Checkout: FC = () => {
             </div>
           </Container>
           <Footer />
+
+          <Modal
+            show={isOpen}
+            animation={false}
+            onHide={() => {
+              setIsOpen(false);
+            }}
+            size="lg"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Token Object
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body />
+            <pre
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {JSON.stringify(tokenObject, null, 4)}
+            </pre>
+            <Modal.Footer>
+              <Button
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       ) : (
         <div

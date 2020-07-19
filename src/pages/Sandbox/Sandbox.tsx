@@ -1,3 +1,5 @@
+/* eslint no-console: off, no-unused-vars: off, no-nested-ternary: off */
+
 import React from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
