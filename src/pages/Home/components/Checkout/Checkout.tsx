@@ -8,22 +8,27 @@ import { useWindowWidth } from "@react-hook/window-size";
 import classNames from "classnames";
 import React, { FC } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Token } from "react-stripe-checkout";
 import { StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
+import { clearItemsFromCart } from "src/reduxStore";
 import { CartItem, IRootState } from "src/types";
 import { totalCartPrice } from "src/utils";
 
 import { CheckoutItem } from "../CheckoutItem";
 
 const Checkout: FC = () => {
+  const dispatch = useDispatch();
   const cart: CartItem[] = useSelector((state: IRootState) => state.cart.cart);
   const totalCartValue = totalCartPrice(cart);
   const windowWidth = useWindowWidth();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [tokenObject, setTokenObject] = React.useState<Token | null>(null);
+
+  const history = useHistory();
 
   return (
     <>
@@ -100,7 +105,9 @@ const Checkout: FC = () => {
             show={isOpen}
             animation={false}
             onHide={() => {
+              dispatch(clearItemsFromCart());
               setIsOpen(false);
+              history.push("/");
             }}
             size="lg"
             centered
@@ -123,7 +130,9 @@ const Checkout: FC = () => {
             <Modal.Footer>
               <Button
                 onClick={() => {
+                  dispatch(clearItemsFromCart());
                   setIsOpen(false);
+                  history.push("/");
                 }}
               >
                 Close

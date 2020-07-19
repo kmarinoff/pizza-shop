@@ -1,6 +1,9 @@
+/* eslint no-unused-vars: off */
+
 import { Dispatch } from "redux";
 import {
   ADD_TO_CART,
+  CLEAR_ITEMS_FROM_CART,
   REMOVE_FROM_CART,
   REMOVE_ITEM_TYPE_FROM_CART,
 } from "src/reduxStore/actions/cartActions";
@@ -21,4 +24,13 @@ const removeItemTypeFromCart = (item: any) => (
   dispatch({ type: REMOVE_ITEM_TYPE_FROM_CART, payload: item });
 };
 
-export { addToCart, removeFromCart, removeItemTypeFromCart };
+const clearItemsFromCart = () => (dispatch: Dispatch, getState: any) => {
+  dispatch({ type: CLEAR_ITEMS_FROM_CART });
+};
+
+export {
+  addToCart,
+  removeFromCart,
+  removeItemTypeFromCart,
+  clearItemsFromCart,
+};

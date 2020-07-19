@@ -2,6 +2,7 @@
 
 import {
   ADD_TO_CART,
+  CLEAR_ITEMS_FROM_CART,
   REMOVE_FROM_CART,
   REMOVE_ITEM_TYPE_FROM_CART,
 } from "src/reduxStore/actions/cartActions";
@@ -91,6 +92,12 @@ const cartReducer = (state = initState, action: any) => {
           }
           return item;
         }),
+      };
+    }
+
+    case CLEAR_ITEMS_FROM_CART: {
+      return {
+        cart: [],
       };
     }
 
