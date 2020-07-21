@@ -1,10 +1,10 @@
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
+
 import { SpecialtyItem } from "../../../../components/SpecialtyItem";
 import { specialtiesArray } from "./specialties";
-
-import { useWindowWidth } from "@react-hook/window-size";
 
 const Specialty = () => {
   const windowWidth = useWindowWidth();
@@ -22,14 +22,14 @@ const Specialty = () => {
           alignItems: "center",
           margin: "0 auto 50px auto",
           width: windowWidth <= 768 ? "auto" : "50%",
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <FontAwesomeIcon
@@ -37,7 +37,7 @@ const Specialty = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteLeft}
           />
@@ -47,7 +47,7 @@ const Specialty = () => {
               fontFamily: "Droid Serif",
               fontStyle: "italic",
               fontSize: "2em",
-              margin: "5px 20px"
+              margin: "5px 20px",
             }}
           >
             Our speciality
@@ -57,7 +57,7 @@ const Specialty = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteRight}
           />
@@ -66,7 +66,7 @@ const Specialty = () => {
           style={{
             color: "#A8A8A8",
             fontStyle: "italic",
-            fontSize: "0.9em"
+            fontSize: "0.9em",
           }}
         >
           Nulla non mattis risus. Praesent accumsan at diam ut molestie.
@@ -78,10 +78,10 @@ const Specialty = () => {
           display: "flex",
           justifyContent: "space-around",
           alignItems: "center",
-          flexDirection: windowWidth <= 991 ? "column" : "row"
+          flexDirection: windowWidth <= 991 ? "column" : "row",
         }}
       >
-        {specialtiesArray.map(specialty => {
+        {specialtiesArray.map((specialty) => {
           return (
             <SpecialtyItem
               key={specialty.id}

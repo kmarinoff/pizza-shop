@@ -1,16 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { Dispatch } from "redux";
 import {
   GET_PIZZA_FAILURE,
   GET_PIZZA_REQUEST,
   GET_PIZZA_SUCCESS,
   GET_PIZZAS_FAILURE,
   GET_PIZZAS_REQUEST,
-  GET_PIZZAS_SUCCESS
+  GET_PIZZAS_SUCCESS,
 } from "src/reduxStore/actions/pizzasActions";
-
-import { Dispatch } from "redux";
 
 const getPizza = (pizzaId: string) => {
   return (dispatch: Dispatch) => {
@@ -18,12 +16,12 @@ const getPizza = (pizzaId: string) => {
 
     axios
       .get(`/pizzas/${pizzaId}`)
-      .then(res => {
+      .then((res) => {
         // display toast msg when we get the pizza
         // toast.success(`Get pizza success: ${res.data.name}`);
         dispatch({ type: GET_PIZZA_SUCCESS, payload: res.data });
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch({ type: GET_PIZZA_FAILURE, payload: err });
       });
   };
@@ -35,15 +33,15 @@ const getPizzas = () => {
 
     axios
       .get(`/pizzas`)
-      .then(res => {
+      .then((res) => {
         // display toast msg when we get the pizzas
         // toast.success(`Get pizzas success`);
         dispatch({ type: GET_PIZZAS_SUCCESS, payload: res.data });
       })
-      .catch(err => {
+      .catch((err) => {
         const error = {
           message: "Error on getting pizza",
-          status: 404
+          status: 404,
         };
 
         if (error) {

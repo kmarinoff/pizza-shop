@@ -4,8 +4,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BetterButton } from "src/components/BetterButton";
-import { signInWithFacebook, signInWithGoogle } from "src/setup";
-import { auth } from "src/setup";
+import { auth, signInWithFacebook, signInWithGoogle } from "src/setup";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -17,7 +16,7 @@ const schema = yup.object({
     .string()
     .required("Password is a required field")
     .max(255, "Password must be at most 255 characters")
-    .min(6, "Password must be at least 6 characters long")
+    .min(6, "Password must be at least 6 characters long"),
 });
 
 const LogIn: FC = () => {
@@ -48,14 +47,14 @@ const LogIn: FC = () => {
             action.resetForm({
               values: {
                 loginEmail: "",
-                loginPassword: ""
-              }
+                loginPassword: "",
+              },
             });
           }
         }}
         initialValues={{
           loginEmail: "",
-          loginPassword: ""
+          loginPassword: "",
         }}
       >
         {({ handleSubmit, handleChange, values, touched, isValid, errors }) => (
@@ -72,7 +71,7 @@ const LogIn: FC = () => {
                 isValid={touched.loginEmail && !errors.loginEmail}
                 isInvalid={!!errors.loginEmail}
               />
-              {!!errors.loginEmail ? (
+              {errors.loginEmail ? (
                 <Form.Control.Feedback type="invalid">
                   {errors.loginEmail}
                 </Form.Control.Feedback>
@@ -80,7 +79,7 @@ const LogIn: FC = () => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               )}
               <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+                We&apos;ll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
 
@@ -96,7 +95,7 @@ const LogIn: FC = () => {
                 isValid={touched.loginPassword && !errors.loginPassword}
                 isInvalid={!!errors.loginPassword}
               />
-              {!!errors.loginPassword ? (
+              {errors.loginPassword ? (
                 <Form.Control.Feedback type="invalid">
                   {errors.loginPassword}
                 </Form.Control.Feedback>
@@ -168,7 +167,7 @@ const LogIn: FC = () => {
                       to="/signup"
                       style={{ textAlign: "center", width: "100%" }}
                     >
-                      Don't have an account yet?
+                      Don&apos;t have an account yet?
                     </Link>
                   </div>
                 </div>

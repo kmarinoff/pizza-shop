@@ -12,10 +12,11 @@ const CustomPagination: React.FC<PaginationProps> = ({
   itemsPerPage,
   totalItems,
   active,
-  paginate
+  paginate,
 }) => {
   const pageNumbers = [];
 
+  // eslint-disable-next-line no-plusplus
   for (let index = 1; index <= Math.ceil(totalItems / itemsPerPage); index++) {
     pageNumbers.push(
       <Pagination.Item
@@ -38,7 +39,7 @@ const CustomPagination: React.FC<PaginationProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: "0 10px 0 0"
+        margin: "0 10px 0 0",
       }}
     >
       <Pagination.Prev

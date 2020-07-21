@@ -1,15 +1,17 @@
-import React from "react";
-import { BetterButton } from "./BetterButton";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { action } from "@storybook/addon-actions";
+import React from "react";
+
+import { BetterButton } from "./BetterButton";
 
 export default {
   component: BetterButton,
   title: "BetterButton",
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
 };
 
 export const actionsData = {
-  onClick: action("onClick")
+  onClick: action("onClick"),
 };
 
 export const Default = () => (
@@ -20,8 +22,8 @@ export const Default = () => (
   />
 );
 
-export const Loading = () => <BetterButton bsPrefix="custom" loading={true} />;
+export const Loading = () => <BetterButton bsPrefix="custom" loading />;
 
 export const Disabled = () => (
-  <BetterButton bsPrefix="custom" buttonText="Disabled" disabled={true} />
+  <BetterButton bsPrefix="custom" buttonText="Disabled" disabled />
 );

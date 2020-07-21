@@ -1,8 +1,11 @@
+/* eslint-disable */
+
 import React, { FC } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Pagination } from "src/components/Pagination";
 import { NewPizza } from "src/types/newPizza";
+
 import { PizzaListItem } from "./PizzaListItem";
 
 interface PizzaListProps {
@@ -65,7 +68,7 @@ const PizzaList: FC<PizzaListProps> = ({ pizzas }) => {
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-          marginBottom: "1rem"
+          marginBottom: "1rem",
         }}
       >
         {searchField !== ""

@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import React from "react";
 import { Button, Spinner } from "react-bootstrap";
 
@@ -19,7 +20,7 @@ const BetterButton: React.FC<BetterButtonProps> = ({
   disabled = false,
   onClick,
   buttonStyles,
-  containerStyles
+  containerStyles,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [isActive, setIsActive] = React.useState(false);
@@ -52,7 +53,7 @@ const BetterButton: React.FC<BetterButtonProps> = ({
         transition: isHovered
           ? "background-color 150ms ease-in-out"
           : "background-color 150ms ease-in-out",
-        ...containerStyles
+        ...containerStyles,
       }}
     >
       <Button
@@ -80,7 +81,7 @@ const BetterButton: React.FC<BetterButtonProps> = ({
             ? "background-color 150ms ease-in-out"
             : "background-color 150ms ease-in-out",
           margin: "0 auto",
-          ...buttonStyles
+          ...buttonStyles,
         }}
       >
         {loading ? (
@@ -91,10 +92,10 @@ const BetterButton: React.FC<BetterButtonProps> = ({
                 marginRight: "10px",
                 width: "1rem",
                 height: "1rem",
-                fontSize: "6px"
+                fontSize: "6px",
               }}
             />
-            {buttonText ? buttonText : "Loading ..."}
+            {buttonText || "Loading ..."}
           </>
         ) : (
           <>{buttonText}</>

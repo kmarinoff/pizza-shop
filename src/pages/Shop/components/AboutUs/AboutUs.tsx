@@ -4,15 +4,14 @@ import {
   faLaptop,
   faQuoteLeft,
   faQuoteRight,
-  faUtensils
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-
-import { useWindowWidth } from "@react-hook/window-size";
 
 const AboutUs = () => {
   const windowWidth = useWindowWidth();
@@ -29,14 +28,14 @@ const AboutUs = () => {
           margin: "0 auto",
           width: windowWidth <= 550 ? "90%" : "50%",
           textAlign: "center",
-          padding: "73px 0"
+          padding: "73px 0",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <FontAwesomeIcon
@@ -44,7 +43,7 @@ const AboutUs = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteLeft}
           />
@@ -54,7 +53,7 @@ const AboutUs = () => {
               fontFamily: "Droid Serif",
               fontStyle: "italic",
               fontSize: "2em",
-              margin: "5px 20px"
+              margin: "5px 20px",
             }}
           >
             About Us
@@ -64,7 +63,7 @@ const AboutUs = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteRight}
           />
@@ -73,7 +72,7 @@ const AboutUs = () => {
           style={{
             color: "#A8A8A8",
             fontStyle: "italic",
-            fontSize: "0.9em"
+            fontSize: "0.9em",
           }}
         >
           Nulla non mattis risus. Praesent accumsan at diam ut molestie. Non
@@ -87,7 +86,7 @@ const AboutUs = () => {
           style={{
             textAlign: "center",
             fontFamily: "Fira Sans",
-            paddingBottom: "73px"
+            paddingBottom: "73px",
           }}
         >
           <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "40px" }}>
@@ -96,7 +95,7 @@ const AboutUs = () => {
               style={{
                 fontSize: "4em",
                 fontStyle: "bold",
-                color: "#A0CE54B3"
+                color: "#A0CE54B3",
               }}
               icon={faLaptop}
             />
@@ -104,7 +103,7 @@ const AboutUs = () => {
               style={{
                 fontWeight: "bold",
                 marginTop: "40px",
-                color: "#222222"
+                color: "#222222",
               }}
             >
               Pellentesque porta
@@ -114,7 +113,7 @@ const AboutUs = () => {
               style={{
                 width: "50px",
                 borderBottom: "3px solid #a0ce54b3",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             />
             <div style={{ color: "#323232" }}>
@@ -128,7 +127,7 @@ const AboutUs = () => {
               style={{
                 fontSize: "4em",
                 fontStyle: "bold",
-                color: "#A0CE54B3"
+                color: "#A0CE54B3",
               }}
               icon={faCar}
             />
@@ -136,7 +135,7 @@ const AboutUs = () => {
               style={{
                 fontWeight: "bold",
                 marginTop: "40px",
-                color: "#222222"
+                color: "#222222",
               }}
             >
               Pellentesque porta
@@ -146,7 +145,7 @@ const AboutUs = () => {
               style={{
                 width: "50px",
                 borderBottom: "3px solid #a0ce54b3",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             />
             <div style={{ color: "#323232" }}>
@@ -160,7 +159,7 @@ const AboutUs = () => {
               style={{
                 fontSize: "4em",
                 fontStyle: "bold",
-                color: "#A0CE54B3"
+                color: "#A0CE54B3",
               }}
               icon={faUtensils}
             />
@@ -168,7 +167,7 @@ const AboutUs = () => {
               style={{
                 fontWeight: "bold",
                 marginTop: "40px",
-                color: "#222222"
+                color: "#222222",
               }}
             >
               Pellentesque porta
@@ -178,7 +177,7 @@ const AboutUs = () => {
               style={{
                 width: "50px",
                 borderBottom: "3px solid #a0ce54b3",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             />
             <div style={{ color: "#323232" }}>
@@ -192,7 +191,7 @@ const AboutUs = () => {
               style={{
                 fontSize: "4em",
                 fontStyle: "bold",
-                color: "#A0CE54B3"
+                color: "#A0CE54B3",
               }}
               icon={faCoffee}
             />
@@ -200,7 +199,7 @@ const AboutUs = () => {
               style={{
                 fontWeight: "bold",
                 marginTop: "40px",
-                color: "#222222"
+                color: "#222222",
               }}
             >
               Pellentesque porta
@@ -210,7 +209,7 @@ const AboutUs = () => {
               style={{
                 width: "50px",
                 borderBottom: "3px solid #a0ce54b3",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             />
             <div style={{ color: "#323232" }}>

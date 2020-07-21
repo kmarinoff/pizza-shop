@@ -37,7 +37,7 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "justify-content-between",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <div
@@ -47,16 +47,15 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
                 justifyContent: "justify-content-between",
                 alignItems: "center",
                 flexWrap: "wrap",
-                marginBottom: "1rem"
+                marginBottom: "1rem",
               }}
             >
               <span style={{ fontStyle: "italic" }}>Ingredients:&nbsp;</span>
               {pizza.ingredients.map((ingredient: string, idx: number) => {
                 if (pizza.ingredients.length !== idx + 1) {
                   return <span key={idx}>{ingredient},&nbsp;</span>;
-                } else {
-                  return <span key={idx}>{ingredient}</span>;
                 }
+                return <span key={idx}>{ingredient}</span>;
               })}
             </div>
 
@@ -67,7 +66,7 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 width: "100%",
-                marginBottom: "1rem"
+                marginBottom: "1rem",
               }}
             >
               <Dropdown>
@@ -114,7 +113,7 @@ const PizzaListItem: FC<PizzaListItemProps> = ({ pizza }) => {
                     img: pizza.img,
                     name: pizza.name,
                     price: pizza.price[size],
-                    size
+                    size,
                   };
 
                   dispatch(addToCart(pizzaToAdd));

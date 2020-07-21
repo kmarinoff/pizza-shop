@@ -4,9 +4,8 @@ import {
   GET_PIZZA_SUCCESS,
   GET_PIZZAS_FAILURE,
   GET_PIZZAS_REQUEST,
-  GET_PIZZAS_SUCCESS
+  GET_PIZZAS_SUCCESS,
 } from "src/reduxStore/actions";
-
 import { Pizza } from "src/types";
 
 export interface IPizzasReducer {
@@ -18,7 +17,7 @@ export interface IPizzasReducer {
 const initState: IPizzasReducer = {
   isFetching: true,
   isFailed: false,
-  pizzas: []
+  pizzas: [],
 };
 
 const pizzasReducer = (state = initState, action: any) => {
@@ -28,7 +27,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: true,
         isFailed: false,
-        pizzas: []
+        pizzas: [],
       };
     }
 
@@ -36,7 +35,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: false,
-        pizzas: [action.payload]
+        pizzas: [action.payload],
       };
     }
 
@@ -44,7 +43,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        pizzas: []
+        pizzas: [],
       };
     }
 
@@ -53,7 +52,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: true,
         isFailed: false,
-        pizzas: []
+        pizzas: [],
       };
     }
 
@@ -61,7 +60,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: false,
-        pizzas: [...action.payload]
+        pizzas: [...action.payload],
       };
     }
 
@@ -69,7 +68,7 @@ const pizzasReducer = (state = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        pizzas: []
+        pizzas: [],
       };
     }
 

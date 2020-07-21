@@ -1,15 +1,16 @@
 import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router";
+import { Route, Switch } from "react-router-dom";
 import {
   LoginScreen,
   // NoRoute,
   PrivateRoute,
-  SignUpScreen
+  SignUpScreen,
 } from "src/components";
 import { Admin, Checkout, Home, PizzaDetails, Profile, Shop } from "src/pages";
 import { IRootState } from "src/types";
+
 import { Nav } from "./Nav";
 
 const Routes = () => {
@@ -51,7 +52,7 @@ const Routes = () => {
             minHeight: "80vh",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <Spinner animation="grow" />

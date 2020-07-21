@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import {
   DELETE_NEW_PIZZA_FAILURE,
   DELETE_NEW_PIZZA_REQUEST,
@@ -13,12 +14,9 @@ import {
   SEARCH_NEW_PIZZA_SUCCESS,
   UPDATE_NEW_PIZZAS_FAILURE,
   UPDATE_NEW_PIZZAS_REQUEST,
-  UPDATE_NEW_PIZZAS_SUCCESS
+  UPDATE_NEW_PIZZAS_SUCCESS,
 } from "src/reduxStore/actions";
-
 import { NewPizza } from "src/types/newPizza";
-
-import firebase from "firebase";
 
 export interface INewPizzaReducer {
   isFetching: boolean;
@@ -29,7 +27,7 @@ export interface INewPizzaReducer {
 const initState: INewPizzaReducer = {
   isFetching: true,
   isFailed: false,
-  newPizzas: []
+  newPizzas: [],
 };
 
 const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
@@ -39,7 +37,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: true,
         isFailed: false,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -57,7 +55,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: false,
-        newPizzas: [...state.newPizzas, ...newPizzasArray]
+        newPizzas: [...state.newPizzas, ...newPizzasArray],
       };
     }
 
@@ -65,7 +63,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -80,10 +78,9 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
         newPizzas: state.newPizzas.map((pizza: NewPizza) => {
           if (pizza.id !== action.payload.id) {
             return pizza;
-          } else {
-            return action.payload;
           }
-        })
+          return action.payload;
+        }),
       };
     }
 
@@ -91,7 +88,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -142,7 +139,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
         isFailed: false,
         newPizzas: state.newPizzas.filter(
           (pizza: NewPizza) => pizza.id !== action.payload.id
-        )
+        ),
       };
     }
 
@@ -150,7 +147,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: state.newPizzas
+        newPizzas: state.newPizzas,
       };
     }
 
@@ -158,7 +155,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: true,
         isFailed: false,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 
@@ -178,7 +175,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: false,
-        newPizzas: [...state.newPizzas, ...newPizzasArray]
+        newPizzas: [...state.newPizzas, ...newPizzasArray],
       };
     }
 
@@ -186,7 +183,7 @@ const newPizzasReducer = (state: INewPizzaReducer = initState, action: any) => {
       return {
         isFetching: false,
         isFailed: true,
-        newPizzas: []
+        newPizzas: [],
       };
     }
 

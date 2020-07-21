@@ -1,8 +1,8 @@
+import "./styles.scss";
+
 import React, { useState } from "react";
 import { Alert, Button, Container } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
-
-import "./styles.scss";
 
 function Example() {
   const [showButton, setShowButton] = useState(true);

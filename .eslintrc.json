@@ -20,6 +20,9 @@
   },
   "plugins": ["react", "@typescript-eslint", "simple-import-sort", "import"],
   "rules": {
+    "no-console": "off",
+    "no-unused-vars": "off",
+    "no-nested-ternary": "off",
     "simple-import-sort/sort": "error",
     "sort-imports": "off",
     "import/first": "error",
@@ -32,8 +35,7 @@
       }
     ],
     "import/extensions": 0,
-    "linebreak-style": ["error", "unix"],
-    "no-unused-vars": "warn"
+    "linebreak-style": ["error", "unix"]
   },
   "settings": {
     "import/resolver": {

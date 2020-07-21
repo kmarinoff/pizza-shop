@@ -1,6 +1,7 @@
 import { faSadTear } from "@fortawesome/free-solid-svg-icons";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
+
 import { FontAwesome, Wrapper } from "./StyledNoRoute";
 
 const NoRoute: FC = () => {

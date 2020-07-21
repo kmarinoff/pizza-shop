@@ -1,16 +1,14 @@
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import ingredientsBackground from "src/assets/ingredients/ingredients-bg.jpg";
-
 import ingredientOne from "src/assets/ingredients/1-ingredient.jpg";
 import ingredientTwo from "src/assets/ingredients/2-ingredient.jpg";
 import ingredientThree from "src/assets/ingredients/3-ingredient.jpg";
 import ingredientFour from "src/assets/ingredients/4-ingredient.jpg";
-
-import { useWindowWidth } from "@react-hook/window-size";
+import ingredientsBackground from "src/assets/ingredients/ingredients-bg.jpg";
 
 const Ingredients: React.FC = () => {
   const windowWidth = useWindowWidth();
@@ -21,7 +19,7 @@ const Ingredients: React.FC = () => {
         padding: "73px 0",
         background: `url(${ingredientsBackground})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       <div className="container">
@@ -32,7 +30,7 @@ const Ingredients: React.FC = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            marginBottom: "80px"
+            marginBottom: "80px",
           }}
         >
           <div
@@ -40,7 +38,7 @@ const Ingredients: React.FC = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <FontAwesomeIcon
@@ -48,7 +46,7 @@ const Ingredients: React.FC = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#CA934C"
+                color: "#CA934C",
               }}
               icon={faQuoteLeft}
             />
@@ -58,7 +56,7 @@ const Ingredients: React.FC = () => {
                 fontFamily: "Droid Serif",
                 fontStyle: "italic",
                 fontSize: "2em",
-                margin: "5px 20px"
+                margin: "5px 20px",
               }}
             >
               Ingredients
@@ -68,7 +66,7 @@ const Ingredients: React.FC = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#CA934C"
+                color: "#CA934C",
               }}
               icon={faQuoteRight}
             />
@@ -79,7 +77,7 @@ const Ingredients: React.FC = () => {
               fontSize: "1.1em",
               fontWeight: 400,
               color: "#d1d1d1",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             Our products are made with love and fresh ingredients.
@@ -91,14 +89,14 @@ const Ingredients: React.FC = () => {
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "space-evenly",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <div
             style={{
               backgroundColor: "#ffffff",
               padding: "10px",
-              margin: windowWidth <= 991 ? "10px" : "0px"
+              margin: windowWidth <= 991 ? "10px" : "0px",
             }}
           >
             <div
@@ -107,7 +105,7 @@ const Ingredients: React.FC = () => {
                 backgroundColor: "#ffffff",
                 border: "1px dashed #8c8c8c",
                 padding: "30px",
-                maxWidth: "400px"
+                maxWidth: "400px",
               }}
             >
               <p
@@ -115,7 +113,7 @@ const Ingredients: React.FC = () => {
                   marginBottom: "30px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9"
+                  fontSize: "0.9",
                 }}
               >
                 Morbi euismod, nulla sit amet dictum venenatis, tortor eros
@@ -129,7 +127,7 @@ const Ingredients: React.FC = () => {
                   marginBottom: "30px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9"
+                  fontSize: "0.9",
                 }}
               >
                 Vestibulum ut justo commodo lacus cursus ultricies id nec justo.
@@ -142,7 +140,7 @@ const Ingredients: React.FC = () => {
                   marginBottom: "0px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9"
+                  fontSize: "0.9",
                 }}
               >
                 Praesent consectetur scelerisque dolor, eget sollicitudin arcu
@@ -157,7 +155,7 @@ const Ingredients: React.FC = () => {
             style={{
               backgroundColor: "#ffffff",
               padding: "10px",
-              margin: windowWidth <= 991 ? "10px" : "0px"
+              margin: windowWidth <= 991 ? "10px" : "0px",
             }}
           >
             <div
@@ -166,11 +164,11 @@ const Ingredients: React.FC = () => {
                 backgroundColor: "#ffffff",
                 border: "1px dashed #8c8c8c",
                 padding: "30px",
-                maxWidth: "400px"
+                maxWidth: "400px",
               }}
             >
               <Row>
-                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg>
                   <img
                     src={ingredientOne}
                     width="150"
@@ -179,7 +177,7 @@ const Ingredients: React.FC = () => {
                     style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 4px" }}
                   />
                 </Col>
-                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg>
                   <img
                     src={ingredientTwo}
                     width="150"
@@ -190,7 +188,7 @@ const Ingredients: React.FC = () => {
                 </Col>
               </Row>
               <Row>
-                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg>
                   <img
                     src={ingredientThree}
                     width="150"
@@ -199,7 +197,7 @@ const Ingredients: React.FC = () => {
                     style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 4px" }}
                   />
                 </Col>
-                <Col style={{ padding: "10px", textAlign: "center" }} lg={true}>
+                <Col style={{ padding: "10px", textAlign: "center" }} lg>
                   <img
                     src={ingredientFour}
                     width="150"

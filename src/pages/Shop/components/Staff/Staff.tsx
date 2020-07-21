@@ -1,14 +1,13 @@
+import "./styles.scss";
+
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-
 import { Col, Container, Image, Row } from "react-bootstrap";
 import chefOne from "src/assets/staff/1-chef.jpg";
 import chefTwo from "src/assets/staff/2-chef.jpg";
 import chefThree from "src/assets/staff/3-chef.jpg";
 import chefFour from "src/assets/staff/4-chef.jpg";
-
-import "./styles.scss";
 
 const Staff = () => {
   const chefOneInfoRef = React.useRef(null);
@@ -20,7 +19,7 @@ const Staff = () => {
     <div
       style={{
         padding: "73px 0 0 0",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
         // overflow: "hidden"
       }}
     >
@@ -32,7 +31,7 @@ const Staff = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            marginBottom: "80px"
+            marginBottom: "80px",
           }}
         >
           <div
@@ -40,7 +39,7 @@ const Staff = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <FontAwesomeIcon
@@ -48,7 +47,7 @@ const Staff = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#cccccc"
+                color: "#cccccc",
               }}
               icon={faQuoteLeft}
             />
@@ -58,7 +57,7 @@ const Staff = () => {
                 fontFamily: "Droid Serif",
                 fontStyle: "italic",
                 fontSize: "2em",
-                margin: "5px 20px"
+                margin: "5px 20px",
               }}
             >
               Our Team
@@ -68,7 +67,7 @@ const Staff = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#cccccc"
+                color: "#cccccc",
               }}
               icon={faQuoteRight}
             />
@@ -80,7 +79,7 @@ const Staff = () => {
               fontWeight: 400,
               color: "#d1d1d1",
               textAlign: "center",
-              width: "90%"
+              width: "90%",
             }}
           >
             Nulla non mattis risus. Praesent accumsan at diam ut molestie.
@@ -119,7 +118,7 @@ const Staff = () => {
                   transition: "opacity 150ms ease-in-out",
                   padding: "13px 35px",
                   color: "#ffffff",
-                  fontFamily: "Fira Sans"
+                  fontFamily: "Fira Sans",
                 }}
               >
                 <div style={{ fontSize: "1.1em", fontWeight: "bold" }}>
@@ -159,7 +158,7 @@ const Staff = () => {
                   transition: "opacity 150ms ease-in-out",
                   padding: "13px 35px",
                   color: "#ffffff",
-                  fontFamily: "Fira Sans"
+                  fontFamily: "Fira Sans",
                 }}
               >
                 <div style={{ fontSize: "1.1em", fontWeight: "bold" }}>
@@ -199,7 +198,7 @@ const Staff = () => {
                   transition: "opacity 150ms ease-in-out",
                   padding: "13px 35px",
                   color: "#ffffff",
-                  fontFamily: "Fira Sans"
+                  fontFamily: "Fira Sans",
                 }}
               >
                 <div style={{ fontSize: "1.1em", fontWeight: "bold" }}>
@@ -239,7 +238,7 @@ const Staff = () => {
                   transition: "opacity 150ms ease-in-out",
                   padding: "13px 35px",
                   color: "#ffffff",
-                  fontFamily: "Fira Sans"
+                  fontFamily: "Fira Sans",
                 }}
               >
                 <div style={{ fontSize: "1.1em", fontWeight: "bold" }}>

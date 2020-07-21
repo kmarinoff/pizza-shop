@@ -14,7 +14,7 @@ const Footer = () => {
         fontStyle: "italic",
         color: "rgba(0, 0, 0, 0.5)",
         fontSize: "0.9em",
-        minHeight: "100px"
+        minHeight: "100px",
       }}
     >
       All rights reserved © Kaloyan Marinov: 61762005

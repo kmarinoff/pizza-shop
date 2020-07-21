@@ -1,3 +1,7 @@
+/* eslint no-console: off, no-unused-vars: off, no-nested-ternary: off */
+
+import "./styles.scss";
+
 import { faCheck, faTimes, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -12,7 +16,6 @@ import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Footer } from "src/pages/components/Footer";
 import { firestore, storage } from "src/setup/firebase";
-import "./styles.scss";
 
 const Profile = () => {
   const { profile, auth }: { profile: any; auth: any } = useSelector(
@@ -24,6 +27,33 @@ const Profile = () => {
     raw?: File;
   }>();
   const windowWidth = useWindowWidth();
+
+  const getAvatar = (userId: string) => {
+    // Points to the root reference
+    const storageRef = storage.ref();
+
+    // Create a reference with an initial file path and name
+    const pathReference = storage.ref(`avatars/${userId}.jpg`);
+
+    storageRef
+      .child(pathReference.fullPath)
+      .getDownloadURL()
+      .then((url) => {
+        // console.log(url);
+        setAvatarURI(url);
+      })
+      .catch((error) => {
+        // Handle any errors
+        setAvatarURI("no-avatar");
+        // console.log(error);
+      });
+  };
+
+  const updatePhotoURL = (value: string) => {
+    firestore.collection("users").doc(auth.uid).update({
+      photoURL: value,
+    });
+  };
 
   const fileUploadHandler = () => {
     if (file && file.raw) {
@@ -58,7 +88,7 @@ const Profile = () => {
         // use the Blob or File API
         profilePictureRef
           .put(file.raw)
-          .then(snapshot => {
+          .then((snapshot) => {
             console.log("Picture Uploaded!");
             getAvatar(auth.uid);
           })
@@ -66,32 +96,11 @@ const Profile = () => {
             updatePhotoURL(path);
             setFile({ preview: "" });
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("Something went wrong...");
           });
       }
     }
-  };
-
-  const getAvatar = (userId: string) => {
-    // Points to the root reference
-    const storageRef = storage.ref();
-
-    // Create a reference with an initial file path and name
-    const pathReference = storage.ref(`avatars/${userId}.jpg`);
-
-    storageRef
-      .child(pathReference.fullPath)
-      .getDownloadURL()
-      .then(url => {
-        // console.log(url);
-        setAvatarURI(url);
-      })
-      .catch(error => {
-        // Handle any errors
-        setAvatarURI("no-avatar");
-        // console.log(error);
-      });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,21 +108,12 @@ const Profile = () => {
       if (e.target.files) {
         setFile({
           preview: URL.createObjectURL(e.target.files[0]),
-          raw: e.target.files[0]
+          raw: e.target.files[0],
         });
       }
     } catch (error) {
       // console.log(error);
     }
-  };
-
-  const updatePhotoURL = (value: string) => {
-    firestore
-      .collection("users")
-      .doc(auth.uid)
-      .update({
-        photoURL: value
-      });
   };
 
   React.useEffect(() => {
@@ -142,7 +142,7 @@ const Profile = () => {
             padding: "50px",
             width:
               windowWidth <= 550 ? "100%" : windowWidth <= 991 ? "70%" : "50%",
-            boxShadow: "0px 0px 15px 5px rgba(142, 142, 142, 0.3)"
+            boxShadow: "0px 0px 15px 5px rgba(142, 142, 142, 0.3)",
           }}
         >
           <Row xs={1}>
@@ -151,7 +151,7 @@ const Profile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: "20px 0"
+                margin: "20px 0",
               }}
             >
               {avatarURI ? (
@@ -163,7 +163,7 @@ const Profile = () => {
                     borderRadius: "50%",
                     backgroundColor: "white",
                     padding: "5px",
-                    boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)"
+                    boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)",
                   }}
                 >
                   <Form.File
@@ -181,7 +181,7 @@ const Profile = () => {
                             fontSize: "1.3em",
                             fontStyle: "bold",
                             color: "#A0CE54",
-                            padding: "15px"
+                            padding: "15px",
                           }}
                           icon={faUser}
                         />
@@ -196,7 +196,7 @@ const Profile = () => {
                               file?.preview ? file?.preview : avatarURI
                             }) no-repeat center / cover`,
                             borderRadius: "50%",
-                            boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)"
+                            boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.1)",
                           }}
                         />
                       )}
@@ -245,11 +245,11 @@ const Profile = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    margin: "5px"
+                    margin: "5px",
                   }}
                   className="sweet-loading"
                 >
-                  <ClipLoader color={"#A0CE54"} />
+                  <ClipLoader color="#A0CE54" />
                 </div>
               )}
             </Col>
@@ -261,7 +261,7 @@ const Profile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: "20px 0"
+                margin: "20px 0",
               }}
             >
               Name: {profile.displayName}
@@ -274,7 +274,7 @@ const Profile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: "20px 0"
+                margin: "20px 0",
               }}
             >
               {profile.isAdmin ? "Admin" : "User"}
@@ -287,7 +287,7 @@ const Profile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: "20px 0"
+                margin: "20px 0",
               }}
             >
               Email: {profile.email}

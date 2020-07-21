@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Footer } from "src/pages/components";
 import { getNewPizzas } from "src/reduxStore/modules/newPizzas";
 import { NewPizza } from "src/types/newPizza";
+
 import { PizzaList } from "./components/PizzaList";
 
 const Home: FC = () => {

@@ -1,5 +1,3 @@
-/* eslint no-console: off, no-unused-vars: off */
-
 import "./styles.scss";
 
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +8,7 @@ import React, { FC } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Token } from "react-stripe-checkout";
+// import { Token } from "react-stripe-checkout";
 import { StripeButton } from "src/components";
 import { Footer } from "src/pages/components";
 import { clearItemsFromCart } from "src/reduxStore";
@@ -26,7 +24,9 @@ const Checkout: FC = () => {
   const windowWidth = useWindowWidth();
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [tokenObject, setTokenObject] = React.useState<Token | null>(null);
+  const [stripeResponceObject, setStripeResponceObject] = React.useState<
+    any | null
+  >(null);
 
   const history = useHistory();
 
@@ -86,9 +86,9 @@ const Checkout: FC = () => {
               <Col xs="auto">
                 <StripeButton
                   price={totalCartValue}
-                  handleToken={(token) => {
+                  handleToken={(stripeObject) => {
                     setIsOpen(true);
-                    setTokenObject(token);
+                    setStripeResponceObject(stripeObject);
                   }}
                 />
               </Col>
@@ -120,12 +120,10 @@ const Checkout: FC = () => {
             <Modal.Body />
             <pre
               style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                marginLeft: "60px",
               }}
             >
-              {JSON.stringify(tokenObject, null, 4)}
+              {JSON.stringify(stripeResponceObject, null, 4)}
             </pre>
             <Modal.Footer>
               <Button

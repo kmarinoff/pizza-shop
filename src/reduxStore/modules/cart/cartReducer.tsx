@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: off */
-
 import {
   ADD_TO_CART,
   CLEAR_ITEMS_FROM_CART,

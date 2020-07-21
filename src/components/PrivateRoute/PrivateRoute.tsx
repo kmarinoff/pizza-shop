@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import React from "react";
-import { Redirect, Route } from "react-router";
+import { Redirect, Route } from "react-router-dom";
 
 interface PrivateRouteProps {
   profileIsEmpty: boolean;
@@ -16,6 +18,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
     <>
       {profileIsLoaded && (
         <Route
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           render={({ location }) =>
             !profileIsEmpty ? (
@@ -24,7 +27,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
               <Redirect
                 to={{
                   pathname: "/shop",
-                  state: { from: location }
+                  state: { from: location },
                 }}
               />
             )

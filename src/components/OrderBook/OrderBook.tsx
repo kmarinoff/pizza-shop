@@ -1,3 +1,7 @@
+/* eslint-disable */
+
+import "./styles.scss";
+
 import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -9,10 +13,10 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { BetterButton } from "src/components";
+
 import { burgersArray } from "./burgersArray";
 import { kebabsArray } from "./kebabsArray";
 import { pizzasArray } from "./pizzasArray";
-import "./styles.scss";
 
 interface CenteredModalProps {
   show: boolean;
@@ -25,7 +29,7 @@ const CenteredModal: React.FC<CenteredModalProps> = ({
   onHide,
   show,
   currImgSrc,
-  productName
+  productName,
 }) => {
   return (
     <Modal show={show} onHide={onHide} centered>
@@ -80,7 +84,7 @@ const OrderBook: React.FC = () => {
         style={{
           display: "flex",
           justifyContent: "space-around",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <ToggleButtonGroup
@@ -105,7 +109,7 @@ const OrderBook: React.FC = () => {
         style={{
           width: "200px",
           borderBottom: "1px solid #cacaca",
-          margin: "50px 0"
+          margin: "50px 0",
         }}
       />
       <div style={{ overflow: "hidden", position: "relative" }}>
@@ -115,7 +119,7 @@ const OrderBook: React.FC = () => {
               display: value === 1 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: windowWidth <= 991 ? "100%" : "940px"
+              width: windowWidth <= 991 ? "100%" : "940px",
             }}
           >
             <div>
@@ -138,11 +142,11 @@ const OrderBook: React.FC = () => {
                   backgroundColor: "#2E2E2E",
                   padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: windowWidth <= 991 ? "320px" : "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px",
                 }}
               >
                 <Scrollbars>
-                  {pizzasArray.map(pizza => (
+                  {pizzasArray.map((pizza) => (
                     <div
                       key={pizza.id}
                       style={{
@@ -151,7 +155,7 @@ const OrderBook: React.FC = () => {
                         justifyContent: "space-between",
                         alignItems: "center",
                         width: windowWidth <= 991 ? "auto" : "400px",
-                        padding: "10px 0"
+                        padding: "10px 0",
                       }}
                     >
                       <div
@@ -160,7 +164,7 @@ const OrderBook: React.FC = () => {
                           flexDirection: "row",
                           justifyContent: "center",
                           alignItems: "center",
-                          color: "#ffffff"
+                          color: "#ffffff",
                         }}
                       >
                         <div
@@ -183,7 +187,7 @@ const OrderBook: React.FC = () => {
                         <div
                           style={{
                             maxWidth: windowWidth <= 991 ? "130px" : "230px",
-                            marginLeft: "10px"
+                            marginLeft: "10px",
                           }}
                         >
                           {pizza.name}
@@ -194,7 +198,7 @@ const OrderBook: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "space-between",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <div style={{ color: "#A0CE54" }}>
@@ -215,7 +219,7 @@ const OrderBook: React.FC = () => {
                   display: "flex",
                   flexDirection: "column",
                   width: "100%",
-                  paddingBottom: "20px"
+                  paddingBottom: "20px",
                 }}
               >
                 <img
@@ -232,7 +236,7 @@ const OrderBook: React.FC = () => {
                     color: "#222222",
                     lineHeight: "30px",
                     fontWeight: 500,
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   Pizza
@@ -244,7 +248,7 @@ const OrderBook: React.FC = () => {
                       color: "#787878",
                       fontWeight: 300,
                       lineHeight: "24px",
-                      margin: "0px 20px 0 20px"
+                      margin: "0px 20px 0 20px",
                     }}
                   >
                     The origin of the word pizza is uncertain and debated. One
@@ -267,7 +271,7 @@ const OrderBook: React.FC = () => {
               display: value === 2 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: windowWidth <= 991 ? "auto" : "940px"
+              width: windowWidth <= 991 ? "auto" : "940px",
             }}
           >
             <div>
@@ -290,11 +294,11 @@ const OrderBook: React.FC = () => {
                   backgroundColor: "#2E2E2E",
                   padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: windowWidth <= 991 ? "320px" : "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px",
                 }}
               >
                 <Scrollbars>
-                  {burgersArray.map(burger => (
+                  {burgersArray.map((burger) => (
                     <div
                       key={burger.id}
                       style={{
@@ -303,7 +307,7 @@ const OrderBook: React.FC = () => {
                         justifyContent: "space-between",
                         alignItems: "center",
                         width: windowWidth <= 991 ? "auto" : "400px",
-                        padding: "10px 0"
+                        padding: "10px 0",
                       }}
                     >
                       <div
@@ -312,7 +316,7 @@ const OrderBook: React.FC = () => {
                           flexDirection: "row",
                           justifyContent: "center",
                           alignItems: "center",
-                          color: "#ffffff"
+                          color: "#ffffff",
                         }}
                       >
                         <div
@@ -335,7 +339,7 @@ const OrderBook: React.FC = () => {
                         <div
                           style={{
                             maxWidth: windowWidth <= 991 ? "130px" : "230px",
-                            marginLeft: "10px"
+                            marginLeft: "10px",
                           }}
                         >
                           {burger.name}
@@ -346,7 +350,7 @@ const OrderBook: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "space-between",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <div style={{ color: "#A0CE54" }}>
@@ -367,7 +371,7 @@ const OrderBook: React.FC = () => {
                   display: "flex",
                   flexDirection: "column",
                   width: "100%",
-                  paddingBottom: "20px"
+                  paddingBottom: "20px",
                 }}
               >
                 <img
@@ -384,7 +388,7 @@ const OrderBook: React.FC = () => {
                     color: "#222222",
                     lineHeight: "30px",
                     fontWeight: 500,
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   Cheeseburger
@@ -396,7 +400,7 @@ const OrderBook: React.FC = () => {
                       color: "#787878",
                       fontWeight: 300,
                       lineHeight: "24px",
-                      margin: "0px 20px 0 20px"
+                      margin: "0px 20px 0 20px",
                     }}
                   >
                     Adding cheese to hamburgers became popular in the late-1920s
@@ -420,7 +424,7 @@ const OrderBook: React.FC = () => {
               display: value === 3 ? "flex" : "none",
               flexDirection: "row",
               fontFamily: "Fira Sans",
-              width: windowWidth <= 991 ? "auto" : "940px"
+              width: windowWidth <= 991 ? "auto" : "940px",
             }}
           >
             <div>
@@ -443,11 +447,11 @@ const OrderBook: React.FC = () => {
                   backgroundColor: "#2E2E2E",
                   padding: windowWidth <= 991 ? "10px" : "30px",
                   height: "550px",
-                  width: windowWidth <= 991 ? "320px" : "475px"
+                  width: windowWidth <= 991 ? "320px" : "475px",
                 }}
               >
                 <Scrollbars>
-                  {kebabsArray.map(kebab => (
+                  {kebabsArray.map((kebab) => (
                     <div
                       key={kebab.id}
                       style={{
@@ -456,7 +460,7 @@ const OrderBook: React.FC = () => {
                         justifyContent: "space-between",
                         alignItems: "center",
                         width: windowWidth <= 991 ? "auto" : "400px",
-                        padding: "10px 0"
+                        padding: "10px 0",
                       }}
                     >
                       <div
@@ -465,7 +469,7 @@ const OrderBook: React.FC = () => {
                           flexDirection: "row",
                           justifyContent: "center",
                           alignItems: "center",
-                          color: "#ffffff"
+                          color: "#ffffff",
                         }}
                       >
                         <div
@@ -488,7 +492,7 @@ const OrderBook: React.FC = () => {
                         <div
                           style={{
                             maxWidth: windowWidth <= 991 ? "130px" : "230px",
-                            marginLeft: "10px"
+                            marginLeft: "10px",
                           }}
                         >
                           {kebab.name}
@@ -499,7 +503,7 @@ const OrderBook: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "space-between",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <div style={{ color: "#A0CE54" }}>
@@ -520,7 +524,7 @@ const OrderBook: React.FC = () => {
                   display: "flex",
                   flexDirection: "column",
                   width: "100%",
-                  paddingBottom: "20px"
+                  paddingBottom: "20px",
                 }}
               >
                 <img
@@ -537,7 +541,7 @@ const OrderBook: React.FC = () => {
                     color: "#222222",
                     lineHeight: "30px",
                     fontWeight: 500,
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   Kebab
@@ -549,7 +553,7 @@ const OrderBook: React.FC = () => {
                       color: "#787878",
                       fontWeight: 300,
                       lineHeight: "24px",
-                      margin: "0px 20px 0 20px"
+                      margin: "0px 20px 0 20px",
                     }}
                   >
                     Kebab (also kebap or kabab) is a Middle Eastern dish of

@@ -1,43 +1,29 @@
+import "./styles.scss";
+
 import {
   faEnvelope,
   faMapMarker,
   faPhone,
   faQuoteLeft,
-  faQuoteRight
+  faQuoteRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
+import { Formik } from "formik";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-
-import { Formik } from "formik";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import { toast } from "react-toastify";
 import contactsBackground from "src/assets/contacts/findus-bg.jpg";
+import { BetterButton } from "src/components";
 import * as yup from "yup";
 
-import { useWindowWidth } from "@react-hook/window-size";
-
-import { BetterButton } from "src/components";
-import "./styles.scss";
-
 const contactSchema = yup.object({
-  name: yup
-    .string()
-    .required()
-    .min(2)
-    .max(255),
-  email: yup
-    .string()
-    .required()
-    .email()
-    .min(2)
-    .max(255),
-  message: yup
-    .string()
-    .required()
-    .min(2)
-    .max(1024)
+  name: yup.string().required().min(2).max(255),
+  email: yup.string().required().email().min(2).max(255),
+  message: yup.string().required().min(2).max(1024),
 });
 
 const Contacts: React.FC = () => {
@@ -50,7 +36,7 @@ const Contacts: React.FC = () => {
         background: `url(${contactsBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        fontFamily: "Fira Sans, sans-serif"
+        fontFamily: "Fira Sans, sans-serif",
       }}
     >
       <div className="container">
@@ -61,7 +47,7 @@ const Contacts: React.FC = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            marginBottom: "80px"
+            marginBottom: "80px",
           }}
         >
           <div
@@ -69,7 +55,7 @@ const Contacts: React.FC = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <FontAwesomeIcon
@@ -77,7 +63,7 @@ const Contacts: React.FC = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#CA934C"
+                color: "#CA934C",
               }}
               icon={faQuoteLeft}
             />
@@ -87,7 +73,7 @@ const Contacts: React.FC = () => {
                 fontFamily: "Droid Serif",
                 fontStyle: "italic",
                 fontSize: "2em",
-                margin: "5px 20px"
+                margin: "5px 20px",
               }}
             >
               Find us
@@ -97,7 +83,7 @@ const Contacts: React.FC = () => {
               style={{
                 fontSize: "1.3em",
                 fontStyle: "bold",
-                color: "#CA934C"
+                color: "#CA934C",
               }}
               icon={faQuoteRight}
             />
@@ -108,7 +94,7 @@ const Contacts: React.FC = () => {
               fontSize: "1.1em",
               fontWeight: 400,
               color: "#d1d1d1",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             Duis vitae velit mollis, congue nisi dignissim, pellentesque lorem
@@ -121,7 +107,7 @@ const Contacts: React.FC = () => {
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "space-evenly",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           {/* FORM */}
@@ -130,7 +116,7 @@ const Contacts: React.FC = () => {
             style={{
               backgroundColor: "#ffffff",
               padding: "10px",
-              margin: windowWidth <= 991 ? "10px" : "0px"
+              margin: windowWidth <= 991 ? "10px" : "0px",
             }}
           >
             <div
@@ -139,7 +125,7 @@ const Contacts: React.FC = () => {
                 backgroundColor: "#ffffff",
                 border: "1px dashed #8c8c8c",
                 padding: windowWidth >= 600 ? "30px" : "10px",
-                minWidth: windowWidth >= 600 ? "550px" : "auto"
+                minWidth: windowWidth >= 600 ? "550px" : "auto",
               }}
             >
               <Container>
@@ -155,7 +141,7 @@ const Contacts: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "flex-start",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <FontAwesomeIcon
@@ -164,7 +150,7 @@ const Contacts: React.FC = () => {
                             fontSize: "1em",
                             color: "#A0CE54",
                             marginRight: "5px",
-                            marginBottom: "2px"
+                            marginBottom: "2px",
                           }}
                           icon={faMapMarker}
                         />
@@ -188,7 +174,7 @@ const Contacts: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "flex-start",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <FontAwesomeIcon
@@ -197,7 +183,7 @@ const Contacts: React.FC = () => {
                             fontSize: "1em",
                             color: "#A0CE54",
                             marginRight: "5px",
-                            marginBottom: "2px"
+                            marginBottom: "2px",
                           }}
                           icon={faEnvelope}
                         />
@@ -221,7 +207,7 @@ const Contacts: React.FC = () => {
                           display: "flex",
                           flexDirection: "row",
                           justifyContent: "flex-start",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <FontAwesomeIcon
@@ -230,7 +216,7 @@ const Contacts: React.FC = () => {
                             fontSize: "1em",
                             color: "#A0CE54",
                             marginRight: "5px",
-                            marginBottom: "2px"
+                            marginBottom: "2px",
                           }}
                           icon={faPhone}
                         />
@@ -251,7 +237,7 @@ const Contacts: React.FC = () => {
                         color: "#a0ce54",
                         fontSize: "1.1em",
                         marginBottom: "10px",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
                       }}
                     >
                       Get in touch
@@ -260,12 +246,13 @@ const Contacts: React.FC = () => {
                     <Formik
                       initialValues={{ name: "", email: "", message: "" }}
                       onSubmit={(values, actions) => {
-                        actions.resetForm();
                         console.log(values);
+                        actions.resetForm();
+                        toast.success("Feedback sent!");
                       }}
                       validationSchema={contactSchema}
                     >
-                      {formik => (
+                      {(formik) => (
                         <Form onSubmit={formik.handleSubmit}>
                           <Form.Row>
                             <Form.Group as={Col}>
@@ -352,9 +339,10 @@ const Contacts: React.FC = () => {
                                 bsPrefix="contact-btn"
                                 buttonStyles={{
                                   paddingTop: "10px",
-                                  paddingBottom: "10px"
+                                  paddingBottom: "10px",
                                 }}
                                 containerStyles={{ width: "100%" }}
+                                onClick={formik.handleSubmit}
                               />
                             </Form.Group>
                           </Form.Row>
@@ -373,7 +361,7 @@ const Contacts: React.FC = () => {
             style={{
               backgroundColor: "#ffffff",
               padding: "10px",
-              margin: windowWidth <= 991 ? "10px" : "0px"
+              margin: windowWidth <= 991 ? "10px" : "0px",
             }}
           >
             <div
@@ -382,7 +370,7 @@ const Contacts: React.FC = () => {
                 backgroundColor: "#ffffff",
                 border: "1px dashed #8c8c8c",
                 padding: "30px",
-                maxWidth: "400px"
+                maxWidth: "400px",
               }}
             >
               <p
@@ -391,7 +379,7 @@ const Contacts: React.FC = () => {
                   fontFamily: "Fira Sans",
                   color: "#A0CE54",
                   fontSize: "1.2em",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Working days & hours
@@ -401,7 +389,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Monday: 08.00 am to 11.00 pm
@@ -412,7 +400,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Tuesday: 08.00 am to 11.00 pm
@@ -423,7 +411,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Wednesday: 08.00 am to 11.00 pm
@@ -434,7 +422,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Thursday: 08.00 am to 11.00 pm
@@ -445,7 +433,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Friday: 08.00 am to 11.00 pm
@@ -456,7 +444,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "22px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Satrurday: 10.00 am to 11.00 pm
@@ -467,7 +455,7 @@ const Contacts: React.FC = () => {
                   marginBottom: "0px",
                   fontFamily: "Fira Sans",
                   color: "#8c8c8c",
-                  fontSize: "0.9em"
+                  fontSize: "0.9em",
                 }}
               >
                 Sunday: 10.00 am to 11.00 pm

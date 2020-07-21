@@ -12,11 +12,11 @@ const TaskList: React.FC<TaskListProps> = ({
   loading = false,
   tasks,
   onPinTask,
-  onArchiveTask
+  onArchiveTask,
 }) => {
   const events = {
     onPinTask,
-    onArchiveTask
+    onArchiveTask,
   };
 
   const LoadingRow = (
@@ -54,13 +54,14 @@ const TaskList: React.FC<TaskListProps> = ({
   }
 
   const tasksInOrder = [
-    ...tasks.filter(t => t.state === "TASK_PINNED"),
-    ...tasks.filter(t => t.state !== "TASK_PINNED")
+    ...tasks.filter((t) => t.state === "TASK_PINNED"),
+    ...tasks.filter((t) => t.state !== "TASK_PINNED"),
   ];
 
   return (
     <div className="list-items">
-      {tasksInOrder.map(task => (
+      {tasksInOrder.map((task) => (
+        // eslint-disable-next-line react/jsx-props-no-spreading
         <Task key={task.id} task={task} {...events} />
       ))}
     </div>

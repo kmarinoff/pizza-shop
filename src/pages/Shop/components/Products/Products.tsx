@@ -1,9 +1,8 @@
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import { OrderBook } from "src/components/OrderBook";
-
-import { useWindowWidth } from "@react-hook/window-size";
 
 const Products = () => {
   const windowWidth = useWindowWidth();
@@ -17,7 +16,7 @@ const Products = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <div
@@ -28,14 +27,14 @@ const Products = () => {
           alignItems: "center",
           margin: "0 auto 50px auto",
           width: windowWidth <= 550 ? "auto" : "50%",
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <FontAwesomeIcon
@@ -43,7 +42,7 @@ const Products = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteLeft}
           />
@@ -53,7 +52,7 @@ const Products = () => {
               fontFamily: "Droid Serif",
               fontStyle: "italic",
               fontSize: "2em",
-              margin: "5px 20px"
+              margin: "5px 20px",
             }}
           >
             Products
@@ -63,7 +62,7 @@ const Products = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteRight}
           />
@@ -72,7 +71,7 @@ const Products = () => {
           style={{
             color: "#A8A8A8",
             fontStyle: "italic",
-            fontSize: "0.9em"
+            fontSize: "0.9em",
           }}
         >
           lla non mattis risus. Praesent accumsan at diam ut molestie. Integer

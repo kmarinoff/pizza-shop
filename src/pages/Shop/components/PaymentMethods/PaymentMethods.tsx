@@ -1,19 +1,17 @@
+import "./styles.scss";
+
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowWidth } from "@react-hook/window-size";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
-
 import mastercarad from "src/assets/payment-methods/mastercarad-small.png";
 import paypal from "src/assets/payment-methods/paypal.png";
 import stripe from "src/assets/payment-methods/stripe-small.png";
 import visa from "src/assets/payment-methods/visa.png";
-
-import { useWindowWidth } from "@react-hook/window-size";
-
-import "./styles.scss";
 
 const PaymentMethods = () => {
   const windowWidth = useWindowWidth();
@@ -30,14 +28,14 @@ const PaymentMethods = () => {
           margin: "0 auto",
           width: windowWidth <= 550 ? "90%" : "50%",
           textAlign: "center",
-          padding: "73px 0"
+          padding: "73px 0",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <FontAwesomeIcon
@@ -45,7 +43,7 @@ const PaymentMethods = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteLeft}
           />
@@ -55,7 +53,7 @@ const PaymentMethods = () => {
               fontFamily: "Droid Serif",
               fontStyle: "italic",
               fontSize: "2em",
-              margin: "5px 20px"
+              margin: "5px 20px",
             }}
           >
             Payment methods
@@ -65,7 +63,7 @@ const PaymentMethods = () => {
             style={{
               fontSize: "1.3em",
               fontStyle: "bold",
-              color: "#ccc"
+              color: "#ccc",
             }}
             icon={faQuoteRight}
           />
@@ -74,7 +72,7 @@ const PaymentMethods = () => {
           style={{
             color: "#A8A8A8",
             fontStyle: "italic",
-            fontSize: "0.9em"
+            fontSize: "0.9em",
           }}
         >
           Donec vitae magna elementum, tempus ante in, aliquam nibh.
@@ -86,7 +84,7 @@ const PaymentMethods = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           <Col lg={3} md={6} sm={6} xs={12} style={{ marginBottom: "80px" }}>

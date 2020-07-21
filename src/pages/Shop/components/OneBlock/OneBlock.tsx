@@ -1,10 +1,8 @@
 import React from "react";
-
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import oneBlockBackground from "src/assets/one-block/one-block-bg.jpg";
-
 import { BetterButton } from "src/components";
 
 const OneBlock = () => {
@@ -15,7 +13,7 @@ const OneBlock = () => {
         background: `url(${oneBlockBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        fontFamily: "Fira Sans, sans-serif"
+        fontFamily: "Fira Sans, sans-serif",
       }}
     >
       <Container>
@@ -24,7 +22,7 @@ const OneBlock = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <Col
@@ -34,7 +32,7 @@ const OneBlock = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "flex-start",
-              color: "white"
+              color: "white",
             }}
           >
             <div style={{ fontWeight: "bold", marginBottom: "20px" }}>
@@ -52,7 +50,7 @@ const OneBlock = () => {
               buttonText="Our Products"
               bsPrefix="our-products"
               containerStyles={{
-                width: "100%"
+                width: "100%",
               }}
             />
           </Col>

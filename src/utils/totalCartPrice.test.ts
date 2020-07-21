@@ -1,10 +1,12 @@
+/* eslint no-unused-vars: off */
+
 import { CartItem } from "src/types/cart";
 import { totalCartPrice } from "src/utils/totalCartPrice";
 
 describe("totalCartPrice", () => {
   const cart: CartItem[] = [
-    { id: 1, count: 1, name: "Pizza 1", price: 1, img: "" },
-    { id: 2, count: 1, name: "Pizza 2", price: 1, img: "" }
+    { id: "1", count: 1, name: "Pizza 1", price: 1, img: "", size: 0 },
+    { id: "2", count: 1, name: "Pizza 2", price: 1, img: "", size: 0 },
   ];
 
   it("should calculate the total price of the cart", () => {

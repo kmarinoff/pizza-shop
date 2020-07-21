@@ -1,6 +1,5 @@
-import React from "react";
-
 import { useWindowWidth } from "@react-hook/window-size";
+import React from "react";
 
 interface SpecialtyItemProps {
   specialtyType: string;
@@ -13,7 +12,7 @@ const SpecialtyItem: React.FC<SpecialtyItemProps> = ({
   specialtyType,
   imageSrc,
   specialtyTitle,
-  specialtyBody
+  specialtyBody,
 }) => {
   const windowWidth = useWindowWidth();
 
@@ -29,7 +28,7 @@ const SpecialtyItem: React.FC<SpecialtyItemProps> = ({
         backgroundColor: "white",
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
         borderRadius: "10px",
-        margin: windowWidth <= 991 ? "10px" : "0px"
+        margin: windowWidth <= 991 ? "10px" : "0px",
       }}
     >
       <img
@@ -38,7 +37,7 @@ const SpecialtyItem: React.FC<SpecialtyItemProps> = ({
         style={{
           borderTopLeftRadius: "10px",
           borderTopRightRadius: "10px",
-          width: "100%"
+          width: "100%",
         }}
       />
       <div className="content" style={{ padding: "10px 20px" }}>
@@ -47,7 +46,7 @@ const SpecialtyItem: React.FC<SpecialtyItemProps> = ({
           style={{
             fontFamily: "Droid Serif",
             fontSize: "1.2em",
-            letterSpacing: "1px"
+            letterSpacing: "1px",
           }}
         >
           {specialtyTitle}

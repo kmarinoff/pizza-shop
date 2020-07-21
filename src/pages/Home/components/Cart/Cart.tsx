@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "src/reduxStore";
-
 import { CartItem, IRootState } from "src/types";
 
 const Cart: FC = () => {

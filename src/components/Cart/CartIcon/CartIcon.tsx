@@ -1,9 +1,11 @@
+/* eslint jsx-a11y/no-static-element-interactions: off, jsx-a11y/click-events-have-key-events: off */
+
+import "./CartIcon.scss";
+
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import "./CartIcon.scss";
-
 import { CartItem, IRootState } from "src/types";
 
 interface CartIconProps {
@@ -24,7 +26,7 @@ const CartIcon: FC<CartIconProps> = ({ handleClick }) => {
         style={{
           fontSize: "2.63em",
           fontStyle: "bold",
-          color: "white"
+          color: "white",
         }}
         icon={faShoppingCart}
       />

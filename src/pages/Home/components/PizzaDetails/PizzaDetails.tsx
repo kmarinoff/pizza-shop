@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { match, useHistory, useRouteMatch } from "react-router-dom";
 import { BetterButton } from "src/components";
 import { Footer } from "src/pages/components";
-
 import { getPizza } from "src/reduxStore/modules/pizzas/pizzasActionCreators";
-
 import { IRootState, Pizza } from "src/types";
 
 const PizzaDetails: FC = () => {
@@ -45,7 +43,7 @@ const PizzaDetails: FC = () => {
                 </Card.Title>
                 <Card.Text>
                   Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  the bulk of the card&apos;s content.
                 </Card.Text>
                 <div className="d-flex justify-content-between align-items-center">
                   <p style={{ margin: 0 }}>Cost: ${get(pizzas[0], "price")}</p>
@@ -68,7 +66,7 @@ const PizzaDetails: FC = () => {
             minHeight: "80vh",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center "
+            alignItems: "center ",
           }}
         >
           <Spinner animation="grow" />

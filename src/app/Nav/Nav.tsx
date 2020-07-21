@@ -1,3 +1,7 @@
+/* eslint jsx-a11y/click-events-have-key-events: off  */
+
+import "./Nav.scss";
+
 import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 import React, { FC, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -7,10 +11,9 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { CartIcon, ShoppingCartDropdown } from "src/components";
 import { signOut } from "src/setup";
-import "./Nav.scss";
-import { FontAwesome } from "./StyledNav";
-
 import { IRootState } from "src/types";
+
+import { FontAwesome } from "./StyledNav";
 
 interface NavProps {
   isLoggedIn: boolean;
@@ -37,17 +40,18 @@ const Nav: FC<NavProps> = ({ isLoggedIn }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 textDecoration: "none",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
               <FontAwesome icon={faPizzaSlice} onClick={() => push("/shop")} />
+              {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
               <div
                 style={{
                   marginLeft: "10px",
                   textDecoration: "none",
                   color: "white",
                   fontFamily: "Droid Serif",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
                 onClick={() => {
                   if (profile.isEmpty) {
