@@ -17,6 +17,7 @@ import { storage } from "src/setup/firebase";
 import { IRootState } from "src/types/rootState";
 
 import { AddPizza } from "../AddPizza";
+import { Payments } from "../Payments";
 import { Sandbox } from "../Sandbox";
 
 const Admin = () => {
@@ -116,6 +117,7 @@ const Admin = () => {
           >
             <NavLink to="/admin/add-pizza">Add New Pizza</NavLink>
             <NavLink to="/admin/pizzas">All Pizzas</NavLink>
+            <NavLink to="/admin/payments">Payments</NavLink>
           </div>
         </div>
         <div className="admin-content col-10">
@@ -130,6 +132,9 @@ const Admin = () => {
             </Route>
             <Route exact path="/admin/pizzas">
               <Sandbox />
+            </Route>
+            <Route exact path="/admin/payments">
+              <Payments />
             </Route>
           </Switch>
         </div>

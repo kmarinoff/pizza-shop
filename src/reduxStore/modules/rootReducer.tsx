@@ -4,6 +4,7 @@ import { firestoreReducer } from "redux-firestore"; // <- needed if using firest
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { newPizzasReducer } from "src/reduxStore/modules/newPizzas";
+import { paymentsReducer } from "src/reduxStore/modules/payments";
 
 import { cartReducer } from "./cart";
 import { pizzasReducer } from "./pizzas";
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer,
+  payments: paymentsReducer,
 });
 
 export const persistedRootReducer = persistReducer(persistConfig, rootReducer);
